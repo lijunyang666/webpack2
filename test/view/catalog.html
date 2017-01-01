@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>QC文学网-目录页</title>
+		<link rel="stylesheet" href="../css/main.css" />
+		<link rel="stylesheet" href="../css/catalog.css" />
+    	<link rel="stylesheet" href="../css/headerOrFooter.css" />
+		<link rel="stylesheet" href="../css/LOgin.css" />
+		<link rel="stylesheet" href="../css/jquery-ui.min.css" />
+	</head>
+	<script type="text/javascript" src="../js/vue.js"></script>
+	<body id="mask" id="app"
+	  v-show="bodyFlag" style="display: none;"
+		v-bind:style="popup === true? 'overflow:hidden':''">
+    <alert v-ref:vue-alert></alert>
+	  <myheader :login-img="loginImg"></myheader>
+		<div id="search"></div>
+		<div class="index" >
+			<div class="index_Line"></div>
+			<img v-for="obj in bookCustom" id="{{obj.bookCoverImage}}"  class="picture" src="../img/z-imgBj.jpg" @load="szxj.loadImg(obj.bookCoverImage ? path.rootPath + obj.bookCoverImage: '', $event)" />
+			<div class="text">
+			
+				<h4>{{ title }}</h4>
+				<ul class="text_ul">
+					<li>字数: <span style="color:#7e7e7e">&nbsp &nbsp{{words}}</span></li>
+					<li>点击: <span style="color:#7e7e7e">&nbsp &nbsp{{cursor}}</span></li>
+					<li style="width: 200px">更新: <span style="color:#7e7e7e;">&nbsp &nbsp{{szxj.getLocalTime(update / 1000) }}</span></li>
+				</ul>
+				<div class="text_brief">
+						<p class="text_brief_p" title="{{introduction}}">简介：{{introduction}}</p>
+						
+					<div class="text_type" >
+						<ul>
+							<li>分类：</li>
+							<li v-for="obj in Booktype"><a :href="path.TemprootPath + '/view/class.html?id=' + obj.bookTypeId" ><span class="text_span">{{ obj.bookTypeName}}</a></span></li>
+						</ul>
+					</div>
+					<div class="text_reading">
+						<ul>
+							<li>
+							  <a v-if="BookList[0] && BookList[0].contentEntityList[0]" class="text_Read" target="_blank"  :href="path.TemprootPath + '/view/read_book.html?contentId=' + BookList[0].contentEntityList[0].contentId  + '&bookId='+ bookId" >开始阅读</a>
+							  <a v-else class="text_Read" href="javascript:;" target="_blank">开始阅读</a>
+              </li>
+							<li @click="setCollect()" v-if="!collect" ><span><img src="../img/sss4.png"/ class="text_Collection"><p>收藏作品</p><num>{{Collection}}</num></li>
+							<li @click="setCollect()" v-else ><span><img src="../img/sss4.png"/ class="text_Collection"><p>已收藏</p><num>{{Collection}}</num></li>
+							<li <!--v-on:click="rewardFn"--><span><img src="../img/sss3.png"/ class="text_card"><p>好人卡</p><num>{{bookCopperCoins}}</num></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			
+				<div class="text_Catalog">
+				  <div v-for="obj in BookList">
+  					<ul >
+  						<li class="text_mark"></li>
+  						<li ><b>{{ obj.volumeName }}</b></li>
+  					</ul>   
+  					<div class="text_chapter" >
+  							<div class="group" v-for="value in obj.contentEntityList">
+  							  <span class="text_sign"></span>
+  							  <a target="_blank" :href="path.TemprootPath + '/view/read_book.html?contentId=' + value.contentId + '&bookId='+ obj.bookId">
+                      {{ value.contentTitle }}
+                  </a>
+  							</div>
+  					</div>
+					</div>
+				</div>
+				
+				
+				
+<div class="text_comment">
+	<ul>
+		<li><span>1982</span></li>
+		<li>评论</li>
+	</ul>
+</div>
+<style>
+  .wangEditor-txt {
+    min-height: 60px !important;
+    height: auto !important;
+    max-height: 300px;
+    border-radius: 8px;
+    max-height: ;
+  }
+</style>
+<div class="text_input">
+	<ul class="clear">
+		<li class="user_head"><a href="javascript:;">
+		  <img src="../img/sss8.jpg" @load="szxj.loadImg(loginImg ? path.rootPath + loginImg: '', $event)"/></a></li>
+		<li style="position: relative;float: left;width: 555px;min-height: 60px;">
+		  <editor :id="'editor_'" v-ref:editor></editor>
+		</li>
+		<li class="MessageBtn btn" @click="saveComment"><span>发表评论</span></li>
+	</ul>
+	<div class="text_sort active">
+		<ul>
+			<li :class="commentStatus === 0 ?'active':''" @click="setComment(0)">默认排序</li>
+			<li :class="commentStatus === 1 ?'active':''" @click="setComment(1)">按回复数</li>
+		</ul>
+	</div>
+</div>
+<div class="CommentArea"  v-for="obj in findCommentAndReply.comment">
+  <div class="text_user clear">
+    <a href="javascript:;"><img src="../img/sss8.jpg" @load="szxj.loadImg(obj.userHead ? path.rootPath + obj.userHead: '', $event)"/ ></a>
+    <ul class="mes_head">
+      <li class="mes_head_user" >
+        <a href="javascript:;" class="user_a" title="">{{obj.userName}}</a>
+        <a v-if="$index === 0 && obj.strickie != '0'" href="javascript:;" class="user_Top">置顶</a>
+        <a v-if="findCommentAndReply.auth && obj.strickie == '0'" @click="strickieFn(obj.commentId)" href="javascript:;" class="user_Top_a">置顶</a>
+      </li>
+      <li><span class="user_comment" style="display: block;white-space: normal;word-break:break-all;word-wrap:break-word;">{{{ obj.commentContent }}}</span></li>  
+      <li>
+        <ul class="updata_mes">
+            <li class="mess1">{{ szxj.getLocalTime(obj.commentDate / 1000) }}</li>
+            <li class="mess2" @click="messageShow(obj.commentId, 0, obj.userName, obj.userId)">回复</li>
+            <li class="mess3">举报</li>
+        </ul>
+      </li>
+    </ul>
+  </div >
+  
+  <div class="text_userTow clear" style="position: relative;" v-for="temp in obj.replyEntityList">
+    <a href="javascript:;"><img src="../img/smallHead.png" @load="szxj.loadImg(temp.userHead ? path.rootPath + temp.userHead: '', $event)" style="border-radius: 25px;width: 36px;height: 36px;"/ ></a>
+    <ul class="mes_head">
+      
+      <li class="mes_head_user" >
+        <a href="javascript:;" class="user_a" title="">{{ temp.userName }}</a>
+      </li>
+      
+      <li>
+        <span class="user_comment"  title="">
+          <label v-if="obj.replyStatus">回复<span class="aite_user">@{{ temp.replyUserName }}</span></label>
+           
+          {{{ temp.replyContent }}}
+        
+        </span>
+      </li> 
+        
+      <li>
+        <ul class="updata_mes">
+            <li class="mess1">{{ szxj.getLocalTime(temp.replyDate / 1000) }}</li>
+            <li class="mess2" @click="messageShow(temp.commentId, 1, temp.userName, temp.userId)">回复</li>
+            <li class="mess3">举报</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+  
+<ul class="Publish" :style="commentId === obj.commentId ? 'visibility: ;':'display: none;'">
+    <li class="user_head"><a href="javascript:;"><img src="../img/sss8.jpg" @load="szxj.loadImg(obj.userHead ? path.rootPath + obj.userHead: '', $event)"/></a></li>
+    <li style="position: relative;float: left;width: 485px;min-height: 60px;">
+      <editor :id="'editor_' + obj.commentId" :editor.sync="obj.editor"></editor>
+    </li>
+    <li class="MessageBtn btn" @click="saveReply(obj.commentId)"><span style="line-height: 26px;">回复</span></li>
+</ul>
+  
+  
+<ul class="text_page clear" :style="obj.pageCount > 1 ? 'visibility: ;':'visibility: hidden;'">
+      
+      <li>共<b>{{obj.pageCount}}</b>页</li>
+      <li class="page_up" @click="setPage1(obj.pageNo - 1, $index)" :style="obj.pageNo > 1 ? 'display:block':'display:none'">上一页</li>
+      
+      <li class="page_number" v-if="(($index + 1) <= 5 && obj.pageNo < 3 || (($index + 1) > obj.pageNo - 3 &&  $index < obj.pageNo)) || ( (($index + 1) <= obj.pageNo + 2 &&　($index + 1) > obj.pageNo) || (obj.pageNo > obj.pageCount - 3 && ($index + 6) > obj.pageCount) )"
+      :style="objTemp == obj.pageNo? 'font-weight:bold':''" v-for="objTemp in obj.page" @click="setPage1(objTemp, $index)"><a>{{ objTemp }}</a></li>
+      
+      <li v-show="obj.pageNo !== obj.pageCount" class="page_next" @click="setPage1(obj.pageNo + 1, $index)">下一页</li>
+</ul>
+  
+  <div class="hr"></div>  
+</div>
+   
+
+<div class="Report" style="display: none;">
+    <form action="" method="get"> 
+        请输入举报理由
+    <br /><br /> 
+    <ul>
+      <li><label><input name="Fruit" type="radio" value="" />&nbsp广告 </label></li>
+      <li><label><input name="Fruit" type="radio" value="" />&nbsp刷屏 </label></li>
+      <li><label><input name="Fruit" type="radio" value="" />&nbsp剧透 </label></li>
+      <li><label><input name="Fruit" type="radio" value="" />&nbsp引战</label></li>
+      <li><label><input name="Fruit" type="radio" value="" />&nbsp政治</label></li>
+      <li><label><input name="Fruit" type="radio" value="" />&nbsp内容不相关</label></li>
+      <li><label><input name="Fruit" type="radio" value="" />&nbsp人身攻击</label></li>
+      <li><label><input name="Fruit" type="radio" value="" />&nbsp其他</label></li>
+    </ul>
+</form> 
+<div class="true">确定</div>
+</div>
+
+
+<div id="page" class="page">
+  <ul>
+    
+    <li class="btn" @click="setPage((findCommentAndReply.pageNo - 1) >= 1 ? (findCommentAndReply.pageNo - 1) : 1)"><a>上一页</a></li>
+    
+    <li v-if="(($index + 1) <= 5 && findCommentAndReply.pageNo < 3 || (($index + 1) > findCommentAndReply.pageNo - 3 &&  $index < findCommentAndReply.pageNo)) || ( (($index + 1) <= findCommentAndReply.pageNo + 2 &&　($index + 1) > findCommentAndReply.pageNo) || (findCommentAndReply.pageNo > findCommentAndReply.pageCount - 3 && ($index + 6) > findCommentAndReply.pageCount) )"
+      :class="objTemp == findCommentAndReply.pageNo? 'active':''" v-for="objTemp in findCommentAndReply.page" @click="setPage(objTemp)"><a>{{ objTemp }}</a></li>
+    
+    <li class="btn" @click="setPage((findCommentAndReply.pageNo + 1) <= findCommentAndReply.pageCount ? (findCommentAndReply.pageNo + 1) : findCommentAndReply.pageCount)"><a>下一页</a></li>
+    
+    <li class="goto">
+      <input type="text" v-model="pageNo" style="text-align: center;"/>
+      <span>{{ findCommentAndReply.pageNo }}/{{ findCommentAndReply.pageCount }}</span>
+      <a class="btn" @click="setPage(pageNo)">转页</a>
+    </li>
+  
+  </ul>
+</div>
+        
+        
+				
+				
+				
+				
+<div class="screen">
+	<h3>作者相关</h3>
+	<a href="javascript:;"><img :src="path.rootPath + userHead " class="head"></a>
+	<ul class="author">
+		<li><label>作者：</label>
+			<a href="javascript:;" class="span span_author" title="{{authorName}}">{{authorName}}</a>
+			<a @click="setAttention()" v-if="!attention" class="a_author" href="javascript:;">关注</a>
+			<a @click="setAttention()" v-else class="a_author_Tow" href="javascript:;" >已关注</a>
+		</li>
+		<li><p class="span_autograph" title="{{autograph}}"><label style="color: black;">签名：</label>{{autograph}}</p></li>
+	</ul>
+	
+	<div class="works">
+		<h3 class="titile_tow">其他作品</h3>
+		<div class="button">
+			<button class="next" @click="nextWorksFn"><img src="../img/sss12.png"/></button>
+			<button class="Previous" @click="previousWorksFn"><img src="../img/sss13.png"/></button>
+		</div>
+		<ul class="clear">
+			<li :style="'left:' + $index * 84 + 'px;' + 'transform:translateX(' + 84 * zindex +'px);'"  v-for="obj in booktTitle">
+				<a :href="path.TemprootPath + '/view/catalog.html?bookId=' + obj.bookId"> <img src="../img/z-imgBj.jpg" @load="szxj.loadImg(obj.bookCoverImage ? path.rootPath + obj.bookCoverImage: '', $event)"  /></a>
+				<a class="works_a"  :href="path.TemprootPath + '/view/catalog.html?bookId=' + obj.bookId" class="span span_author" title="{{ obj.bookName }}">{{ obj.bookName }}</a>
+			</li>
+		</ul>
+	</div>
+				
+				<!--<div class="list">
+					<h3>好人榜</h3>
+					<ul class="list_ul">
+						<li>周</li>
+						<li>月</li>
+						<li class="active">总</li>
+					</ul>
+					<div class="ranking">
+					  
+						<div class="relative">
+							<img src="../img/sss19.png" class="ranking_Img_line"/>
+							<a href="javascript:;"><img src="../img/sss22.png" class="ranking_head"/></a>
+							<ul>
+								<li><a class="works_b" href="javascript:;" title="比企谷八幡比企谷八幡比企谷八幡">比企谷八幡比企谷八幡</a></li>
+								<li class="name"></li>
+								<li class="num"><img src="../img/sss15.png"/>好人币</li>
+								<li class="num_money"><span class="money">{{ ARRAY[0].number }}</span></li>
+							</ul>
+						</div>
+						
+						<div class="ranking_name relative">
+							<img src="../img/sss20.png" class="ranking_Img_line"/>
+							<a href="javascript:;"><img src="../img/sss10.png" class="ranking_head"/></a>
+							<ul>
+								<li><a class="works_b" href="javascript:;" title="比企谷八幡比企谷八幡比企谷八幡">比企谷八幡</a></li>
+								<li class="name"></li>
+								<li class="num" style="color: #3781E7;"><img src="../img/sss16.png"/>好人币</li>
+								<li class="num_money"><span class="money" style="color: #3781E7;">{{ ARRAY[1].number }}</span></li>
+							</ul>
+						</div>
+						
+						<div class="ranking_name relative">
+							<img src="../img/sss21.png" class="ranking_Img_line"/>
+							<a href="javascript:;"><img src="../img/sss14.png" class="ranking_head"/></a>
+							<ul>
+								<li><a class="works_b" href="javascript:;" title="比企谷八幡比企谷八幡比企谷八幡">比企谷八幡</a></li>
+								<li class="name"></li>
+								<li class="num"style="color: #08a690;"><img src="../img/sss17.png"/>好人币</li>
+								<li class="num_money"><span class="money" style="color:#08a690;">{{ ARRAY[3].number }}</span></li>
+							</ul>
+						</div>
+						
+						<div class="rank">
+							<ul v-for="obj in ARRAY" v-if="$index > 2 && $index >= 10">
+								<li><a class="rank_a" href="javascript:;" title="比企谷八幡比企谷八幡比企谷八幡"><span class="rank_span">4</span><span class="rank_Title">封弊者</span></a></li>
+								<li class="rank_num">340</li>
+							</ul>
+							<ul >
+								<li><a class="rank_a" href="javascript:;" title="比企谷八幡比企谷八幡比企谷八幡"><span class="rank_span">5</span><span class="rank_Title">凤凰园凶真</span></a></li>
+								<li class="rank_num">22</li>
+							</ul>
+							<ul >
+								<li><a class="rank_a" href="javascript:;" title="比企谷八幡比企谷八幡比企谷八幡"><span class="rank_span">6</span><span class="rank_Title">封弊者</span></a></li>
+								<li class="rank_num">12</li>
+							</ul>
+							<ul >
+								<li><a class="rank_a" href="javascript:;" title="比企谷八幡比企谷八幡比企谷八幡"><span class="rank_span">7</span><span class="rank_Title">凤凰园凶真</span></a></li>
+								<li class="rank_num">2</li>
+							</ul>
+							<ul >
+								<li><a class="rank_a" href="javascript:;" title="比企谷八幡比企谷八幡比企谷八幡"><span class="rank_span">8</span><span class="rank_Title">凤凰园凶真</span></a></li>
+								<li class="rank_num">2</li>
+							</ul>
+							<ul >
+								<li><a class="rank_a" href="javascript:;" title="比企谷八幡比企谷八幡比企谷八幡"><span class="rank_span">9</span><span class="rank_Title">凤凰园凶真</span></a></li>
+								<li class="rank_num">2</li>
+							</ul>
+							<ul >
+								<li><a class="rank_a" href="javascript:;" title="比企谷八幡比企谷八幡比企谷八幡"><span class="rank_span">10</span><span class="rank_Title">凤凰园凶真</span></a></li>
+								<li class="rank_num">2</li>
+							</ul>
+							<ul >
+								<li><a class="rank_a" href="javascript:;" title="比企谷八幡比企谷八幡比企谷八幡"><span class="rank_span">11</span><span class="rank_Title">凤凰园凶真</span></a></li>
+								<li class="rank_num">2</li>
+							</ul>
+						</div>
+					</div>
+					<div id="more"><a>查看更多</a></div>
+				</div>-->
+				<!--<div id="recommed">
+					<h3>同类作品推荐</h3>
+					<ul class="many">
+						<li><a  href="javascript:;" title="比企谷八幡比企谷八幡比企谷八幡" style="color: #000000;">更多</a></li>
+					</ul>
+					<div class="recommed_works">
+						<div>
+							<a href="javascript:;" title="比企谷八幡比企谷八幡比企谷八幡"><img style="width: 91; height: 127px;" src="../img/z-imgBj.jpg" @load="szxj.loadImg(temp.bookCoverImage ? path.rootPath + temp.bookCoverImage: '', $event)"/></a>
+							<span class="h4">夏日小作战</span>
+							<ul>
+								<li>字数：<span style="color:#7e7e7e">50万</span></li>
+								<li>人气：<span style="color:#7e7e7e">155443</span></li>
+								<li>作者：<span style="color:#7e7e7e" class="works_span" title="比企谷八幡比企谷八幡比企谷八幡">huhuf8</span></li>
+							</ul>
+						</div>
+					</div>
+					<div class="recommed_works">
+						<div>
+							<a href="javascript:;" title="比企谷八幡比企谷八幡比企谷八幡"><img style="width: 91; height: 127px;" src="../img/z-imgBj.jpg" @load="szxj.loadImg(temp.bookCoverImage ? path.rootPath + temp.bookCoverImage: '', $event)"/></a>
+							<span class="h4">夏日小作战</span>
+							<ul>
+								<li>字数：<span style="color:#7e7e7e">50万</span></li>
+								<li>人气：<span style="color:#7e7e7e">155443</span></li>
+								<li>作者：<span style="color:#7e7e7e" class="works_span" title="比企谷八幡比企谷八幡比企谷八幡">huhuf8</span></li>
+							</ul>
+						</div>
+					</div>
+					<div class="recommed_Title">
+						<ul>
+							<li><a class="Title_a" href="javascript:;" title="比企谷八幡比企谷八幡比企谷八幡">幻城之巴拉啦老魔仙</a></li>
+							<li><a class="Title_a" href="javascript:;" title="比企谷八幡比企谷八幡比企谷八幡">巴拉拉小魔仙奇遇记</a></li>
+							<li><a class="Title_a" href="javascript:;" title="比企谷八幡比企谷八幡比企谷八幡">舞法舞天巴拉拉小魔仙</a></li>
+						</ul>
+					</div>
+					</div>-->
+			</div>
+		</div>
+<!--<div 
+	v-if="popup" 
+	v-on:click="rewardFn"
+	style="position: fixed;top: 50%;bottom: 0px;left: 0px;right: 0px; ">
+	<div class="reward" >
+		<div class="reward_cancel"><img src="../img/card-8.png"/ v-on:click="rewardShow"></div>
+		<h4>这本书超赞，我要打赏他<span>(づ￣3￣)づ╭❤～</span></h4>
+		<div class="reward_Num">
+			<label>选择打赏的数量：</label>		
+			<ul>	
+				<li><a><img src="../img/card-1.png" />X10</a></li>
+				<li class="reward_Choice"><a><img src="../img/card-2.png" /><img src="../img/card-7.png" class="Choice_img"/>X20</a></li>
+				<li><a><img src="../img/card-3.png" />X30</a></li>
+				<li><a><img src="../img/card-4.png" />X40</a></li>
+				<li><a><img src="../img/card-5.png" />X50</a></li>
+				<li><a><img src="../img/card-6.png" />X60</a></li>
+			</ul>
+			<p><textarea>自定义</textarea>X<img src="../img/card-1.png"/></p>
+			<a class="reward_Pay btn">立刻打赏！</a>
+		</div>	
+		<a class="reward_Recharge">充值></a>
+		<a class="reward_My">我的好人卡：1000</a>
+	</div>
+</div>-->
+
+<myfooter></myfooter>
+
+<script type="text/javascript" src="../js/jquery-1.11.1.js" ></script>
+<link rel="stylesheet" href="../css/wangEditor.min.css" />
+<script type="text/javascript" src="../js/wangEditor.min.js" ></script>
+<script type="text/javascript" src="../js/apis/editor.js"></script>
+<script src="../js/apis/vueHttp.js"></script>
+<script src="../js/apis/conf.js"></script>
+<script type="text/javascript" src="../js/vue.min.js" ></script>
+<script type="text/javascript" src="../js/vue-resource.min.js" ></script>
+<script type="text/javascript" src="../js/vue-router.min.js" ></script>
+<script type="text/javascript" src="../js/components/header.js" ></script>
+<script type="text/javascript" src="../js/components/footer.js" ></script>
+<script src="../js/apis/Data.js"></script>
+<script src="../js/apis/alert.js"></script>
+<script src="../js/apis/confirm.js"></script>
+<script type="text/javascript" src="../js/require/headerOrfooter.js"></script>  
+</body>
+<script>
+var vuePractice = new Vue({
+	el: '#mask',
+	data: {
+	  loginImg: '',
+	  bodyFlag: false,
+	  zindex: 0,
+	  path: PathList,
+	  szxj: SZXJ,
+		popup:false,
+		id: '',
+		title: '',
+		words:'',
+		cursor:'',
+		update:'',
+		introduction:'',
+		BookList: [],
+		Booktype:[{typeName:''}],
+		Collection:'',
+		bookCopperCoins:'',
+		authorName:'',
+		autograph:'',
+		booktTitle:[],
+		bookCustom:[],
+		collect: false,
+		attention: false,
+		userId: '',
+		bookId: '',
+		userHead: '',
+		findCommentAndReply: [], // 评论字段
+		authorId: '',
+		commentId: '', // 根据评论id显示 回复输入框
+		commentStatus: 0, // 按回复数 或 按时间排序显示评论
+		replyStatus: 0,
+		replyUserId: 0,
+	},
+	methods: {
+	  strickieFn: function(commentId) {
+	    SZXJ.http(this,'post', PathList.top, { bookId: this.id,commentId: commentId }, (response) => {
+        this.setComment(this.commentStatus);
+      });
+	  },
+	  messageShow: function(commentId, v, name, id) {
+	    this.commentId = commentId; // editor
+	    var editor = {};
+	    var index = 0;
+	    for (var i = 0; i < this.findCommentAndReply.comment.length; i++) {
+	      if (this.findCommentAndReply.comment[i].commentId === commentId) {
+	        editor = this.findCommentAndReply.comment[i].editor;
+	        index = 0;
+	        break;
+	      }
+	      // console.log(this.findCommentAndReply.comment[i].editor);
+	    }
+	    this.replyUserId = id;
+	    if (v === 1) {
+	      editor.$txt.html('<p><span style="color:#00A1D6;" contenteditable="false">回复@'+name+'</span><span>&nbsp;<span></p>');
+	      this.replyStatus = 1;
+      } else {
+        this.replyStatus = 0;
+      }
+	  },
+	  setPageCount: function(v) {
+      var obj = this.findCommentAndReply;
+      obj.pageCount =  v;
+      this.page = [];
+      for (var i = 0; i < obj.pageCount; i++) {
+        this.page.push(i+1);
+      }
+      this.$set('findCommentAndReply', obj);
+    },
+    setPage1: function(v, commentId) { // 获取回复的
+       var index = 0;
+       for (var i = 0; i < this.findCommentAndReply.comment.length; i++) {
+        if (this.findCommentAndReply.comment[i].commentId === commentId) {
+          index = i;
+          break;
+        }
+        // console.log(this.findCommentAndReply.comment[i].editor);
+      }
+      var _data = {
+        pageNo: v,
+        pageSize : 10,
+        commentId: this.findCommentAndReply.comment[index].commentId,
+      }
+      var obj = this.findCommentAndReply;
+      this.findCommentAndReply = {};
+      SZXJ.http(this,'get', PathList.moreReply, _data, (response) => {
+        obj.comment[index].replyEntityList = response.data;
+        obj.comment[index].pageNo = v;
+        this.findCommentAndReply = obj;
+        console.log(this.findCommentAndReply);
+      });
+    },
+    setPage: function(v) {
+      if (!v || v > this.findCommentAndReply.pageCount || v <= 0 || v.toString().search(/[^0-9]/g) !== -1 || parseInt(v) === parseInt(this.findCommentAndReply.pageNo) ) {
+        return;
+      }
+      var obj = this.findCommentAndReply;
+      obj.pageNo = v;
+      this.$set('findCommentAndReply', obj);
+      var _data = {};
+      _data.bookId = this.id;
+      _data.pageNo = v;
+      _data.pageSize = 10;
+      _data.status = this.commentStatus;
+      this.getComment(_data); // 请求
+    },
+    setComment(v) {
+      this.commentStatus = v;
+      var _data = {};
+      _data.bookId = this.id;
+      _data.pageNo = this.findCommentAndReply.pageNo;
+      _data.pageSize = 10;
+      _data.status = v;
+      this.getComment(_data); // 请求
+    },
+    getComment(_data) {
+      SZXJ.http(this,'get', PathList.findCommentAndReply, _data, (response) => {
+        console.log('评论:');
+        var pageNo;
+        if (this.findCommentAndReply.pageNo) {
+          pageNo = this.findCommentAndReply.pageNo
+          this.setPageCount(pageNo);
+        } else {
+          pageNo = 1;
+        }
+        this.findCommentAndReply = response.data;
+        this.findCommentAndReply.page = []; 
+        this.findCommentAndReply.pageNo = pageNo;
+        // 计算评论的总页数
+        if (this.findCommentAndReply.totalCount / _data.pageSize <= 1) {
+          this.findCommentAndReply.pageCount = 1;
+        } else {
+          if (this.findCommentAndReply.totalCount % _data.pageSize === 0) {
+            this.findCommentAndReply.pageCount = this.findCommentAndReply.totalCount / _data.pageSize;
+          } else {
+            this.findCommentAndReply.pageCount = parseInt((this.findCommentAndReply.totalCount / _data.pageSize), 10) + 1;
+          }
+        }
+        for (var i = 0; i < this.findCommentAndReply.pageCount;i++) {
+          this.findCommentAndReply.page.push(i+1);
+        }
+        for (var i = 0; i < this.findCommentAndReply.comment.length;i++) {
+          // 评论楼中楼
+          this.findCommentAndReply.comment[i].editor = {};
+          this.findCommentAndReply.comment[i].page = [];
+          this.findCommentAndReply.comment[i].pageNo = 1;
+          // 计算评论楼中楼回复的总页数
+          if (this.findCommentAndReply.comment[i].totalCount / _data.pageSize <= 1) {
+            this.findCommentAndReply.comment[i].pageCount = 1;
+          } else {
+            if (this.findCommentAndReply.comment[i].totalCount % _data.pageSize === 0) {
+              this.findCommentAndReply.comment[i].pageCount = this.findCommentAndReply.comment[i].totalCount / _data.pageSize;
+            } else {
+              this.findCommentAndReply.comment[i].pageCount = parseInt((this.findCommentAndReply.comment[i].totalCount / _data.pageSize), 10) + 1;
+            }
+          }
+          for (var j = 1; j <= this.findCommentAndReply.comment[i].pageCount;j++) {
+            this.findCommentAndReply.comment[i].page.push(j);
+          }
+        }
+        console.log(this.findCommentAndReply);
+        });
+    },
+	  saveComment: function() {
+	    var editor = this.$refs.editor.getEditor();
+      var _data = {
+        commentContent: editor.$txt.html(), //文本html内容
+        bookId: this.id, // 卷id
+      };
+      SZXJ.http(this,'post', PathList.saveComment, _data, (response) => {
+        editor.$txt.html('');
+        this.getValueFn();
+      });
+	  },
+	  saveReply: function(commentId) { // 回复
+      var editor = {};
+      var index = 0;
+      for (var i = 0; i < this.findCommentAndReply.comment.length; i++) {
+        if (this.findCommentAndReply.comment[i].commentId === commentId) {
+          editor = this.findCommentAndReply.comment[i].editor;
+          index = i;
+          break;
+        }
+      }
+      var _data = {
+        replyStatus: this.replyStatus,
+        commentId: this.commentId,
+        replyUserId: this.replyUserId, 
+        replyContent: editor.$txt.html(), //文本html内容
+      };
+      SZXJ.http(this,'post', PathList.saveReply, _data, (response) => {
+        editor.$txt.html('');
+        this.getValueFn();
+        var This = this;
+        setTimeout(function(){
+          This.setPage1(This.findCommentAndReply.comment[index].pageCount,This.commentId);
+          This.commentId = -1;   
+        },300);
+      });
+	  },
+	  setAttention: function(){
+		  var _data = {};
+		  _data.receiveId = this.userId;
+		  SZXJ.http(this,'post', PathList.saveOrCancelAttention, _data, (response) => {
+		    if (this.attention) {
+		      this.attention = false;
+		    } else {
+		      this.attention = true;
+		    }
+      });
+		},
+		setCollect: function() {
+		  var _data = {};
+      _data.bookId = this.bookId;
+      SZXJ.http(this,'post', PathList.saveOrDeleteBookCollect, _data, (response) => {
+        this.getValueFn()
+      });
+    },
+		nextWorksFn:function() {
+      this.zindex--;
+      if (Math.abs(this.zindex) >= (this.booktTitle.length - 3)) {
+        this.zindex = -(this.booktTitle.length - 3);
+      }
+		},
+		previousWorksFn: function() {
+		  this.zindex++;
+      if (this.zindex >= 0) {
+        this.zindex = 0;
+      }
+		},
+	  getValueFn: function() {
+	    var _data = {};
+      _data.bookId = this.id;
+		  SZXJ.http(this,'get', PathList.queryBookDirectory, _data, (response) => {
+		  // 取到数据渲染
+		  this.bookCustom = [];
+		  this.userHead = response.data.bookCustom.userEntity.userHead;
+		  this.bookId = response.data.bookCustom.bookId;
+		  this.userId = response.data.bookCustom.userEntity.userId;
+		  this.collect= response.data.bookCustom.collect;
+		  this.attention = response.data.bookCustom.userEntity.attention;
+		  this.bookCustom.push(response.data.bookCustom);
+		  this.title = response.data.bookCustom.bookName;
+		  this.introduction =response.data.bookCustom.bookIntroduction;
+		  this.words =response.data.bookCustom.bookWordCount;
+		  this.update = response.data.bookCustom.bookUpdate;
+		  this.cursor = response.data.bookCustom.bookHit;
+    	this.BookList = response.data.bookCustom.volumeCustomList;
+		  this.Booktype =response.data.bookCustom.bookTypeEntityList;
+		  this.typeName =response.data.bookCustom.bookTypeName;
+		  this.Collection =response.data.bookCustom.bookCollect;
+		  this.bookCopperCoins =response.data.bookCustom.bookCopperCoins;
+		  this.authorName =response.data.bookCustom.userEntity.userName;
+		  this.autograph = response.data.bookCustom.userEntity.information;
+		  console.log(response);
+		  });
+			SZXJ.http(this,'get', PathList.findUserOtherBook, _data, (response) => {
+      	// 取到数据渲染
+      	this.booktTitle = response.data.userOtherBook;
+        console.log(response);
+      });
+      _data.pageNo = 1;
+      _data.pageSize = 10;
+      _data.status = this.commentStatus;
+      this.getComment(_data);
+    },
+		rewardFn: function(){
+			this.popup = true;
+		},
+		rewardShow: function(){
+			this.popup = false;
+		}
+	},
+	ready: function() {
+	  this.bodyFlag = true;
+	  var href = window.location.href;
+    this.id = href.substring(href.lastIndexOf('?bookId=') + 8, href.length); 
+    var str = this.id.toString();
+    if (str.search(/[^0-9]/g) === -1) {
+	    this.getValueFn();
+    } else {
+	    window.location.href = PathList.TemprootPath + '/index.html';
+    }
+	},
+});
+</script>
+</html>

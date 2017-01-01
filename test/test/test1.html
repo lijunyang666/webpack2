@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body id="app">
+	<input type="button" @click="submitFn" value="评论" />
+	<input type="button" @click="submitFn1" value="获取评论" />
+	<input type="button" @click="submitFn2" value="回复" />
+  <input type="button" @click="submitFn3" value="获取回复" />
+</body>
+<script type="text/javascript" src="../js/vue.js" ></script>
+<script type="text/javascript" src="../js/vue-resource.min.js" ></script>
+<script type="text/javascript" src="../js/apis/conf.js" ></script>
+<script type="text/javascript" src="../js/apis/vueHttp.js" ></script>
+<script>
+/*
+ 
+bookId
+:
+1
+commentContent
+:
+"这本书真好看！"
+commentDate
+:
+1481116552000
+commentId
+:
+1
+commentPicture
+:
+null
+replyEntityList
+:
+[]
+userId
+:
+3
+userName
+:
+"李俊杨"
+ 
+* */
+new Vue({
+  el: '#app',
+  data: {
+  },
+  ready: function() {
+  },
+  methods: {
+  	submitFn: function() {
+  	  var _data = {};
+  	  _data.userName = '李俊杨';
+  	  _data.bookId = 1;
+  	  _data.commentContent = '这本书真好看！'
+  	  // _data.commentPicture = '';
+	  	SZXJ.http(this,'post', PathList.saveComment, _data, 
+        (response) => {
+		      console.log(response);
+      });
+  	},
+  	submitFn1: function() {
+      var _data = {};
+      _data.bookId = 1;
+      SZXJ.http(this,'get', PathList.findCommentAndReply, _data, 
+        (response) => {
+          console.log(response);
+      });
+    },
+    submitFn2: function() {
+      var _data = {};
+      _data.replyUserId = 3;
+      _data.replyUserName = '李俊杨';
+      _data.commentId = 1;
+      _data.replyContent = '回复回复回复';
+      // _data.replyPicture = 1;
+      _data.userId = 2;
+      _data.userName = '郁金香';
+      SZXJ.http(this,'post', PathList.saveReply, _data, 
+        (response) => {
+          console.log(response);
+      });
+    },
+    submitFn3: function() {
+      var _data = {};
+      _data.replyId = 3;
+      SZXJ.http(this,'get', PathList.findCommentAndReplyByReplyUserId, _data, 
+        (response) => {
+          console.log(response);
+      });
+    },
+  },
+});
+
+</script>
+</html>

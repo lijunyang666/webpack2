@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>QC文学网-阅读页</title>
+	<link rel="stylesheet" href="../css/headerOrFooter.css" />
+	<link rel="stylesheet" href="../css/main.css" />
+	<link rel="stylesheet" href="../css/jquery-ui.min.css" />
+	<link rel="stylesheet" href="../css/read_book.css" />
+</head>
+	<body  id="app" @keydown="keyDownFn"
+		v-bind:style="fixed === true? 'font-family: FontAwesome;overflow:hidden':'font-family: FontAwesome;'">
+	<alert v-ref:vue-alert></alert>		
+	<div class="content">
+		<div id="reader" class="reader" style="min-height: 1200px;">
+			<div class="inner-reader active"
+				:style=" 'min-height: 1200px; background-color:' + bj_color + ';color:' + font_color + ';' +
+				'font-family: '+ font_family + ';'">
+	
+				<div class="book-info" >
+					<p class="book-nav">
+						<a :href="path.TemprootPath + '/index.html'" >QC轻小说</a>
+						<i class="fa fa-angle-right"></i>
+						<a :href="path.TemprootPath + '/view/catalog.html?bookId=' + bookcontent.bookId">{{bookcontent.bookName}}</a>
+						<i class="fa fa-angle-right"></i>
+						<span>{{bookcontent.contentTitle}}</span>
+					</p>
+					<h1 class="title">{{bookcontent.contentTitle}}</h1>
+					<p class="info-top">
+						<span class="author">
+						<span class="t">作者：</span>
+						<span class="d">{{bookcontent.userName}}</span>
+						</span>
+						<span class="count">
+							<span class="t">字数：</span>
+							<span class="d">{{bookcontent.contentWordCount}}</span>
+						</span>
+						<span class="update">
+							<span class="t">更新日期：</span>
+							<span class="d">{{szxj.getLocalTime(bookcontent.contentUpdate / 1000)}}</span>
+						</span>
+					</p>
+				</div>
+				<div id="book-content" class="book-content"  :style="'font-size:' + font_size + 'px;' " v-el:bookcontent >
+					
+				</div>
+				<div class="book-bottom">
+					<p class="next-page" >
+					  <a v-if="nextContent.contentId" :href="path.TemprootPath + '/view/read_book.html?contentId=' + nextContent.contentId + '&bookId='+ nextContent.bookId" class="js-link-state">点击进入下一章<i class="fa fa-angle-right"></i></a>
+					  <a v-else @click="setNextEnd" class="js-link-state">点击进入下一章<i class="fa fa-angle-right"></i></a>
+          </p>
+					<p class="hint-page">按键盘上的 ←（左）键和 →（右）键可以快速切换章节</p>
+				</div>
+				
+<div id="book-tool" class="book-tool" :style="'right:' + rightSize+';'" >
+  <div class="tool-top">
+    <a v-on:click="screenFn"  id="btn-screen-tool" title="全屏" class="fullscreen"><i class="fa fa-expand"></i></a>
+  </div>
+  <div class="tool-bottom">
+    <a v-on:click="gotoCatalogFn" id="btn-menu-tool" title="目录" class="menu" :href="path.TemprootPath + '/view/catalog.html?bookId=' + bookcontent.bookId "><i class="fa fa-list"></i></a>
+    <a v-on:click="settingShow" id="btn-setting" title="设置" class="setting"><i class="fa fa-cog"></i></a>
+    <a v-on:click="lampFn" id="btn-light" title="夜间模式" class="light" ><i class="fa fa-lightbulb-o"></i></a>
+  </div>
+  <div class="tool-bottom">
+    <a v-if="previousContent.contentId" id="btn-prev-tool" title="上一章" class="prev js-link-state" :href="path.TemprootPath + '/view/read_book.html?contentId=' + previousContent.contentId + '&bookId='+ previousContent.bookId"><i class="fa fa-angle-left"></i></a>
+    <a v-else id="btn-prev-tool" @click="setPreviousEnd" title="上一章" class="prev js-link-state" href="javascript:;"><i class="fa fa-angle-left"></i></a>
+    <a v-if="nextContent.contentId" id="btn-next-tool" title="下一章" class="next js-link-state" :href="path.TemprootPath + '/view/read_book.html?contentId=' + nextContent.contentId + '&bookId='+ nextContent.bookId"><i class="fa fa-angle-right"></i></a>
+    <a v-else id="btn-next-tool" @click="setNextEnd" title="下一章" class="next js-link-state" href="javascript:;"><i class="fa fa-angle-right"></i></a>
+  </div>
+</div>
+
+			</div>
+			<div class="inner-reader nene" style="min-height: 930px;">
+				<div class="loading-read"><div class="bg"></div></div>
+			</div>
+		</div>
+		
+	</div>
+	
+	
+	<div v-show="previousEnd" class="read_alert"><img src="../img/readImg_03.jpg" />已经到最前一章</div>
+	<div v-show="nextEnd" class="read_alert"><img style="vertical-align: middle;" src="../img/readImg_03.jpg" />已经到最后一章</div>
+	
+	
+	
+	<div 
+		v-show="fixed" 
+		v-on:click="fixedFn"
+		style="display: none;position: fixed;top: 0px;bottom: 0px;left: 0px;right: 0px;z-index: 1050; " class=" modal modal-setting fade in">
+		<div class="modal-dialog">
+			<div class="modal-content" v-on:click="settingFn">
+				<div class="modal-header">
+					<button data-dismiss="modal" class="close" v-on:click="fixedFn"><i class="fa fa-close"></i></button>
+					<h4 class="modal-title"><i class="fa fa-cog"></i>设置</h4>
+				</div>
+				<div class="modal-body">
+					<p id="theme-setting">
+						<label>阅读主题：</label>
+						<a v-on:click="bj_ColorFn('#FFFFFF')" data-index="0" title="白色" 
+							:class="bj_color == '#FFFFFF' ? 'btn-thm btn-thm-a active':'btn-thm btn-thm-a'"
+						><i class="fa fa-check"></i></a>
+						<a v-on:click="bj_ColorFn('#F6F4EC')" data-index="1" title="黄色" 
+							:class="bj_color == '#F6F4EC'?'btn-thm btn-thm-b active':'btn-thm btn-thm-b'"
+							><i class="fa fa-check"></i></a>
+						<a v-on:click="bj_ColorFn('#E6F0E6')" data-index="2" title="绿色" 
+							:class="bj_color == '#E6F0E6'?'btn-thm btn-thm-c active':'btn-thm btn-thm-c'"
+							><i class="fa fa-check"></i></a>
+						<a v-on:click="bj_ColorFn('#E3F5FA')" data-index="3" title="蓝色" 
+							:class="bj_color == '#E3F5FA'?'btn-thm btn-thm-d active':'btn-thm btn-thm-d'"
+							><i class="fa fa-check"></i></a>
+						<a v-on:click="bj_ColorFn('#F5F5F5')" data-index="4" title="灰色" 
+							:class="bj_color == '#F5F5F5'?'btn-thm btn-thm-e active':'btn-thm btn-thm-e'"
+							><i class="fa fa-check"></i></a>
+						<a v-on:click="bj_ColorFn('#F5E9EF')" data-index="5" title="粉色" 
+							:class="bj_color == '#F5E9EF'?'btn-thm btn-thm-f active':'btn-thm btn-thm-f'"
+							><i class="fa fa-check"></i></a>
+						<a v-on:click="bj_ColorFn('#323536')" data-index="6" title="夜间" 
+							:class="bj_color == '#323536'? 'btn-thm btn-thm-g active':'btn-thm btn-thm-g'"
+							><i class="fa fa-check"></i></a>
+					</p>
+					<p id="font-setting">
+						<label>正文字体：</label>
+						<a 	v-on:click="font_FamilyFn('Arial,Microsoft YaHei,sans-serif')"
+							data-index="0" 
+							:class="font_family === 'Arial,Microsoft YaHei,sans-serif'?'btn-font active':'btn-font'"
+							>雅黑</a>
+						<a 	v-on:click="font_FamilyFn('NSimSun,STSong,SimSun,serif')"
+							data-index="1" 
+							:class="font_family === 'NSimSun,STSong,SimSun,serif'?'btn-font active':'btn-font'"
+							>宋体</a>
+						<a 	v-on:click="font_FamilyFn('STKaiti,KaiTi,KaiTi_GB2312,sans-serif')"
+							data-index="2" 
+							:class="font_family === 'STKaiti,KaiTi,KaiTi_GB2312,sans-serif'?'btn-font active':'btn-font'"
+							>楷书</a>
+					</p>
+					<p id="fsize-setting">
+						<label>字体大小：</label>
+						<a v-on:click="smallFn" data-action="minus" class="btn-fsize btn-fsize-a"><i class="fa fa-minus"></i></a>
+						<span class="num-fsize">{{ font_size }}</span>
+						<a v-on:click="largeFn" data-action="plus" class="btn-fsize btn-fsize-b"><i class="fa fa-plus"></i></a>
+					</p>
+				</div>
+				<div class="modal-footer">
+					<a @click="saveFixedFn" id="btn-save-setting" class="btn btn-primary">保存</a>
+					<a @click="fixedFn" id="btn-cancel-setting" data-dismiss="modal" class="btn btn-default">取消</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="fa-expand"></div>
+
+	</body>
+	<script src="../js/apis/vueHttp.js"></script>
+  <script src="../js/apis/conf.js"></script>
+	<script type="text/javascript" src="../js/vue.min.js" ></script>
+	<script type="text/javascript" src="../js/vue-resource.min.js" ></script>
+ 	<script type="text/javascript" src="../js/vue-router.min.js" ></script>
+ 	<script src="../js/apis/Data.js"></script>
+  <script src="../js/apis/alert.js"></script>
+  <script src="../js/apis/confirm.js"></script>
+  <script type="text/javascript" src="../js/components/header.js" ></script>
+  <script type="text/javascript" src="../js/components/footer.js" ></script>
+  <script type="text/javascript" src="../js/require/headerOrfooter.js"></script>
+  
+	<script>
+		var vueDemo = new Vue({
+  			el: '#app',
+  			data: {
+  			  rightSize: '450px',
+  			  szxj: SZXJ,
+  			  path: PathList,
+  				fixed:false,
+  				font_size: 16,
+				  font_family: 'Arial,Microsoft YaHei,sans-serif',
+  				bj_color: '#F6F4EC',
+  				font_color: '#333',
+  				temp_format:[16,'Arial,Microsoft YaHei,sans-serif','#F6F4EC','#333'], // 上一次的状态
+  				temp_format_two:['#F6F4EC','#333'], // 记录开关灯的上一次的状态
+  				lamp: true,
+  				screenV: true,
+  				bookName:'44',
+  				bookcontent: [],
+  				update:'455',
+  				name:'565',
+  				bookTitle:'',
+  				works:'',
+  				nextContent: {},
+  				previousContent: {},
+  				previousEnd: false,
+  				nextEnd: false,
+  			},
+  			methods: {
+  			  resizeFn: function() {
+  			    var width = document.body.clientWidth;
+  			    this.$set('rightSize',((width - 900) / 2 - 65) + 'px');
+  			    if (width < 1040) {
+  			      this.$set('rightSize',((width - 900) / 2 + 15) + 'px');
+  			    }
+  			    if (width < 900) {
+              this.$set('rightSize',25 + 'px');
+            }
+  			  },
+  			  setNextEnd: function() {
+  			    this.$set('nextEnd',true);
+                var This = this;
+                setTimeout(function(){
+                  This.$set('nextEnd',false);
+                }, 2000)
+  			  },
+  			  setPreviousEnd: function() {
+            this.$set('previousEnd',true);
+                var This = this;
+                setTimeout(function(){
+                  This.$set('previousEnd',false);
+                }, 2000)
+          },
+  			  keyDownFn: function(e) {
+  			    if(e.keyCode == 37) {
+  			      if (this.previousContent && this.previousContent.contentId) {
+  			          location.href = this.path.TemprootPath + '/view/read_book.html?contentId=' + this.previousContent.contentId + '&bookId='+ this.previousContent.bookId;
+              } else {
+                this.$set('previousEnd',true);
+                var This = this;
+                setTimeout(function(){
+                  This.$set('previousEnd',false);
+                }, 2000)
+              }
+  			    }
+  			    if(e.keyCode == 39) {
+  			      if (this.nextContent && this.nextContent.contentId) {
+               location.href = this.path.TemprootPath + '/view/read_book.html?contentId=' + this.nextContent.contentId + '&bookId='+ this.nextContent.bookId;
+            } else {
+                this.$set('nextEnd',true);
+                var This = this;
+                setTimeout(function(){
+                  This.$set('nextEnd',false);
+                }, 2000)
+              }
+  			    }
+  			  },
+  				getValueFn: function() {
+  				var _data = {};
+  				_data.rankList = 0;
+          _data.contentId = this.contentId;
+          _data.bookId = this.bookId;
+			    SZXJ.http(this,'get', PathList.findContent, _data, (response) => {
+			      console.log(response);
+			      this.nextContent = response.data.nextContent;
+			      this.previousContent = response.data.previousContent;
+			      this.bookcontent = response.data.content;
+			      this.bookName = response.data.content.bookName;
+			      this.$els.bookcontent.innerHTML = this.bookcontent.content;
+			    });
+  				},
+  				settingShow: function() {
+  					this.fixed = true;
+  				},
+  				fixedFn: function() {
+  					this.fixed = false;
+	  				this.font_size = this.temp_format[0];
+	  				this.font_family = this.temp_format[1];
+	  				this.$set('bj_color', this.temp_format[2]);
+	  				this.font_color = this.temp_format[3];
+  				},
+  				saveFixedFn : function() {
+  					this.fixed = false;
+	  				this.temp_format[0] = this.font_size;
+	  				this.temp_format[1] = this.font_family;
+	  				this.temp_format[2] = this.bj_color;
+	  				this.temp_format[3] = this.font_color;
+	  				this.lamp = true;
+  				},
+  				settingFn: function(e) {
+  					e.stopPropagation();
+  				},
+  				gotoCatalogFn : function(){
+  					window.location.href = '../catalog.html';
+  				},
+  				bj_ColorFn: function(color) {
+  					this.bj_color = color;
+  					if (color === '#323536') {
+  						this.font_color = '#777';
+  					}
+  				},
+  				font_FamilyFn: function(family) {
+  					this.font_family = family;
+  				},
+  				lampFn: function(bj_color){
+  				  console.log(bj_color);
+  					if (this.lamp){
+  						this.temp_format_two[0] = this.temp_format[2];
+  						this.temp_format_two[1] = this.temp_format[3];
+  						this.bj_color = '#323536';
+  						this.font_color = '#777';
+  						this.temp_format[2] = this.bj_color;
+  						this.temp_format[3] = this.font_color;
+  						this.lamp = false;
+  					} else {
+  						this.temp_format[2] = this.temp_format_two[0];
+  						this.temp_format[3] = this.temp_format_two[1];
+  						this.$set('bj_color', this.temp_format[2]);
+  						this.font_color = this.temp_format[3];
+  						this.lamp = true;
+  					}
+  				},
+  				smallFn :function(){
+  					this.font_size = this.font_size - 2;
+  					if (this.font_size < 12) {
+  						this.font_size = 12;
+  					}
+  				},
+  				largeFn: function() {
+  					this.font_size = this.font_size + 2;
+  					if (this.font_size > 48) {
+  						this.font_size = 48;
+  					}
+  				},
+  				screenFn: function() {
+					    if(this.screenV) {
+					    	this.screenV = false;
+					    	var el = document.documentElement,
+					        rfs = el.requestFullScreen || el.webkitRequestFullScreen || el.mozRequestFullScreen || el.msRequestFullScreen,
+					        wscript;
+						    if(typeof rfs != "undefined" && rfs) {
+						        rfs.call(el);
+						        return;
+						    }
+						    if(typeof window.ActiveXObject != "undefined") {
+						        wscript = new ActiveXObject("WScript.Shell");
+						        if(wscript) {
+						            wscript.SendKeys("{F11}");
+						        }
+						    }
+					    } else {
+					    	this.screenV = true;
+					    	var el = document,
+					        cfs = el.cancelFullScreen || el.webkitCancelFullScreen || el.mozCancelFullScreen || el.exitFullScreen,
+					        wscript;
+						    if (typeof cfs != "undefined" && cfs) {
+						      cfs.call(el);
+						      return;
+						    }
+						    if (typeof window.ActiveXObject != "undefined") {
+						        wscript = new ActiveXObject("WScript.Shell");
+						        if (wscript != null) {
+						            wscript.SendKeys("{F11}");
+						        }
+						  	}
+					    }
+  				}
+  				
+  			},
+  			ready: function() {
+			    this.contentId = SZXJ.getQueryString('contentId');
+			    this.bookId = SZXJ.getQueryString('bookId');
+       	  this.getValueFn();
+       	  var This = this;
+       	  this.resizeFn();
+          window.onresize = function() {
+            This.resizeFn();
+          }
+      	},
+		});	
+    
+	</script>
+</html>

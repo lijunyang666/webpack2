@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+ <head> 
+  <meta charset="UTF-8" /> 
+  <title>轻悦文学网---个人中心</title> 
+  <link rel="stylesheet" href="../css/main.css" /> 
+  <link rel="stylesheet" href="../css/user_info.css" /> 
+  <link rel="stylesheet" href="../css/headerOrFooter.css" />
+  <link rel="stylesheet" href="../css/Date.css"  />
+  <link rel="stylesheet" href="../css/font-awesome.min.css"  />
+ </head> 
+ <body id="app" v-show="bodyFlag" style="display: none;">
+  <alert v-ref:vue-alert></alert>
+  <confirm v-ref:vue-confirm></confirm>
+  <myheader :user-name.sync="userName" :login-img.sync="loginImg" :active.sync="active"></myheader>
+  <div class="user_info_topBJ"></div>
+  <div class="user_info clear"> 
+   <!-- 左边导航 --> 
+   <div class="user_info_left"> 
+    <div class="user_info_touxiang" :style="loginImg"></div> 
+    <div class="user_info_account">
+     {{ userName }}
+    </div> 
+    <div class="user_info_btn_qiandaoY " style="display: none;">
+     已签到
+    </div> 
+    <div class="user_info_btn_qiandao ">
+     签到
+    </div> 
+    <div class="user_info_nva clear"> 
+     <ul> 
+      <li :class="active === 'info'?'active':''" @click="setShowFlagFn | debounce 100">
+      	<a :href="path.TemprootPath + '/view/user_info.html#!/info'">
+      		<i class="icon_personal_information" :class="active === 'info'?'active':''"></i>我的信息
+      	</a>
+      </li> 
+      
+      <li @click="setShowFlagFn | debounce 100" :class="active === 'bookshelf'?'active':''">
+      	<a :href="path.TemprootPath + '/view/user_info.html#!/bookshelf'">
+      	<i class="icon_personal_bookshelf"></i>我的书架
+      	</a>
+      </li> 
+      	
+      <li @click="setShowFlagFn | debounce 100" :class="active === 'attention'?'active':''">
+      	<a :href="path.TemprootPath + '/view/user_info.html#!/attention'">
+      	<i class="icon_personal_follow"></i>我的关注</li> 
+      	</a>
+      	
+      <li @click="setShowFlagFn | debounce 100" :class="active === 'message'?'active':''">
+      	<a :href="path.TemprootPath + '/view/user_info.html#!/message'">
+      	<i class="icon_personal_message"></i>我的消息</li> 
+      	</a>
+      	
+      <li @click="setShowFlagFn | debounce 100" :class="active === 'wallet'?'active':''">
+      	<a :href="path.TemprootPath + '/view/user_info.html#!/wallet'">
+      	<i class="icon_personal_wallet"></i>我的钱包</li> 
+      	</a>
+      	
+      <li :class="active === 'bookBlockList'?'active':''" @click="setShowFlagFn | debounce 100">
+      	<a :href="path.TemprootPath + '/view/user_info.html#!/bookBlockList'">
+      		<i class="icon_personal_contributes" :class="active === 'bookBlockList'?'active':''"></i>我的投稿
+      	</a>
+      </li>
+      	
+     </ul> 
+    </div> 
+    <div class="user_info_nva_title"> 
+     <div class="dotted">
+      ....................................................................................
+     </div> 
+     <h2>个人设置</h2> 
+    </div> 
+   </div> 
+   
+<!-- 右边内容 -->
+	<router-view></router-view>
+    </div>
+ <myfooter></myfooter>
+
+ </body>
+ 
+ <script type="text/javascript" src="../js/jquery-1.11.1.js" ></script>
+ <link rel="stylesheet" href="../css/wangEditor.min.css" />
+ <script type="text/javascript" src="../js/wangEditor.min.js" ></script>
+ 
+ <link rel="stylesheet" href="../css/cropper.min.css" />
+ <script type="text/javascript" src="../js/cropper.min.js"></script>
+ 
+ <script type="text/javascript" src="../js/vue.min.js" ></script>
+ <script type="text/javascript" src="../js/vue-resource.min.js" ></script>
+ <script type="text/javascript" src="../js/vue-router.min.js" ></script>
+ <script src="../js/components/header.js"></script>
+ <script src="../js/components/footer.js"></script>
+ <script src="../js/apis/Data.js"></script>
+ <script src="../js/apis/alert.js"></script>
+ <script src="../js/apis/confirm.js"></script>
+ 
+ 
+ <script src="../js/apis/vueHttp.js"></script>
+ <script src="../js/apis/conf.js"></script>
+ 
+ 
+ <script src="../js/components/bookBlockList.js"></script>
+ <script src="../js/components/works.js"></script> 
+ <script src="../js/components/works.js"></script>
+ <script src="../js/components/worksUpdate.js"></script>
+ <script src="../js/components/catalogue.js"></script>
+ <script src="../js/components/chapter.js"></script>
+ <script src="../js/components/chapter_edit.js"></script>
+ <script src="../js/components/info.js"></script>
+ <script src="../js/components/updatePass.js"></script>
+ <script src="../js/components/bookshelf.js"></script>
+ <script src="../js/components/record.js"></script>
+ <script src="../js/components/attention.js"></script>
+ <script src="../js/components/attentionToMe.js"></script>
+ <script src="../js/components/message.js"></script>
+ <script src="../js/components/tellMe.js"></script>
+ <script src="../js/components/relevant.js"></script>
+ <script src="../js/components/system.js"></script>
+ <script src="../js/components/official.js"></script>
+ <script src="../js/components/wallet.js"></script>
+ <script src="../js/components/bill.js"></script>
+ 
+ 
+ <script>
+ 
+  var router = new VueRouter();
+  router.map({
+    '/bookBlockList': { component: bookBlockList },
+    '/works': { component: works },
+    '/works_update/:id': { component: works_update },
+    '/catalogue/:id':{ component: catalogue },
+    '/chapter/:id':{ component: chapter },
+    '/chapter_edit/:id':{ component: chapter_edit },
+    '/info': { component: info },
+    '/updatePass': { component: updatePass },
+    '/bookshelf': { component: bookshelf },
+    '/record': { component: record },
+    '/attention': { component: attention },
+    '/attentionToMe': { component: attentionToMe },
+    '/message': { component: message },
+    '/tellMe': { component: tellMe },
+    '/relevant': { component: relevant },
+    '/system': { component: system },
+    '/official': { component: official },
+    '/wallet': { component: wallet },
+    '/bill': { component: bill },
+  })
+  var App = Vue.extend({
+  	el: '#app',
+  	data: function() {
+  		return {
+  		  bodyFlag: false,
+  			path: PathList,
+  			active: '',
+  			userName: '',
+  			loginImg:'',
+  		}
+  	},
+  	methods: {
+      setShowFlagFn: function() {
+  		  const href = window.location.href;
+        const str = href.substring(href.lastIndexOf('#!/') + 3, href.length);
+  		  this.$set('active', str);
+  		},
+  		setMessage(flag,message,Fn) {
+  		  this.$refs.vueAlert.setMessage(flag,message,Fn);
+  		}
+    },
+   ready : function (){
+      this.bodyFlag = true;
+      this.setShowFlagFn();
+    },
+  });
+  App.component('myfooter', footer);
+  App.component('myheader', header);
+  App.component('alert', VueAlert);
+  App.component('confirm', VueConfirm);
+  router.redirect({
+  	'*': 'info',
+  });
+  router.start(App, '#app');
+  
+ </script>
+</html>

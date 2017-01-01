@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>QC文学网-排行榜</title>
+  	<link rel="stylesheet" href="../css/ranking.css" />
+  	<link rel="stylesheet" href="../css/headerOrFooter.css" />
+  	<link rel="stylesheet" href="../css/main.css" />
+  	<link rel="stylesheet" href="../css/LOgin.css" />
+  	<link rel="stylesheet" href="../css/jquery-ui.min.css" />
+	</head>
+	<body id="app" v-show="bodyFlag" style="display: none;">
+	  <alert v-ref:vue-alert></alert>
+	  <myheader></myheader>
+	  <div id="background"></div>
+	  <div id="Title">
+	  	<ul>
+	  		<li :class="RequestObj.rankList === 0?'active':''" @click="setRankList(0)"><a class="Title_a" href="javascript:;">好人榜</a></li>
+	  		<li :class="RequestObj.rankList === 1?'active':''" @click="setRankList(1)"><a class="Title_a" href="javascript:;">字数榜</a></li>
+	  		<li :class="RequestObj.rankList === 2?'active':''" @click="setRankList(2)"><a class="Title_a" href="javascript:;">点击榜</a></li>
+	  	</ul>
+	  </div>
+	  <div id="content">
+	  	<div class="content_Label">
+		  	<ul>
+		  	  <li       
+            :class="RequestObj.bookTypeId == '' ? 'active': ''" @click="setbookTypeId('')">全部</li>
+		  		<li  @click="setbookTypeId(obj.bookTypeId)" :class="RequestObj.bookTypeId == obj.bookTypeId ? 'active': ''"  
+		  		  v-for="obj in bookInfo">{{ obj.bookTypeName }}</li>
+		  	</ul>
+	  	</div>
+	  	<!--<div class="content_Draft">
+	  		<ul>  砍掉
+	  			<img src="../img/arrow1.png"/>
+	  			<li v-if="RequestObj.date == 0">近期投稿</li>
+          <li v-if="RequestObj.date == 1">全部投稿</li>
+	  			<li class="content_li" @click="setDate(0)">近期投稿</li>
+	  			<li class="content_li" @click="setDate(1)">全部投稿</li>
+	  		</ul>
+	  	</div>-->
+	  	<div class="content_List">
+	  		<ul>
+	  			<img src="../img/arrow1.png"/>
+	  			<li v-if="RequestObj.timeRank == 0">周排行</li>
+	  			<li v-if="RequestObj.timeRank == 1">月排行</li>
+	  			<li v-if="RequestObj.timeRank == 2">总排行</li>
+	  			<li class="List_li" @click="setTimeRank(0)">周排行</li>
+	  			<li class="List_li" @click="setTimeRank(1)">月排行</li>
+	  			<li class="List_li" @click="setTimeRank(2)">总排行</li>
+	  		</ul>
+	  	</div>
+	  	<div class="content_ranking active" v-for="obj in result">
+	  		<h1>{{ ($index + 1) + ((RequestObj.pageNo - 1) * 12) }}</h1>
+	  		<a href="javascript:;"><img src="../img/z-imgBj.jpg" @load="szxj.loadImg(obj.bookCoverImage ? path.rootPath + obj.bookCoverImage: '', $event)" @click="gotoBook(obj.bookId)"/></a>
+	  		<ul>
+	  			<li><a href="javascript:;" class="content_a" title="{{obj.bookName}}"><span @click="gotoBook(obj.bookId)">{{obj.bookName}}</span></a></li>
+	  			<li style="padding-top: 6px;">作者：{{obj.author}}</li>
+	  			<li><!-- 占位符 --></li>
+	  			
+	  			<li v-if="RequestObj.timeRank === 0">点击：{{obj.everyWeekHit}}</li>
+	  			<li v-if="RequestObj.timeRank === 1">点击：{{obj.everyMonthHit}}</li>
+	  			<li v-if="RequestObj.timeRank === 2">点击：{{obj.bookHit}}</li>
+	  			
+	  			<li v-if="RequestObj.timeRank === 0">好人卡：{{obj.everyWeekCopperCoins}}</li>
+          <li v-if="RequestObj.timeRank === 1">好人卡：{{obj.everyMonthCopperCoins}}</li>
+          <li v-if="RequestObj.timeRank === 2">好人卡：{{obj.bookCopperCoins}}</li>
+          
+          <li v-if="RequestObj.timeRank === 0">字数：{{obj.everyWeekWordCount}}</li>
+	  			<li v-if="RequestObj.timeRank === 1">字数：{{obj.everyMonthWordCount}}</li>
+	  			<li v-if="RequestObj.timeRank === 2">字数：{{obj.bookWordCount}}</li>
+	  			
+	  		</ul>
+	  		<a @click="setCollect(obj.bookId)" v-if="obj.collect" class="ranking_Collection " href="javascript:;">取消收藏</a>
+	  		<a @click="setCollect(obj.bookId)" v-else class="ranking_AddToCollection " href="javascript:;">添加收藏</a>
+	  	</div>
+
+	  </div>
+	 <div id="page" class="page">
+    <ul>
+      <li class="btn" @click="setPage((RequestObj.pageNo - 1) >= 1 ? (RequestObj.pageNo - 1) : 1)"><a>上一页</a></li>
+      <li v-if="(($index + 1) <= 5 && RequestObj.pageNo < 3 || (($index + 1) > RequestObj.pageNo - 3 &&  $index < RequestObj.pageNo)) || ( (($index + 1) <= RequestObj.pageNo + 2 &&　($index + 1) > RequestObj.pageNo) || (RequestObj.pageNo > obj.pageCount - 3 && ($index + 6) > obj.pageCount) )"
+      	:class="objTemp == RequestObj.pageNo? 'active':''" v-for="objTemp in page" @click="setPage(objTemp)"><a>{{ objTemp }}</a></li>
+      <li class="btn" @click="setPage((RequestObj.pageNo + 1) <= obj.pageCount ? (RequestObj.pageNo + 1) : obj.pageCount)"><a>下一页</a></li>
+      <li class="goto">
+      	<input type="text" v-model="pageNo" style="text-align: center;"/>
+      	<span>{{ RequestObj.pageNo }}/{{ obj.pageCount }}</span>
+      	<a class="btn" @click="setPage(pageNo)">转页</a>
+      </li>
+    </ul>
+  </div>
+	<myfooter></myfooter>
+	</body>
+	<script src="../js/apis/vueHttp.js"></script>
+  <script src="../js/apis/conf.js"></script>
+	<script type="text/javascript" src="../js/vue.min.js" ></script>
+	<script type="text/javascript" src="../js/vue-resource.min.js" ></script>
+ 	<script type="text/javascript" src="../js/vue-router.min.js" ></script>
+  <script type="text/javascript" src="../js/components/header.js" ></script>
+  <script type="text/javascript" src="../js/components/footer.js" ></script>
+   <script src="../js/apis/Data.js"></script>
+   <script src="../js/apis/alert.js"></script>
+   <script src="../js/apis/confirm.js"></script>
+  <script type="text/javascript" src="../js/require/headerOrfooter.js"></script>  
+	<script>
+		var indexHtml = new Vue({
+		el: '#app',
+		data: {
+		  szxj: SZXJ,
+		bodyFlag: false,
+		path: PathList,
+		result:[],	
+		bookInfo: [],
+		// 分页
+		page: [],
+        RequestObj: {
+          rankList: 0, // 好人 字数 点击
+          timeRank: 0, // 周 月 总
+          date: 1, // 0 近期 1远期 砍掉
+          bookTypeId: '',
+          pageNo: 1,
+          pageSize: 12,
+        },
+		obj: {
+         p: 1, // 页码
+         n: 12,
+         pageCount: 1,
+        },
+        // 分页
+			},
+		methods: {
+		  setCollect: function(v) {
+			    SZXJ.http(this,'post', PathList.saveOrDeleteBookCollect, { bookId: v }, (response) => {
+            this.getValueFn();
+          });
+			},
+			  setDate:function(v) {
+			    var Temp = this.RequestObj;
+          Temp.date = v;
+          this.$set('RequestObj', Temp)
+          this.getValueFn(); // 请求
+			  },
+			  setbookTypeId: function(v) {
+			    this.RequestObj.bookTypeId = v;
+			    this.getValueFn(); // 请求
+			  },
+			  setRankList: function(v) {
+          this.RequestObj.rankList = v;
+          this.getValueFn(); // 请求
+       	},
+       setTimeRank: function(v) {
+			    var Temp = this.RequestObj;
+          Temp.timeRank = v;
+          this.$set('RequestObj', Temp)
+          this.getValueFn(); // 请求
+        },
+				gotoBook: function(id) {
+					location.href = this.path.TemprootPath + '/view/catalog.html?bookId=' + id;
+				},
+				setPageCount: function(v) {
+					var obj = this.obj;
+	         			obj.pageCount =  v;
+	        			  this.page = [];
+	        		  for (var i = 0; i < obj.pageCount; i++) {
+	          			this.page.push(i+1);
+	        		  }
+	        		    this.$set('obj', obj);
+				},
+				setPage: function(v) {
+					if (!v || v > this.obj.pageCount || v <= 0 || v.toString().search(/[^0-9]/g) !== -1 ) {
+						return;
+					}
+					var obj = this.RequestObj;
+					obj.pageNo = v;
+					this.$set('RequestObj', obj);
+					this.getValueFn(); // 请求
+				},
+				getValueFn: function() {
+				  this.result = [];
+			    SZXJ.http(this,'get', PathList.getRankingList, this.RequestObj, (response) => {
+			      this.result = response.data.result;
+			      console.log(response);
+			      this.setPageCount(response.data.totalPage);
+			    });
+			  },
+  		},
+			ready: function() {
+			  this.bodyFlag = true;
+			  SZXJ.http(this,'get', PathList.queryBookType, {}, (response) => {
+          this.bookInfo = response.data;
+        });
+        var href = window.location.href;
+        this.id = href.substring(href.lastIndexOf('?type=') + 5, href.length); 
+        var str = this.id.toString();
+        if (str.search(/[^0-9]/) === -1) {
+          this.RequestObj.rankList = parseInt(this.id, 10) - 1;
+          this.getValueFn();
+        } else {
+          this.RequestObj.rankList = 0;
+          this.getValueFn();
+        }
+			},
+		});
+	</script>
+</html>

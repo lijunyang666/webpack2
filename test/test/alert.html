@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="../css/main.css" />
+	</head>
+	<body>
+	  '<div class="alert-Block">'
+	  +  '<div class="alert_parent">'
+	  +   '<div class="alert_sub">'
+	  +     '<div class="words">'
+    +	        '<div v-if="trueFlag" class="alert_img"><img src="../img/alert_flast.png" /></div>'
+    +	        '<div v-else class="alert_img"><img src="../img/alert_ture.png" /></div>'
+    +	        '<ul>'
+    +	          '<li v-if="trueFlag" class="alert">操作失败</li>'
+    +	          '<li v-else class="alert3">操作成功</li>'
+    +	          '<li class="alertToo">{{ message }}</li>'
+    +	        '</ul>'
+    +	        '<div class="clear"></div>'
+	  +      '</div>'
+	  +      '<div class="alert_foot btn">确认</div>'
+	  +    '</div>'
+	  +  '</div>'
+	  +'</div>'
+	  
+	 
+	</body>
+</html>

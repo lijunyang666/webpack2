@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+ <head> 
+  <meta charset="UTF-8" /> 
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>轻悦文学网---个人中心</title> 
+  <link rel="stylesheet" href="../css/main.css" /> 
+  <link rel="stylesheet" href="../css/user_info.css" /> 
+  <link rel="stylesheet" href="../css/headerOrFooter.css" />
+  <link rel="stylesheet" href="../css/Date.css"  />
+  <link rel="stylesheet" href="../css/font-awesome.min.css"  />
+ </head> 
+ <body id="app" v-show="bodyFlag" style="display: none;">
+  <alert v-ref:vue-alert></alert>
+  <confirm v-ref:vue-confirm></confirm>
+  <myheader :user-name.sync="userName" :login-img.sync="loginImg" :active.sync="active"></myheader>
+  <div class="user_info_topBJ"></div>
+  <div class="user_info clear"> 
+   <!-- 左边导航 --> 
+   <div class="user_info_left"> 
+    <div class="user_info_touxiang" :style="loginImg"></div> 
+    <div class="user_info_account">
+     {{ userName }}
+    </div> 
+    <div class="user_info_btn_qiandaoY " style="display: none;">
+     已签到
+    </div> 
+    <div class="user_info_btn_qiandao ">
+     签到
+    </div> 
+    <div class="user_info_nva clear"> 
+     <ul> 
+      <li :class="active === 'info'?'active':''" @click="setShowFlagFn | debounce 100">
+      	<a :href="path.TemprootPath + '/view/user_info.html#!/info'">
+      		<i class="icon_personal_information" :class="active === 'info'?'active':''"></i>我的信息
+      	</a>
+      </li> 
+      
+      <li @click="setShowFlagFn | debounce 100" :class="active === 'bookshelf'?'active':''">
+      	<a :href="path.TemprootPath + '/view/user_info.html#!/bookshelf'">
+      	<i class="icon_personal_bookshelf"></i>我的书架
+      	</a>
+      </li> 
+      	
+      <li @click="setShowFlagFn | debounce 100" :class="active === 'attention'?'active':''">
+      	<a :href="path.TemprootPath + '/view/user_info.html#!/attention'">
+      	<i class="icon_personal_follow"></i>我的关注</li> 
+      	</a>
+      	
+      <li @click="setShowFlagFn | debounce 100" :class="active === 'message'?'active':''">
+      	<a :href="path.TemprootPath + '/view/user_info.html#!/message'">
+      	<i class="icon_personal_message"></i>我的消息</li> 
+      	</a>
+      	
+      <li @click="setShowFlagFn | debounce 100" :class="active === 'wallet'?'active':''">
+      	<a :href="path.TemprootPath + '/view/user_info.html#!/wallet'">
+      	<i class="icon_personal_wallet"></i>我的钱包</li> 
+      	</a>
+      	
+      <li :class="active === 'bookBlockList'?'active':''" @click="setShowFlagFn | debounce 100">
+      	<a :href="path.TemprootPath + '/view/user_info.html#!/bookBlockList'">
+      		<i class="icon_personal_contributes" :class="active === 'bookBlockList'?'active':''"></i>我的投稿
+      	</a>
+      </li>
+      	
+     </ul> 
+    </div> 
+    <div class="user_info_nva_title"> 
+     <div class="dotted">
+      ....................................................................................
+     </div> 
+     <h2>个人设置</h2> 
+    </div> 
+   </div> 
+   
+<!-- 右边内容 -->
+	<router-view></router-view>
+    </div>
+ <myfooter></myfooter>
+
+</body>
+<script type="text/javascript" src="../lib/jquery.min.js" ></script>
+<link rel="stylesheet" href="../css/wangEditor.min.css" />
+<script type="text/javascript" src="../lib/wangEditor.min.js" ></script>
+<link rel="stylesheet" href="../css/cropper.min.css" />
+<script type="text/javascript" src="../lib/cropper.min.js"></script>
+<script src="../js/main/user_info.js"></script>
+</html>
