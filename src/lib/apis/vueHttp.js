@@ -21,10 +21,15 @@ Date.prototype.Format = function(fmt)
   fmt = fmt.replace(RegExp.$1, (RegExp.$1.length==1) ? (o[k]) : (("00"+ o[k]).substr((""+ o[k]).length)));   
   return fmt;   
 } 
-SZXJ.getLocalTime =  function(nS) { 
+SZXJ.getLocalTime =  function(nS) {
   var time = new Date(nS * 1000);
   return time.Format("yyyy-MM-dd hh:mm:ss");
 	// return new Date(parseInt(nS) * 1000).toLocaleString().substr(0,17);
+}
+SZXJ.getLocalTimeTwo =  function(nS) {
+  var time = new Date(nS);
+  return time.Format("yyyy-MM-dd hh:mm:ss");
+  // return new Date(parseInt(nS) * 1000).toLocaleString().substr(0,17);
 }
 SZXJ.getLocalDate =  function(nS) { 
   var time = new Date(nS);

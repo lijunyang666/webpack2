@@ -11,11 +11,11 @@ var indexHtml = new Vue({
   data: {
     imgFlag: 0,
     swiperArr: [
-      './img/scrollbar1.png',
-      './img/scrollbar2.png',
-      './img/scrollbar3.png',
-      './img/scrollbar4.png',
-      './img/scrollbar5.png',
+      './img/Illustration/scrollbar1.jpg',
+      './img/Illustration/scrollbar2.jpg',
+      './img/Illustration/scrollbar3.jpg',
+      './img/Illustration/scrollbar4.jpg',
+      './img/Illustration/scrollbar5.jpg',
     ],
     bodyFlag: false,
     path: PathList,

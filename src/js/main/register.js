@@ -52,6 +52,7 @@ var indexHtml = new Vue({
           _data.registCodeId = registCodeId;
           _data.telephone = this.telephone;
           _data.telephoneCode = this.verification;
+          _data.uuid = registCodeId;
           _data.userName = this.username;
           _data.passWord = this.password;
           _data.passWordConfirm = this.password2;
@@ -68,7 +69,7 @@ var indexHtml = new Vue({
 //        if (this.uid !== '') {
 //          formData.append("invitePeople", this.uid);
 //        }
-          SZXJ.http(this,'get', PathList.register, _data, (response) => {
+          SZXJ.http(this,'post', PathList.register, _data, (response) => {
               location.href = this.path.TemprootPath + '/view/login.html';
           });
         },

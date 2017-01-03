@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>首页</title>
+		<link rel="stylesheet" href="css/main.css" />
+		<link rel="stylesheet" href="css/index.css" />
+		<link rel="stylesheet" href="css/headerOrFooter.css" />
+	</head>
+<body id="app">
+	  <input type="button" value="提交" @click="sumbit" />
+</body>
+
+<script src="./js/apis/vueHttp.js"></script>
+<script src="./js/apis/conf.js"></script>
+
+<script type="text/javascript" src="./js/vue.min.js" ></script>
+<script type="text/javascript" src="./js/vue-resource.min.js" ></script>
+<script type="text/javascript" src="./js/vue-router.min.js" ></script>
+ <script src="./js/apis/Data.js"></script>
+ <script src="./js/apis/alert.js"></script>
+ <script src="./js/apis/confirm.js"></script>
+<script type="text/javascript" src="js/components/header.js" ></script>
+<script type="text/javascript" src="js/components/footer.js" ></script>
+<script type="text/javascript" src="js/require/headerOrfooter.js"></script>
+<script>
+    var indexHtml = new Vue({
+      el: '#app',
+      data: {
+      },
+      methods: {
+        sumbit: function() {
+          var _Url = "";
+          var _data = {};
+          alert('66');
+//        SZXJ.http(this,'get', _Url, this._data, (response) => {
+//          
+//        }
+        },
+      },
+      ready: function() {
+      },
+    });
+</script>
+</html>
