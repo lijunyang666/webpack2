@@ -11,7 +11,9 @@ var tellMe = Vue.extend({
       +'<div class="mag_number1" style="display:none;" v-show="bookList.book === 0">{{bookList.book}}</div><span class="circular"></span><span class="title_name">作品相关</span></li><li  v-link="{path: \'/system\'}"> '
       +'<div class="mag_number1" style="display:none;" v-show="bookList.system === 0">{{bookList.system}}</div><span class="circular"></span><span class="title_name">系统消息</span></li><li  v-link="{path: \'/official\'}"> '
       +'<div class="mag_number1" style="display:none;" v-show="bookList.official === 0">{{bookList.official}}</div><span class="circular"></span><span class="title_name">官方公共</span></li></ul>'
-      +'<div class="content"><div class="bookBlockList"><div class="bookBlockList_title"><span class="hr"></span><span class="title">@我的</span><span class="titleTwo">work related</span></div><p>此功能暂未开放</p></div>'
+      +'<div class="content"><div class="bookBlockList"><div class="bookBlockList_title"><span class="hr"></span><span class="title">@我的</span><span class="titleTwo">work related</span></div>'
+      +'<div style="min-height:500px"><p>此功能暂未开放</p></div>'
+      +'</div>'
       +'</div></div></div>'
       ,
       data: function() {

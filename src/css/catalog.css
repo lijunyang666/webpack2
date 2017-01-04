@@ -408,11 +408,11 @@
 		overflow: hidden;
 		white-space: nowrap;
 		text-overflow: ellipsis;
-		color: #000000;
+		color: #777777;
 		text-align: center;
   }
     .screen .works_a:hover {
-      color: #0E9AC8;
+      color: #00a4ff;
       transition: all 0.2s ease;
       -webkit-transition: all 0.2s ease;
     }
@@ -465,7 +465,7 @@
 		    height: 112px;
 		    font-size: 12px;
 		    line-height: 1.3;
-		    
+		    color: #777777;
 		}
 		.index .text_type {
 			width: 472px;
@@ -490,15 +490,18 @@
 			display: inline-block;
 			text-align: center;
 			border-radius: 6px;
-			color: #169BD5;
-			border: 1px solid #169BD5;
+			color: #CFCECE;
+			border: 1px solid #CFCECE;
       
 		
 		}
 		.index .text_type .text_span:hover {
-			background-color: #00A1D6;
+			background-color: #68c9ff;
+			border: 1px solid #68c9ff;
 			cursor: pointer;
 			color: white;
+			transition: all 0.2s ease;
+      -webkit-transition: all 0.2s ease;
 		}
 			
 		.index .text_reading {
@@ -568,7 +571,7 @@
 		.index .text_Catalog ul {
 			min-width: 169px;
 			height: 30px;
-			margin: 18px 0 0 37px;
+			margin: 18px 0 0 20px;
 		}
 		.index .text_Catalog ul li{
 			font-size: 15px;
@@ -576,26 +579,31 @@
 			float: left;
 		}
 		.index .text_mark {
-			width: 7px;
-			height: 16px;
-			background-color: #00A1D6;
+			width: 3px;
+			height: 14px;
+			background-color: #32b6ff;
 			border-radius: 3px;
-			margin: 2px 7px 0 0;
+			margin: 3px 7px 0 0;
 			
 		}
 		.index .text_chapter {
-			border-bottom: 1px solid #ececec;
-		 	
+		 	width: 85%;
+		 	margin: 0 auto;
 		}
-
+    .index .text_chapter .text_hr {
+      width: 100%;
+      margin: 0 auto;
+      border-bottom: 1px solid #ececec;
+      height: 1px;
+    }
 		.index .text_chapter .group {
 			display:  inline-block;
-			margin-left: 20px;
+			
 			color: #010101;
-			margin-bottom: 5px;
+			margin-bottom: 8px;
 			margin-top: 8px;
-			margin-left: 55px;
-			width: 160px;
+			
+			width: 25%;
 			
 		}
 		
@@ -604,26 +612,30 @@
 			overflow: hidden;
 			display:  inline-block;
 			white-space: nowrap;
-			padding-left: 10px;
-			width: 150px;
-			font-size: 13px;
+			width: 92%;
+			font-size: 12px;
 		}
-		  .index .text_chapter .group a:hover {
-		    color: #0e9ac8;
+	 .index .text_chapter .group a:hover {
+	      color: #00a4ff;
 		    transition: all 0.2s ease;
 		    -webkit-transition: all 0.2s ease;
 		  }
-		.index .text_chapter span {
-				width: 5px;
-				height: 14px;
-				background-color: #3DB2D8;
+	 .index .text_chapter .group a:hover span {
+	     background-color: #00a4ff;
+		     transition: all 0.2s ease;
+        -webkit-transition: all 0.2s ease;
+		  }
+	.index .text_chapter span {
+				width: 3px;
+				height: 11px;
+				background-color: #97d7fa;
 				display: inline-block;
 				margin-right: 5px;
 				border-radius: 2px;
 				
 		}
 		.index .text_Catalog a {
-			color: #000000;
+			color: #777777;
 		}
 		.index .text_comment {
 			width: 720px;

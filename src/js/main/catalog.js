@@ -46,8 +46,17 @@ var vuePractice = new Vue({
     commentStatus: 0, // 按回复数 或 按时间排序显示评论
     replyStatus: 0,
     replyUserId: 0,
+    line:0,
+    contentEntityList:[],
   },
   methods: {
+    lineHr: function(){
+       for(var i=0; i=this.contentEntityList.length; i++){
+          if(i%4==0){
+            line++;
+          };
+       };
+    },
     strickieFn: function(commentId) {
       SZXJ.http(this,'post', PathList.top, { bookId: this.id,commentId: commentId }, (response) => {
         this.setComment(this.commentStatus);

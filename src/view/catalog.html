@@ -53,15 +53,14 @@
 				  <div v-for="obj in BookList">
   					<ul >
   						<li class="text_mark"></li>
-  						<li ><b>{{ obj.volumeName }}</b></li>
+  						<li ><span>{{ obj.volumeName }}</span></li>
   					</ul>   
   					<div class="text_chapter" >
   							<div class="group" v-for="value in obj.contentEntityList">
-  							  <span class="text_sign"></span>
-  							  <a target="_blank" :href="path.TemprootPath + '/view/read_book.html?contentId=' + value.contentId + '&bookId='+ obj.bookId">
-                      {{ value.contentTitle }}
-                  </a>
+  							  <a class="book_name" target="_blank" :href="path.TemprootPath + '/view/read_book.html?contentId=' + value.contentId + '&bookId='+ obj.bookId">
+  							  <span class="text_sign"></span>{{ value.contentTitle }}</a>  							    							  
   							</div>
+  							<div class="text_hr" v-if="line > 1" ></div>
   					</div>
 					</div>
 				</div>
