@@ -50,6 +50,7 @@ import PathList from '../../lib/apis/conf.js';
           this.editor.config.uploadHeaders = {
           	'JSESSIONID': localStorage.getItem('JSESSIONID'),
           }
+          this.editor.config.menus = ['emotion', 'img', "undo", "redo","fullscreen"];
           this.editor.config.emotions = {
             'default': {
               title: '轻悦娘',

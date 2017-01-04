@@ -56,6 +56,7 @@ import PathList from '../../lib/apis/conf.js';
           var textarea = document.getElementById('ipt-content-post');
           this.editor = new wangEditor(textarea);
           this.editor.config.uploadImgUrl = PathList.rootPath +　'/content/upload.shtml';
+          this.editor.config.menus = ['emotion', 'img', "undo", "redo","fullscreen"];
           this.editor.config.emotions = {
             'default': {
               title: '轻悦娘',
