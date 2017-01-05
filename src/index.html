@@ -10,7 +10,7 @@
 	</head>
 	<body id="app" v-show="bodyFlag" style="display: none;background-color: #FeFeFe;">
 	<alert v-ref:vue-alert></alert>
-	<myheader></myheader>
+	<myheader></myheader> 
 	<div style="width: 100%;height: 495px;background-image: url(img/header1.png); margin-top: -250px;"></div>
   <div class="index"> 
     <div class="Recomm" @mouseover="stop" @mouseout="start" > 
@@ -160,7 +160,7 @@
     <a :href="path.TemprootPath + '/view/catalog.html?bookId=' + indexList.weekBookByBookCopperCoins[$index].bookId">
       <img src="img/z-imgBj.jpg" @load="szxj.loadImg(obj.bookCoverImage ? path.rootPath + obj.bookCoverImage: '', $event)" class="bookImg_Sl" />
     </a> 
-    <img :src="'img/sss' + (19 + $index) + '.png'" class="sidebar_img" />
+    <img :src="'img/sss' + (25 + $index) + '.png'" class="sidebar_img" />
     <ul> 
       <li class="sidebar_name" title="{{ indexList.weekBookByBookCopperCoins[$index].bookName }}">
         <a :href="path.TemprootPath + '/view/catalog.html?bookId=' + indexList.weekBookByBookCopperCoins[$index].bookId">

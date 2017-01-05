@@ -53,6 +53,7 @@ var vuePractice = new Vue({
     lineHr: function(){
        for(var i=0; i=this.contentEntityList.length; i++){
           if(i%4==0){
+            
             line++;
           };
        };

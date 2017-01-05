@@ -408,7 +408,7 @@
 		overflow: hidden;
 		white-space: nowrap;
 		text-overflow: ellipsis;
-		color: #777777;
+		color: #666;
 		text-align: center;
   }
     .screen .works_a:hover {
@@ -465,7 +465,10 @@
 		    height: 112px;
 		    font-size: 12px;
 		    line-height: 1.3;
-		    color: #777777;
+		    color: #666;
+		}
+		.index .text_brief .text_brief_p span {
+		  color: black;
 		}
 		.index .text_type {
 			width: 472px;
@@ -635,7 +638,7 @@
 				
 		}
 		.index .text_Catalog a {
-			color: #777777;
+			color: #666;
 		}
 		.index .text_comment {
 			width: 720px;
@@ -813,10 +816,10 @@
   background-color: #00A1D6;
 }
 		.index  .text_sort {
-			width: 580px;
+			width: 600px;
 			height: 27px;
 			border-bottom: 1px solid #d9d9d9 ;
-			margin-left: 60px;
+			margin-left: 50px;
 		}
 		.index .text_sort ul {
 			margin-left: 10px;

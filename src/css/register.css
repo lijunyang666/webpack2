@@ -13,7 +13,7 @@ body li{
 .regist .regist_small {
   border: 1px solid #6c4274;
   border-radius: 10px;
-  box-shadow: 0 3px 9px rgba(0,0,0,.5);
+  box-shadow: 0 3px 9px rgba(0,0,0,.5) ;
   margin-top: 25px;
   height: 510px;
 }
@@ -30,7 +30,7 @@ body li{
 	border-radius: 8px;
 	font-size: 18px;
 	background: #bb759a;
-	box-shadow: 0 3px 9px rgba(0,0,0,.5);
+	box-shadow: inset 1px 1px 5px rgba(0,0,0,.5);
 	border: 1px solid #6c4274;
 	margin: 10px 0 0 30px;
 	opacity:0.5;
@@ -107,4 +107,19 @@ body li{
     border: 1px solid red !important;
     background-color: red !important;
     color: #363636 !important;		
+}
+  :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color: #000; opacity:1; 
+}
+
+  ::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color: #000;opacity:1;
+}
+
+  input:-ms-input-placeholder{
+    color: #000;opacity:1;
+}
+
+  input::-webkit-input-placeholder{
+    color: #000;opacity:1;
 }
