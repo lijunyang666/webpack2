@@ -4,10 +4,11 @@
 		margin: auto;
 	}
 	.index .Recomm {
-		margin: 20px 0 0 0;
+		margin: -80px 0 0 0;
 		height: 380px;
 		padding: 10px 20px;
-		box-shadow: #efeeee 3px 3px 8px 3px;
+		background-color: white;
+		box-shadow: #efeeee 0px 3px 8px;
 		position: relative;
 		
 	}

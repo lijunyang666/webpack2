@@ -67,7 +67,7 @@
 .qcacg-header-parent .qcacg-header .liBlock .headers_display {
   background-color: white;
   width: 200px;
-  height: 70px;
+  height: 80px;
   position:absolute;
   top: 45px;
   right: 50px;
@@ -78,14 +78,26 @@
 }
 .emil_message {
    position: absolute;
-   top: 28px;
-   left: 35px;
-   display: none;
- 
+   top: 30px;
+   left: 25px;
+   vertical-align: middle;
 }
-.emil_message img{
-  width: 22px;
-  height: 15px;
+.emil_message .msg_word {
+  font-size: 10px;
+  vertical-align: middle;
+}
+.emil_message:hover .msg_img {
+  background-image: url(../img/ns_05.png);
+  transition: all 0.2s ease;
+  -webkit-transition: all 0.2s ease;
+}
+.emil_message .msg_img{
+  background-image: url(../img/ns_03.png);
+  height: 18px;
+  width: 18px;
+  display: inline-block;
+  margin-right: 8px;
+  vertical-align: middle;
 }
 .mag_number {
   position: absolute;
@@ -141,8 +153,7 @@
   width: 200px;
   background-color: #D3D3D3;
   line-height: 30px;
-  margin-top: 10px;
-  line-height: 30px;
+  margin-top: 30px;
   text-align: center;
   border-radius: 0px 0px 6px 6px; 
 }
@@ -155,7 +166,9 @@
   
 }
 .qcacg-header-parent .qcacg-header .nav-right li a:hover {
-  color:#2863b4;
+  color:#00A1D6;
+  transition: all 0.2s ease;
+  -webkit-transition: all 0.2s ease;
 }
 .qcacg-header-parent .qcacg-header .nav-right li a:active a {
   color:#2863b4;

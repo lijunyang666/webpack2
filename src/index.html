@@ -11,8 +11,9 @@
 	<body id="app" v-show="bodyFlag" style="display: none;background-color: #FeFeFe;">
 	<alert v-ref:vue-alert></alert>
 	<myheader></myheader>
+	<div style="width: 100%;height: 495px;background-image: url(img/header1.png); margin-top: -250px;"></div>
   <div class="index"> 
-    <div class="Recomm" @mouseover="stop" @mouseout="start"> 
+    <div class="Recomm" @mouseover="stop" @mouseout="start" > 
       <div style="float:left;width:70px;height: 360px;overflow: hidden;">
         <img :src="swiperArr[0]" /> 
       </div>
