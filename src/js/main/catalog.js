@@ -73,7 +73,6 @@ var vuePractice = new Vue({
           index = 0;
           break;
         }
-        // console.log(this.findCommentAndReply.comment[i].editor);
       }
       this.replyUserId = id;
       if (v === 1) {
@@ -99,7 +98,6 @@ var vuePractice = new Vue({
           index = i;
           break;
         }
-        // console.log(this.findCommentAndReply.comment[i].editor);
       }
       var _data = {
         pageNo: v,
@@ -112,7 +110,6 @@ var vuePractice = new Vue({
         obj.comment[index].replyEntityList = response.data;
         obj.comment[index].pageNo = v;
         this.findCommentAndReply = obj;
-        console.log(this.findCommentAndReply);
       });
     },
     setPage: function(v) {
@@ -141,6 +138,7 @@ var vuePractice = new Vue({
     getComment(_data) {
       SZXJ.http(this,'get', PathList.findCommentAndReply, _data, (response) => {
         console.log('评论:');
+        console.log(response);
         var pageNo;
         if (this.findCommentAndReply.pageNo) {
           pageNo = this.findCommentAndReply.pageNo
@@ -152,6 +150,7 @@ var vuePractice = new Vue({
         this.findCommentAndReply.page = []; 
         this.findCommentAndReply.pageNo = pageNo;
         // 计算评论的总页数
+        console.log(this.findCommentAndReply.totalCount / _data.pageSize);
         if (this.findCommentAndReply.totalCount / _data.pageSize <= 1) {
           this.findCommentAndReply.pageCount = 1;
         } else {
@@ -183,7 +182,6 @@ var vuePractice = new Vue({
             this.findCommentAndReply.comment[i].page.push(j);
           }
         }
-        console.log(this.findCommentAndReply);
         });
     },
     saveComment: function() {
@@ -263,32 +261,30 @@ var vuePractice = new Vue({
       var _data = {};
       _data.bookId = this.id;
       SZXJ.http(this,'get', PathList.queryBookDirectory, _data, (response) => {
-      // 取到数据渲染
-      this.bookCustom = [];
-      this.userHead = response.data.bookCustom.userEntity.userHead;
-      this.bookId = response.data.bookCustom.bookId;
-      this.userId = response.data.bookCustom.userEntity.userId;
-      this.collect= response.data.bookCustom.collect;
-      this.attention = response.data.bookCustom.userEntity.attention;
-      this.bookCustom.push(response.data.bookCustom);
-      this.title = response.data.bookCustom.bookName;
-      this.introduction =response.data.bookCustom.bookIntroduction;
-      this.words =response.data.bookCustom.bookWordCount;
-      this.update = response.data.bookCustom.bookUpdate;
-      this.cursor = response.data.bookCustom.bookHit;
-      this.BookList = response.data.bookCustom.volumeCustomList;
-      this.Booktype =response.data.bookCustom.bookTypeEntityList;
-      this.typeName =response.data.bookCustom.bookTypeName;
-      this.Collection =response.data.bookCustom.bookCollect;
-      this.bookCopperCoins =response.data.bookCustom.bookCopperCoins;
-      this.authorName =response.data.bookCustom.userEntity.userName;
-      this.autograph = response.data.bookCustom.userEntity.information;
-      console.log(response);
+        // 取到数据渲染
+        this.bookCustom = [];
+        this.userHead = response.data.bookCustom.userEntity.userHead;
+        this.bookId = response.data.bookCustom.bookId;
+        this.userId = response.data.bookCustom.userEntity.userId;
+        this.collect= response.data.bookCustom.collect;
+        this.attention = response.data.bookCustom.userEntity.attention;
+        this.bookCustom.push(response.data.bookCustom);
+        this.title = response.data.bookCustom.bookName;
+        this.introduction =response.data.bookCustom.bookIntroduction;
+        this.words =response.data.bookCustom.bookWordCount;
+        this.update = response.data.bookCustom.bookUpdate;
+        this.cursor = response.data.bookCustom.bookHit;
+        this.BookList = response.data.bookCustom.volumeCustomList;
+        this.Booktype =response.data.bookCustom.bookTypeEntityList;
+        this.typeName =response.data.bookCustom.bookTypeName;
+        this.Collection =response.data.bookCustom.bookCollect;
+        this.bookCopperCoins =response.data.bookCustom.bookCopperCoins;
+        this.authorName =response.data.bookCustom.userEntity.userName;
+        this.autograph = response.data.bookCustom.userEntity.information;
       });
       SZXJ.http(this,'get', PathList.findUserOtherBook, _data, (response) => {
         // 取到数据渲染
         this.booktTitle = response.data.userOtherBook;
-        console.log(response);
       });
       _data.pageNo = 1;
       _data.pageSize = 10;

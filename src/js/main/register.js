@@ -42,8 +42,6 @@ var indexHtml = new Vue({
             this.verificationBtnFlag = false;
             this.verificationTimeFn();
             localStorage.setItem('verificationId', data.data.verificationId);
-            // location.href = this.path.TemprootPath + '/view/user_info.html';
-            console.log(data);
           });
         },
         register :function() {
@@ -104,9 +102,6 @@ var indexHtml = new Vue({
                 }
               }
             });
-            
-            
-            
       $('.btn_submit').click(function() {
         $('#regist').submit();
       });
@@ -179,11 +174,8 @@ var indexHtml = new Vue({
             // telephone
           },
           success: function(data) {
-            
             if (data && (data.status === "success")) {
-              
               This.register();
-
             } else {
               alert('服务端验证异常！');
             }
@@ -194,34 +186,31 @@ var indexHtml = new Vue({
         });
 
       });
-
     });
-
     // 将验证码加到id为captcha的元素里
     captchaObj.appendTo("#popup-captcha");
-
     // 更多接口参考：http://www.geetest.com/install/sections/idx-client-sdk.html
-        },
-        getGeetestFn : function () { // 获取就极验验证码
-          SZXJ.http(this,'get', PathList.StartCaptchaServlet, {}, (data) => {
-              // 使用initGeetest接口
-              // 参数1：配置参数
-              // 参数2：回调，回调的第一个参数验证码对象，之后可以使用它做appendTo之类的事件
-              window.initGeetest({
-                gt: data.data.gt,
-                challenge: data.data.challenge,
-                product: "popup",
-                // 产品形式，包括：float，embed，popup。注意只对PC版验证码有效
-                offline: !data.data.success // 表示用户后台检测极验服务器是否宕机，一般不需要关注
-              },
-              this.handlerPopup);
-          });
-        }
-      },
-      ready: function() {
-        this.getGeetestFn();
-      },
-    });
+    },
+    getGeetestFn : function () { // 获取就极验验证码
+      SZXJ.http(this,'get', PathList.StartCaptchaServlet, {}, (data) => {
+          // 使用initGeetest接口
+          // 参数1：配置参数
+          // 参数2：回调，回调的第一个参数验证码对象，之后可以使用它做appendTo之类的事件
+          window.initGeetest({
+            gt: data.data.gt,
+            challenge: data.data.challenge,
+            product: "popup",
+            // 产品形式，包括：float，embed，popup。注意只对PC版验证码有效
+            offline: !data.data.success // 表示用户后台检测极验服务器是否宕机，一般不需要关注
+          },
+          this.handlerPopup);
+      });
+    }
+  },
+  ready: function() {
+    this.getGeetestFn();
+  },
+});
 
 "use strict"
 $(function() {

@@ -30,7 +30,6 @@ var editor = Vue.extend({
     this.editor.config.uploadHeaders = {
       'JSESSIONID': localStorage.getItem('JSESSIONID'),
     }
-    console.log(this.editor.config.menus);
     this.editor.config.menus = ['emotion','img'];
     this.editor.config.emotions = {
       'default': {

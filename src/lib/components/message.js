@@ -45,7 +45,7 @@ var message = Vue.extend({
         getValueFn: function() {       
           var _data = {};
           SZXJ.http(this,'get', PathList.findCommentAndReplyByReplyUserId,{} , (response) => { 
-            console.log(this.bookList);  
+            console.log(response);  
             this.$set('bookList', response.data);
           });
         },
