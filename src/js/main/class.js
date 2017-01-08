@@ -1,7 +1,7 @@
 import Vue from '../../lib/vue.min.js';
 import VueValidator from '../../lib/vue-resource.min.js';
 Vue.use(VueValidator);
-
+import VueAlert from '../../lib/apis/alert.js';
 import PathList from '../../lib/apis/conf.js';
 import SZXJ from '../../lib/apis/vueHttp.js';
 import headerOrfooter from '../../lib/require/headerOrfooter.js';

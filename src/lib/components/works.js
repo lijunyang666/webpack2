@@ -65,15 +65,18 @@ var works = Vue.extend({
     methods: {
 	    submitFn() {
 	      if (this.bookName === '') { // 作品名称
-	        alert('请填写作品名称');
+	        var Utils = this.$refs.vueAlert ? this.$refs.vueAlert : this.$parent.$refs.vueAlert;
+          Utils.setMessage(true, '请填写作品名称');
 	        return;
 	      }
 	      if (this.textArea.length > 300) {
-	        alert('简介最多只能300个字!');
+	        var Utils = this.$refs.vueAlert ? this.$refs.vueAlert : this.$parent.$refs.vueAlert;
+          Utils.setMessage(true, '简介最多只能300个字');
 	        return;
 	      }
 	      if (this.bookName.length > 18) {
-	        alert('书名最多只能18个字!');
+	        var Utils = this.$refs.vueAlert ? this.$refs.vueAlert : this.$parent.$refs.vueAlert;
+          Utils.setMessage(true, '书名最多只能18个字');
 	        return;
 	      }
 	      const arrTemp = [];
@@ -83,11 +86,13 @@ var works = Vue.extend({
 	          }
 	      }
 	      if (arrTemp.length === 0) { // arrTemp 作品分类
-	        alert('请选择作品分类');
+	        var Utils = this.$refs.vueAlert ? this.$refs.vueAlert : this.$parent.$refs.vueAlert;
+          Utils.setMessage(true, '请选择作品分类');
 	        return;
 	      }
 	      if (this.imgUrl === '') {
-	        alert('请上传作品封面图');
+	        var Utils = this.$refs.vueAlert ? this.$refs.vueAlert : this.$parent.$refs.vueAlert;
+          Utils.setMessage(true, '请上传作品封面图');
 	        return;
 	      }
 	    	var _data = new Object();
@@ -176,8 +181,8 @@ var works = Vue.extend({
                 this.$els.file.value = null;
               };
             } else {
-              alert('只支持jpg与png格式！')
-              // this.$set('message', '只支持jpg与png格式！');
+              var Utils = this.$refs.vueAlert ? this.$refs.vueAlert : this.$parent.$refs.vueAlert;
+              Utils.setMessage(true, '只支持jpg与png格式');
             }
         },
       classListFn: function() {
