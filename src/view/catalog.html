@@ -80,6 +80,15 @@
     max-height: 300px;
     border-radius: 8px;
   }
+  
+  .wangEditor-container .wangEditor-txt h1, .wangEditor-container .wangEditor-txt h2, .wangEditor-container .wangEditor-txt h3, .wangEditor-container .wangEditor-txt h4, .wangEditor-container .wangEditor-txt h5, .wangEditor-container .wangEditor-txt p {
+    text-indent: 0em !important;  
+  }
+  .wangEditor-container, .wangEditor-container *{
+    border-radius: 10px
+  }
+
+
 </style>
 <div class="text_input">
 	<ul class="clear">
@@ -148,8 +157,8 @@
 </ul>
   
   
-<ul class="text_page clear" :style="obj.pageCount > 1 ? 'visibility: ;':'visibility: hidden;'">
-      
+<!--<ul class="text_page clear" :style="obj.pageCount > 1 ? 'visibility: ;':'visibility: hidden;'">-->
+<ul class="text_page clear" :style="obj.pageCount > 1 ? 'display:block ;':'display: none;'">
       <li>共<b>{{obj.pageCount}}</b>页</li>
       <li class="page_up" @click="setPage1(obj.pageNo - 1, $index)" :style="obj.pageNo > 1 ? 'display:block':'display:none'">上一页</li>
       

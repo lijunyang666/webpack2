@@ -6,7 +6,7 @@ PathList.TemprootPath = '';
 PathList.rootPath = '/Controller';
 PathList.rootPath = 'http://www.qcacg.cn/Controller';
 PathList.rootPath = 'http://121.196.194.211:8080/Controller';
-PathList.rootPath = 'http://127.0.0.1:8080';
+PathList.rootPath = 'http://192.168.126.25:8080';
 
 // 登陆的3个请求
 PathList.VerifyLoginServlet = PathList.rootPath + '/VerifyLoginServlet.shtml';

@@ -899,12 +899,15 @@
 		 	float: right;
 		 	margin: 0px 13px 0 0px;
 		 }
+		 .index .text_user ul li {
+		   margin-right: 20px;
+		 }
 		.index .text_user ul .mes_head_user {
 			width: 580px;
 			height: 20px;
 			margin-bottom: 5px;
 			margin-top: 5px;
-	    line-height: 16px;
+	    line-height: 20px;
 		}
 		.index .text_user ul li .updata_mes{
 		  height: 16px;
@@ -952,7 +955,7 @@
     }
 		.index .text_user .user_a {
 			display: block;
-			color: #00A1D6;
+			color: #6d757a;
 			width: 100px;
 			overflow: hidden;
 			white-space: nowrap;
@@ -1014,6 +1017,7 @@
       position: relative;
       top: 3px;
       left: 18px;
+      
      }
     .index .text_userTow .mes_head {
       width: 583px;
@@ -1074,7 +1078,7 @@
     }
     .index .text_userTow .user_a {
       display: block;
-      color: #00A1D6;
+      color: #6d757a;
       width: 100px;
       overflow: hidden;
       white-space: nowrap;
