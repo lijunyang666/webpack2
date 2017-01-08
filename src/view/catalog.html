@@ -75,17 +75,46 @@
 </div>
 <style>
   .wangEditor-txt {
-    min-height: 60px !important;
-    height: auto !important;
+    height: 60px !important;
     max-height: 300px;
-    border-radius: 8px;
+    margin-top: 0px !important;
+    padding: 5px 10px !important;
   }
-  
+  .wangEditor-container .wangEditor-txt p{
+    margin: 0px !important;
+    min-height: 12px !important;
+    font-size: 12px !important;
+    color: #555 !important;
+    line-height:1.36 !important;
+  }
+  .wangEditor-menu-shadow{
+    box-shadow: none !important;
+  }
   .wangEditor-container .wangEditor-txt h1, .wangEditor-container .wangEditor-txt h2, .wangEditor-container .wangEditor-txt h3, .wangEditor-container .wangEditor-txt h4, .wangEditor-container .wangEditor-txt h5, .wangEditor-container .wangEditor-txt p {
     text-indent: 0em !important;  
   }
-  .wangEditor-container, .wangEditor-container *{
-    border-radius: 10px
+  .wangEditor-container, .wangEditor-container {
+    border-radius: 10px;
+  }
+  .wangEditor-menu-container .menu-group {
+    border:none !important;    
+  }
+  .wangEditor-menu-container {
+    position: absolute;
+    top: 68px;
+    background: none !important;
+    border: none !important;
+  }
+  .wangEditor-menu-container .menu-item{
+    margin-right: 5px;
+  }
+  .wangEditor-menu-container .menu-item a{
+    padding: 5px 0 0 0 !important;
+    
+  }
+  .wangEditor-menu-container .menu-item {
+    height: 20px !important;
+    margin-bottom:5px !important ;
   }
 
 
@@ -94,10 +123,13 @@
 	<ul class="clear">
 		<li class="user_head"><a href="javascript:;">
 		  <img src="../img/sss8.jpg" @load="szxj.loadImg(loginImg ? path.rootPath + loginImg: '', $event)"/></a></li>
-		<li style="position: relative;float: left;width: 555px;min-height: 60px;">
+
+		<li class="user_msg" >
 		  <editor :id="'editor_'" v-ref:editor></editor>
 		</li>
-		<li class="MessageBtn btn" @click="saveComment"><span>发表评论</span></li>
+		<!--<li class="user_msgTow" v-else ><a :href="path.TemprootPath + /view/login.html">登录</a>后才可以进行操作 </li>-->
+
+		<li class="MessageBtn" @click="saveComment"><span>发表评论</span></li>
 	</ul>
 	<div class="text_sort active">
 		<ul>
@@ -115,7 +147,7 @@
         <a v-if="$index === 0 && obj.strickie != '0'" href="javascript:;" class="user_Top">置顶</a>
         <a v-if="findCommentAndReply.auth && obj.strickie == '0'" @click="strickieFn(obj.commentId)" href="javascript:;" class="user_Top_a">置顶</a>
       </li>
-      <li><span class="user_comment" style="display: block;white-space: normal;word-break:break-all;word-wrap:break-word;">{{{ obj.commentContent }}}</span></li>  
+      <li><span class="user_comment" >{{{ obj.commentContent }}}</span></li>  
       <li>
         <ul class="updata_mes">
             <li class="mess1">{{ szxj.getLocalTime(obj.commentDate / 1000) }}</li>
@@ -126,8 +158,8 @@
     </ul>
   </div >
   
-  <div class="text_userTow clear" style="position: relative;" v-for="temp in obj.replyEntityList">
-    <a href="javascript:;"><img src="../img/smallHead.png" @load="szxj.loadImg(temp.userHead ? path.rootPath + temp.userHead: '', $event)" style="border-radius: 25px;width: 36px;height: 36px;"/ ></a>
+  <div class="text_userTow clear"  v-for="temp in obj.replyEntityList" :style=" replyEntityList.length == replyEntityList[$index+1] 'border-bottom: 1px solid rgba(0,0,0,0.06);':''  ">
+    <a href="javascript:;"><img src="../img/smallHead.png" @load="szxj.loadImg(temp.userHead ? path.rootPath + temp.userHead: '', $event)" / ></a>
     <ul class="mes_head">
       
       <li class="mes_head_user" >
@@ -135,7 +167,7 @@
       </li>
       
       <li>
-        <span class="user_comment"  title=""><label v-if="obj.replyStatus">回复<span class="aite_user">@{{ temp.replyUserName }}</span></label>{{{ temp.replyContent }}}</span>
+        <span class="user_comment"  title=""><label v-if="obj.replyStatus">回复<span class="aite_user">@{{ temp.replyUserName }}:</span></label>{{{ temp.replyContent }}}</span>
       </li> 
         
       <li>
@@ -149,11 +181,11 @@
   </div>
   
 <ul class="Publish" :style="commentId === obj.commentId ? 'visibility: ;':'display: none;'">
-    <li class="user_head"><a href="javascript:;"><img src="../img/sss8.jpg" @load="szxj.loadImg(obj.userHead ? path.rootPath + obj.userHead: '', $event)"/></a></li>
-    <li style="position: relative;float: left;width: 485px;min-height: 60px;">
+  <li class="user_head"><a href="javascript:;"><img src="../img/sss8.jpg" @load="szxj.loadImg(obj.userHead ? path.rootPath + obj.userHead: '', $event)"/></a></li>
+  <li style="position: relative;float: left;width: 485px;min-height: 60px;">
       <editor :id="'editor_' + obj.commentId" :editor.sync="obj.editor"></editor>
     </li>
-    <li class="MessageBtn btn" @click="saveReply(obj.commentId)"><span style="line-height: 26px;">回复</span></li>
+    <li class="MessageBtn" @click="saveReply(obj.commentId)"><span style="line-height: 26px;">回复</span></li>
 </ul>
   
   
@@ -162,7 +194,7 @@
       <li>共<b>{{obj.pageCount}}</b>页</li>
       <li class="page_up" @click="setPage1(obj.pageNo - 1, $index)" :style="obj.pageNo > 1 ? 'display:block':'display:none'">上一页</li>
       
-      <li class="page_number" v-if="(($index + 1) <= 5 && obj.pageNo < 3 || (($index + 1) > obj.pageNo - 3 &&  $index < obj.pageNo)) || ( (($index + 1) <= obj.pageNo + 2 &&　($index + 1) > obj.pageNo) || (obj.pageNo > obj.pageCount - 3 && ($index + 6) > obj.pageCount) )" :style="objTemp == obj.pageNo? 'font-weight:bold':''" v-for="objTemp in obj.page" @click="setPage1(objTemp, $index)"><a>{{ objTemp }}</a></li>
+      <li class="page_number" v-if="(($index + 1) <= 5 && obj.pageNo < 3 || (($index + 1) > obj.pageNo - 3 &&  $index < obj.pageNo)) || ( (($index + 1) <= obj.pageNo + 2 &&　($index + 1) > obj.pageNo) || (obj.pageNo > obj.pageCount - 3 && ($index + 6) > obj.pageCount) )" :style="objTemp == obj.pageNo? 'font-weight:bold;color:#00a1d6;':''" v-for="objTemp in obj.page" @click="setPage1(objTemp, $index)"><a>{{ objTemp }}</a></li>
       
       <li v-show="obj.pageNo !== obj.pageCount" class="page_next" @click="setPage1(obj.pageNo + 1, $index)">下一页</li>
 </ul>
@@ -386,3 +418,5 @@
 <script src="../js/main/catalog.js"></script>
 </body>
 </html>
+
+
