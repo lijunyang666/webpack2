@@ -20,6 +20,8 @@ var indexHtml = new Vue({
         uid: '', // 推荐人
         verificationBtnTime: 60, // 验证码时间
         verificationBtnFlag: true, // 验证码状态
+        captchaObj: {},
+        verificationFlag: false,
       },
       methods: {
         verificationTimeFn: function() {
@@ -36,15 +38,10 @@ var indexHtml = new Vue({
           }
         },
         verificationBtn :function() {
-          var formData = new FormData();
-          formData.append("telephone", this.telephone);
-          SZXJ.http(this,'post', PathList.registerTelephoneCode, formData, (data) => {
-            this.verificationBtnFlag = false;
-            this.verificationTimeFn();
-            localStorage.setItem('verificationId', data.data.verificationId);
-          });
+          this.verificationFlag = true;
+          this.captchaObj.show();
         },
-        register :function() {
+        register :function(validate) {
           var registCodeId = localStorage.getItem('verificationId');
           var _data = {};
           _data.registCodeId = registCodeId;
@@ -57,21 +54,15 @@ var indexHtml = new Vue({
           if (this.uid !== '') {
             _data.invitePeople = this.uid;
           }
-//        var formData = new FormData();
-//        formData.append("registCodeId", registCodeId);
-//        formData.append("telephone", this.telephone);
-//        formData.append("telephoneCode", this.verification);
-//        formData.append("userName", this.username);
-//        formData.append("passWord", this.password);
-//        formData.append("passWordConfirm", this.password2); 
-//        if (this.uid !== '') {
-//          formData.append("invitePeople", this.uid);
-//        }
+          _data.geetestChallenge = validate.geetest_challenge;
+          _data.geetestValidate = validate.geetest_validate;
+          _data.geetestSeccode = validate.geetest_seccode;
           SZXJ.http(this,'post', PathList.register, _data, (response) => {
               location.href = this.path.TemprootPath + '/view/login.html';
           });
         },
         handlerPopup: function(captchaObj) {
+          this.captchaObj = captchaObj;
           var This = this;
           captchaObj.onReady(function() {
             // 设置验证的
@@ -161,29 +152,45 @@ var indexHtml = new Vue({
           //  alert('请先完成验证！');
           //  return;
         }
-        $.ajax({
-          url: PathList.VerifyLoginServlet,
-          // 进行二次验证
-          type: "post",
-          dataType: "json",
-          data: {
-            // 二次验证所需的三个值
-            geetest_challenge: validate.geetest_challenge,
-            geetest_validate: validate.geetest_validate,
-            geetest_seccode: validate.geetest_seccode,
-            // telephone
-          },
-          success: function(data) {
-            if (data && (data.status === "success")) {
-              This.register();
-            } else {
-              alert('服务端验证异常！');
-            }
-          },
-          error: function(data) {
-            alert(JSON.parse(data.responseText).msg);
-          },
-        });
+        
+        if (This.verificationFlag) {
+          var _data = {};
+          _data.telephone = this.telephone;
+          _data.geetest_challenge = validate.geetest_challenge;
+          _data.geetest_validate = validate.geetest_validate;
+          _data.geetest_seccode = validate.geetest_seccode;
+          SZXJ.http(This,'post', PathList.registerTelephoneCode, _data, (data) => {
+            This.verificationBtnFlag = false;
+            This.verificationTimeFn();
+            localStorage.setItem('verificationId', data.data.verificationId);
+          });
+        } else {
+          This.register(validate);
+        }
+        This.verificationFlag = false;
+//      $.ajax({
+//        url: PathList.VerifyLoginServlet,
+//        // 进行二次验证
+//        type: "post",
+//        dataType: "json",
+//        data: {
+//          // 二次验证所需的三个值
+//          geetest_challenge: validate.geetest_challenge,
+//          geetest_validate: validate.geetest_validate,
+//          geetest_seccode: validate.geetest_seccode,
+//          // telephone
+//        },
+//        success: function(data) {
+//          if (data && (data.status === "success")) {
+//            This.register();
+//          } else {
+//            alert('服务端验证异常！');
+//          }
+//        },
+//        error: function(data) {
+//          alert(JSON.parse(data.responseText).msg);
+//        },
+//      });
 
       });
     });

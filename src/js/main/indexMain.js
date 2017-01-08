@@ -5,7 +5,7 @@ import PathList from '../../lib/apis/conf.js';
 import SZXJ from '../../lib/apis/vueHttp.js';
 import headerOrfooter from '../../lib/require/headerOrfooter.js';
 headerOrfooter();
-
+import VueAlert from '../../lib/apis/alert.js';
 var indexHtml = new Vue({
   el: '#app',
   data: {

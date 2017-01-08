@@ -151,7 +151,9 @@ var info = Vue.extend({
               this.$els.file.value = null;
             };
           } else {
-            alert('只支持jpg与png格式！')
+           var Utils = this.$refs.vueAlert ? this.$refs.vueAlert : this.$parent.$refs.vueAlert;
+           Utils.setMessage(true, '只支持jpg与png格式');
+            // alert('只支持jpg与png格式！')
             // this.$set('message', '只支持jpg与png格式！');
           }
         },

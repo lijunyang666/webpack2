@@ -13,6 +13,7 @@ import PathList from '../../lib/apis/conf.js';
     	return {
     		contentTitle: '',
     		id: -1,
+    		fontSize: 0,
     	}
     }
     
@@ -49,7 +50,12 @@ import PathList from '../../lib/apis/conf.js';
           this.editor.config.uploadImgUrl = PathList.rootPath +　'/content/upload.shtml';
           this.editor.config.uploadHeaders = {
           	'JSESSIONID': localStorage.getItem('JSESSIONID'),
-          }
+          };
+          var This = this;
+          this.editor.onchange = function () {
+            This.fontSize = This.editor.$txt.formatText().toString().length;
+  	        console.log(This.editor.$txt.formatText().toString().length);
+	        };
           this.editor.config.menus = ['emotion', 'img', "undo", "redo","fullscreen"];
           this.editor.config.emotions = {
             'default': {
