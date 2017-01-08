@@ -17,9 +17,9 @@
 <script type="text/javascript" src="./js/vue.min.js" ></script>
 <script type="text/javascript" src="./js/vue-resource.min.js" ></script>
 <script type="text/javascript" src="./js/vue-router.min.js" ></script>
- <script src="./js/apis/Data.js"></script>
- <script src="./js/apis/alert.js"></script>
- <script src="./js/apis/confirm.js"></script>
+<script src="./js/apis/Data.js"></script>
+<script src="./js/apis/alert.js"></script>
+<script src="./js/apis/confirm.js"></script>
 <script type="text/javascript" src="js/components/header.js" ></script>
 <script type="text/javascript" src="js/components/footer.js" ></script>
 <script type="text/javascript" src="js/require/headerOrfooter.js"></script>
@@ -30,12 +30,12 @@
       },
       methods: {
         sumbit: function() {
-          var _Url = "";
+          var _Url = "http://127.0.0.1:8080/reply/findReplyUserId.shtml";
           var _data = {};
           alert('66');
-//        SZXJ.http(this,'get', _Url, this._data, (response) => {
-//          
-//        }
+          SZXJ.http(this,'get', _Url, this._data, (response) => {
+            console.log(response);
+          })
         },
       },
       ready: function() {
