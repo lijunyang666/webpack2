@@ -46,7 +46,7 @@
 		
 	}
 	.text .text_ul  {
-		width: 470px;
+		width: 565px;
 		height: 20px;
 		font-size: 13px;
 		line-height: 20px;
@@ -454,18 +454,18 @@
     	left: 40px;
 	}
 		.index .text_brief {
-			width: 540px;
-			height: 85px;
+			width: 555px;
+			height: 91px;
 			border-bottom: 1px dashed #E1E1E1;
 			margin-top: 10px;
 		}	
 		.index .text_brief .text_brief_p {
-		  	width: 540px;
+		  	width: 555px;
 		    overflow: hidden;
 		    display: -webkit-box;
 		    -webkit-line-clamp: 5;
 		    -webkit-box-orient: vertical;
-		    height: 80px;
+		    height: 83px;
 		    font-size: 12px;
 		    line-height: 1.4;
 		    color: #666;
@@ -575,7 +575,7 @@
 		}
 		.index .text_Catalog {
 			width: 770px;
-			height: 775px;
+			min-height: 775px;
 			border: 1px solid #dddddd;
 			margin: 10px 0 0 15px;
 			border-radius: 8px;
@@ -672,20 +672,20 @@
 			width: 675px;
 			margin: 25px 0 0 50px;
 		}
-		.index .text_input ul {
+		.index .text_input .clearr {
 			width: 700px;
 			min-height: 80px;
 			margin-bottom: 40px;
 		}
-		.index .text_input ul .user_head {
+		.index .text_input .clearr .user_head {
 			margin-right: 20px;
 			float: left;
 			padding-top: 4px;
 		}
-		.index .text_input ul li {
+		.index .text_input .clearr li {
 		  float: left;
 		}
-		.index .text_input ul .MessageBtn {
+		.index .text_input .clearr .MessageBtn {
 		  width: 56px;
 		  height: 56px;
 		  border-radius: 6px;
@@ -696,13 +696,13 @@
 		  margin-top: 2px; 
 		  cursor: pointer;
 		}
-		.index .text_input ul .MessageBtn:active {
+		.index .text_input .clearr .MessageBtn:active {
       box-shadow: 1px 1px 5px 3px rgba(0,0,0,0.1) inset ;
     }
-		.index .text_input ul .MessageBtn:hover {
+		.index .text_input .clearr .MessageBtn:hover {
 		  background-color: #3DB2D8;
 		}
-		.index .text_input ul .MessageBtn span{
+		.index .text_input .clearr .MessageBtn span{
 		   width: 40px;
 		   display: inline-block;
 		   height: 40px;
@@ -710,7 +710,7 @@
 		   cursor: pointer;
 		}
 
-		.index .text_input ul textarea {
+		.index .text_input .clearr textarea {
 			width: 550px;
 			height: 60px;
 			border-radius: 8px;
@@ -832,31 +832,82 @@
   color: white;
   background-color: #00A1D6;
 }
+/*上面的小翻页*/
+    .text_sort .text_page_up {
+      margin-left:400px ;
+      font-size: 13px;
+      
+    }
+     .text_sort .text_page_up b {
+      margin: 0 3px;
+    }
+     .text_sort .text_page_up li {
+      width: 50px;
+      height: 27px;
+      cursor: pointer;
+      text-align: center;
+      float: right;
+    }
+     .text_sort .text_page_up .page_number {
+      cursor: pointer;
+      width: 16px ;
+      height: 25px;
+      text-align: center;
+      font-size: 12px;
+    }
+     .text_sort .text_page_up .page_number:hover {
+      color: #00A1D6;
+    }
+
+     .text_sort .text_page_up .page_up {
+      cursor: pointer;
+      height: 25px;
+      width: 50px;
+      text-align: center;
+      font-size: 12px;
+    }
+    .text_sort .text_page_up .page_next {
+      cursor: pointer;
+      height: 25px;
+      width: 50px;
+      text-align: center;
+      font-size: 12px;
+    }
+     .text_sort .text_page_up .page_next:hover { 
+      color: #00A1D6;
+    }
+
+     .text_sort .text_page_up .page_up:hover { 
+      color: #00A1D6;
+    }
+/*上面是小翻页*/
 		.index  .text_sort {
 			width: 650px;
 			height: 27px;
 			border-bottom: 1px solid #d9d9d9  ;
 			margin-left: 40px;
 		}
-		.index .text_sort ul {
+		.index .text_sort .text_sort_ul {
 			margin-left: 10px;
 			height: 27px;
 			
 		}
-		.index .text_sort ul li {
+		.index .text_sort .text_sort_ul .text_sort_li {
 			width:75px;
 			height: 27px;
 			cursor: pointer;
 			text-align: center;
 			float:left ;
 			margin-right: 20px;
+			font-family: "微软雅黑";
+			font-weight:600 ;
 		}
 		.index .text_sort .active{
 			border-bottom: 1px solid #00A1D6;
 			height: 27px;
 			color:#00A1D6 ;
 		}
-		.index .text_sort ul li:hover {
+		.index .text_sort .text_sort_ul .text_sort_li:hover {
 			color: #00A1D6;
 			width: 75px;
 			height: 27px;
@@ -1050,7 +1101,7 @@
       height: 46px;
      }
     .index .text_userTow .mes_head {
-      width: 455px;
+      width: 470px;
       min-height: 80px;
       float: right;
       margin: 0px 30px 0 0px;
@@ -1287,9 +1338,7 @@
 		.btn:focus {
 			
 		}
-		.btn:active {
-			box-shadow: inset 3px 3px 5px 1px rgba(0,0,0,0.7);
-		}
+
 		.Report {
 		  width: 220px;
 		  height: 240px;
@@ -1336,3 +1385,4 @@
 		.Report .true:hover {
 		  background-color: #00A1D6;
 		}
+   

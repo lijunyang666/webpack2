@@ -120,7 +120,7 @@
 
 </style>
 <div class="text_input">
-	<ul class="clear">
+	<ul class="clearr">
 		<li class="user_head"><a href="javascript:;">
 		  <img src="../img/sss8.jpg" @load="szxj.loadImg(loginImg ? path.rootPath + loginImg: '', $event)"/></a></li>
 
@@ -132,9 +132,19 @@
 		<li class="MessageBtn" @click="saveComment"><span>发表评论</span></li>
 	</ul>
 	<div class="text_sort active">
-		<ul>
-			<li :class="commentStatus === 0 ?'active':''" @click="setComment(0)">默认排序</li>
-			<li :class="commentStatus === 1 ?'active':''" @click="setComment(1)">按回复数</li>
+		<ul class="text_sort_ul">
+			<li class="text_sort_li" :class="commentStatus === 0 ?'active':''" @click="setComment(0)">默认排序</li>
+			<li class="text_sort_li" :class="commentStatus === 1 ?'active':''" @click="setComment(1)">按回复数</li>
+			
+  			<ul class="text_page_up clear">
+            <li>共<b>{{ findCommentAndReply.pageCount }}</b>页</li>
+            <li class="page_up" @click="setPage(findCommentAndReply.pageNo - 1, $index)" :style="findCommentAndReply.pageNo > 1 ? 'display:block':'display:none'">上一页</li>
+            
+            <li class="page_number" v-if="(($index + 1) <= 5 && findCommentAndReply.pageNo < 3 || (($index + 1) > findCommentAndReply.pageNo - 3 &&  $index < findCommentAndReply.pageNo)) || ( (($index + 1) <= findCommentAndReply.pageNo + 2 &&　($index + 1) > findCommentAndReply.pageNo) || (findCommentAndReply.pageNo > findCommentAndReply.pageCount - 3 && ($index + 6) > findCommentAndReply.pageCount) )" :style="objTemp == findCommentAndReply.pageNo? 'font-weight:bold;color:#00a1d6;':''" v-for="objTemp in findCommentAndReply.page" @click="setPage(objTemp)"><a>{{ objTemp }}</a></li>
+            
+            <li v-show="findCommentAndReply.pageNo !== findCommentAndReply.pageCount" class="page_next" @click="setPage(findCommentAndReply.pageNo + 1, $index)">下一页</li>
+        </ul>
+      
 		</ul>
 	</div>
 </div>
