@@ -513,11 +513,12 @@
 		}
 			
 		.index .text_reading {
-			width: 420px;
+			width: 560px;
 			height: 55px;
 			padding: 15px 0 0 0;
 			cursor: pointer;
 		}
+
 
 		.index .text_reading ul {
 			height: 40px;
@@ -568,10 +569,12 @@
 			margin: 7px 0 0 8px ;
 		}
 		.index .text_reading p {
-			margin: -25px 0px 0px 45px;
+			margin: -25px 0px 0px 56px;
+
 		}
 		.index .text_reading i {
-			margin: 0px 0 0 45px;
+			margin: 0px 0 0 56px;
+			text-align: center;
 		}
 		.index .text_Catalog {
 			width: 770px;
@@ -923,7 +926,7 @@
 	   width: 640px;
 	   height: 1px;
 	   margin-left: 100px;
-	   margin-top: 10px;
+	   margin-top: 20px;
 		}
 		.index .CommentArea .updata_dispaly {
 		  color: #9E9E9E;
