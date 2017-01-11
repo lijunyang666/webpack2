@@ -101,16 +101,17 @@
 }
 .mag_number {
   position: absolute;
-  width:20px ;
-  height: 20px;
+  width:16px ;
+  height: 16px;
   border-radius: 10px;
   background-color: #EA5464;
   color: white;
   top: 5px;
   right: 130px;
-  line-height: 20px;
-  font-size: 10px;
+  line-height: 16px;
+  font-size: 6px !important;
   text-align: center;
+  
 }
 .noMeg{
   height: 18px;
