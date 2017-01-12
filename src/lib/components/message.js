@@ -15,14 +15,27 @@ var message = Vue.extend({
       +'<div style="min-height:500px">'
       +'<div v-for="obj in bookList"><div class="img-attention-headTow" ><img :src="path.rootPath + obj.userHead "/></div><ul class="attention_AI_words"><li class="attention_AI_time" >{{ szxj.getLocalTimeTwo(obj.replyDate) }} </li><li class="attention_AI_detailed">查看详情</li> </ul><div class="attention_AI_name"><span>{{obj.userName}}</span>回复了你：{{obj.replyContent}}</div><div class="attention_AI_comment"><span>“{{obj.commentContent}}”</span></div>   <hr style="border: 1px solid #f9f9f9; margin:0 0 0 5%;  " width="90% " /></div>'
       +'</div>'
-      +'<div id="page" class="page" v-if="setPageCount > 1"><ul><li><a>上一页</a></li><li class="active"><a>1</a></li><li><a>下一页</a></li><li class="goto"><input type="text" value="" /><span>/1211</span><a>转页</a></li></ul></div>'
+      +'<div id="page" class="page" ><ul><li class="btn" @click="setPage((RequestObj.pageNo - 1) >= 1 ? (RequestObj.pageNo - 1) : 1)"><a>上一页</a></li><li v-if="(($index + 1)<= 5 && RequestObj.pageNo< 3 || (($index + 1) > RequestObj.pageNo - 3 &&  $index< RequestObj.pageNo)) || ( (($index + 1)<= RequestObj.pageNo + 2 &&　($index + 1) > RequestObj.pageNo) || (RequestObj.pageNo > obj.totalPage - 3 && ($index + 6) > obj.totalPage) )" :class="objTemp == RequestObj.pageNo? \'active\':\'\'" v-for="objTemp in page" @click="setPage(objTemp)"><a>{{ objTemp }}</a></li><li class="btn" @click="setPage((RequestObj.pageNo + 1)<= obj.totalPage ? (RequestObj.pageNo + 1) : obj.totalPage)"><a>下一页</a></li><li class="goto"><input type="text" v-model="pageNo" style="text-align: center;"/><span>{{ RequestObj.pageNo }}/{{ obj.totalPage }}</span><a class="btn" @click="setPage(pageNo)">转页</a></li></ul></div>'
       +'</div></div></div>'
       ,
       data: function() {
         return {
           szxj: SZXJ,
           path: PathList,
+         RequestObj:{
+            type:2,
+            pageNo: 1,
+            pageSize: 10,
+          },
+          
+          page: [],
+          obj: {
+            p: 1, // 页码
+            n: 10,
+            totalPage: 0,
+          },
         };
+        
       },
       route: {
         data() {
@@ -30,6 +43,24 @@ var message = Vue.extend({
         } 
       },
       methods: {
+         setPageCount: function(v) {
+          var obj = this.obj;
+          obj.totalPage =  v;
+          this.page = [];
+          for (var i = 0; i < obj.totalPage; i++) {
+            this.page.push(i+1);
+          } 
+          this.$set('obj', obj);
+        },
+        setPage: function(v) {
+          if (!v || v > obj.totalPage || v <= 0 || v.toString().search(/[^0-9]/g) !== -1 ) {
+            return;
+          }
+          var obj = this.RequestObj;
+          obj.pageNo = v;
+          this.$set('RequestObj', obj);
+          this.getValueFn(); // 请求
+        },
         setFlag: function() {
           console.log(this.$parent);
           var url = this.path.TemprootPath + '/view/user_info.html';

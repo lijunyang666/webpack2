@@ -70,7 +70,7 @@
 				
 <div class="text_comment">
 	<ul>
-		<li><span>1982</span></li>
+		<li><span>{{findCommentAndReply.commentAndReplyTotalCount}}</span></li>
 		<li>评论</li>
 	</ul>
 </div>
@@ -163,7 +163,7 @@
         <ul class="updata_mes">
             <li class="mess1">{{ szxj.getLocalTime(obj.commentDate / 1000) }}</li>
             <li class="mess2" @click="messageShow(obj.commentId, 0, obj.userName, obj.userId)">回复</li>
-            <li class="mess3">举报</li>
+            <li class="mess3" @click="setReport(1)">举报</li>
         </ul>
       </li>
     </ul>
@@ -185,7 +185,7 @@
         <ul class="updata_mes">
             <li class="mess1">{{ szxj.getLocalTime(temp.replyDate / 1000) }}</li>
             <li class="mess2" @click="messageShow(temp.commentId, 1, temp.userName, temp.userId)">回复</li>
-            <li class="mess3">举报</li>
+            <li class="mess3" @click="setReport(1)">举报</li>
         </ul>
       </li>
     </ul>
@@ -193,12 +193,12 @@
   
 <ul class="Publish" :style="commentId === obj.commentId ? 'visibility: ;':'display: none;'">
   <li class="user_head"><a href="javascript:;"><img src="../img/sss8.jpg" @load="szxj.loadImg(obj.userHead ? path.rootPath + obj.userHead: '', $event)"/></a></li>
-  <li style="position: relative;float: left;width: 485px;min-height: 60px;">
+  <li style="position: relative; float: left;width: 485px;min-height: 60px;">
       <editor :id="'editor_' + obj.commentId" :editor.sync="obj.editor"></editor>
     </li>
     <li class="MessageBtn" @click="saveReply(obj.commentId)"><span style="line-height: 26px;">回复</span></li>
 </ul>
-  
+ 
   
 <!--<ul class="text_page clear" :style="obj.pageCount > 1 ? 'visibility: ;':'visibility: hidden;'">-->
 <ul class="text_page clear" :style="obj.pageCount > 1 ? 'display:block ;':'display: none;'">
@@ -214,7 +214,7 @@
 </div>
    
 
-<div class="Report" style="display: none;">
+<div class="Report" v-if="Report === 1">
     <form action="" method="get">请输入举报理由
     <br /><br /> 
     <ul>

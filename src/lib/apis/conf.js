@@ -7,6 +7,7 @@ PathList.rootPath = '/Controller';
 PathList.rootPath = 'http://www.qcacg.cn/Controller';
 PathList.rootPath = 'http://121.196.194.211:8080/Controller';
 PathList.rootPath = 'http://192.168.126.25:8080';
+//PathList.rootPath = 'http://192.168.126.34:8080';
 
 // 登陆的3个请求
 PathList.VerifyLoginServlet = PathList.rootPath + '/VerifyLoginServlet.shtml';
@@ -97,7 +98,8 @@ PathList.queryMsg = PathList.rootPath + '/info/queryMsg.shtml';
 PathList.findCommentAndReplyByReplyUserId = PathList.rootPath + '/reply/findCommentAndReplyByReplyUserId.shtml';
 // 修改密码 or 忘记密码
 PathList.updatePassword = PathList.rootPath + '/updatePassword.shtml';
-
+// 审核
+PathList.userUpdateBookStatus = PathList.rootPath + '/book/userUpdateBookStatus.shtml';
 
 
 export default PathList;

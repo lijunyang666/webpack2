@@ -45,6 +45,8 @@ var vuePractice = new Vue({
     replyUserId: 0,
     line:0,
     contentEntityList:[],
+    Report:0,
+    commentAndReplyTotalCount:'',
   },
   methods: {
     lineHr: function(){
@@ -72,7 +74,7 @@ var vuePractice = new Vue({
       }
       this.replyUserId = id;
       if (v === 1) {
-        editor.$txt.html('<p><span style="color:#00A1D6;" contenteditable="false">回复@'+name+'</span><span>&nbsp;<span></p>');
+        editor.$txt.html('<span style="color:#00A1D6;" contenteditable="false">回复@'+name+'</span><span> </span>');
         this.replyStatus = 1;
       } else {
         this.replyStatus = 0;
