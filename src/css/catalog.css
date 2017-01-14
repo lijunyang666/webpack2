@@ -667,7 +667,7 @@
 			float: left;
 		}
 		.index .text_comment ul li span {
-			color: black;
+			color: #00A1D6;
 			font-size: 18px;
 			line-height: 5px;
 		}
@@ -727,7 +727,7 @@
       width: 640px;
       height: 90px;
       margin-left:120px ;
-      margin-bottom: 5px;
+
       margin-top: 8px;
     }
     .index .CommentArea  .Publish .user_head {
@@ -781,6 +781,7 @@
       margin-top: 5px;    
       line-height: 24px;
       font-size: 13px;
+      height: 24px;
     }
     .index .CommentArea .text_page b {
       margin: 0 3px;
@@ -793,7 +794,7 @@
     .index .CommentArea .text_page .page_number {
       cursor: pointer;
       width: 25px ;
-      height: 25px;
+      height: 24px;
       text-align: center;
     }
 .index .CommentArea .text_page .page_number:hover {
@@ -807,13 +808,13 @@
 }
 .index .CommentArea .text_page .page_up {
     cursor: pointer;
-  height: 25px;
+  height: 24px;
   width: 54px;
   text-align: center;
 }
 .index .CommentArea .text_page .page_next {
   cursor: pointer;
-  height: 25px;
+  height: 24px;
   width: 54px;
   text-align: center;
 }

@@ -70,7 +70,8 @@
 				
 <div class="text_comment">
 	<ul>
-		<li><span>{{findCommentAndReply.commentAndReplyTotalCount}}</span></li>
+		<li><span v-if="findCommentAndReply.commentAndReplyTotalCount !=== 0 "  >{{findCommentAndReply.commentAndReplyTotalCount}}</span></li>
+    <li><span v-else> 0 </span></li>
 		<li>评论</li>
 	</ul>
 </div>
@@ -162,7 +163,7 @@
       <li>
         <ul class="updata_mes">
             <li class="mess1">{{ szxj.getLocalTime(obj.commentDate / 1000) }}</li>
-            <li class="mess2" @click="messageShow(obj.commentId, 0, obj.userName, obj.userId)">回复</li>
+            <li class="mess2" @click="messageShow(obj.commentId, 0, obj.replyUserName, obj.userId)">回复</li>
             <li class="mess3" @click="setReport(1)">举报</li>
         </ul>
       </li>
@@ -178,7 +179,7 @@
       </li>
       
       <li>
-        <span class="user_comment"  title=""><label v-if="obj.replyStatus">回复<span class="aite_user">@{{ temp.replyUserName }}:</span></label>{{{ temp.replyContent }}}</span>
+        <span class="user_comment"  title=""><label v-if="temp.replyStatus==1">回复<span class="aite_user">@{{ temp.replyUserName }}</span></label>{{{ temp.replyContent }}}</span>
       </li> 
         
       <li>

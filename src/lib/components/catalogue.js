@@ -52,6 +52,7 @@ import PathList from '../../lib/apis/conf.js';
         id: '',
         volume: '',
         status:1,
+        userId:5,
         };
       }
     ,route: {
@@ -189,7 +190,7 @@ import PathList from '../../lib/apis/conf.js';
           var _data = {};
           _data.bookId = parseInt(this.id, 10);
           _data.status = this.status;
-          _data.userId = '';
+          _data.userId = this.userId;
           SZXJ.http(this,'post', PathList.userUpdateBookStatus, _data, 
             (response) => {
               this.$set('SubmitAudit', false);

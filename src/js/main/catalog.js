@@ -47,6 +47,7 @@ var vuePractice = new Vue({
     contentEntityList:[],
     Report:0,
     commentAndReplyTotalCount:'',
+    replyId:'',
   },
   methods: {
     lineHr: function(){
@@ -74,7 +75,7 @@ var vuePractice = new Vue({
       }
       this.replyUserId = id;
       if (v === 1) {
-        editor.$txt.html('<span style="color:#00A1D6;" contenteditable="false">回复@'+name+'</span><span> </span>');
+        editor.$txt.html('<span style="color:#00A1D6;" contenteditable="false">回复@'+name+'</span><span>:</span>');
         this.replyStatus = 1;
       } else {
         this.replyStatus = 0;
@@ -101,6 +102,7 @@ var vuePractice = new Vue({
         pageNo: v,
         pageSize : 10,
         commentId: this.findCommentAndReply.comment[index].commentId,
+        replyId:this.findCommentAndReply.replyId,
       }
       var obj = this.findCommentAndReply;
       this.findCommentAndReply = {};

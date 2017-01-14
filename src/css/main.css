@@ -55,10 +55,10 @@ a {
   cursor: pointer;
 }
 
-.btn:active {
+/*.btn:active {
   -webkit-box-shadow: inset 0px 0px 5px rgba(0, 0, 0, .7);
   box-shadow: inset 0px 0px 5px rgba(0, 0, 0, .7);
-}
+}*/
 
 .relative {
   position: relative;
@@ -83,25 +83,56 @@ a {
   margin-right: 10px;
   border-radius: 4px;
   cursor: pointer;
+  
 }
 
 .page ul li.active {
   background-color: #00a1d6;
   color: #FFFFFF;
+  transition: all 0.35s ease;
+  -webkit-transition: all 0.35s ease;
+}
+.page ul li:hover {
+  background-color: #00a1d6;
+  color: #FFFFFF;
+  transition: all 0.35s ease;
+  -webkit-transition: all 0.35s ease;
 }
 
 .page ul li.goto {
   border: 0px;
   position: relative;
   cursor: default;
+  width: 65px;
+  height: 26px;
+  padding: 0;
+  margin: 0;
+}
+.page ul li.goto:hover {
+  border: 0px;
+  position: relative;
+  cursor: default;
+  width: 65px;
+  height: 26px;
+  padding: 0;
+  margin: 0;
+  color: black;
+}
+.page ul li.goto input:hover {
+  height: 26px;
+  width: 65px;
+  border-radius: 4px 0px 0px 4px;
+  border: 1px solid #c7c7c7;
+  font-size: 14px;
+
 }
 
 .page ul li.goto input {
   height: 26px;
-  width: 80px;
+  width: 65px;
   border-radius: 4px 0px 0px 4px;
   border: 1px solid #c7c7c7;
-  margin-top: -5px;
+
   font-size: 14px;
 }
 
@@ -115,7 +146,7 @@ a {
 
 .page ul li.goto a {
   top: 0px;
-  right: -39px;
+  right: -49px;
   display: block;
   position: absolute;
   border-radius: 0px 4px 4px 0px;
