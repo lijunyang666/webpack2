@@ -13,9 +13,9 @@ var message = Vue.extend({
       +'<div class="mag_number1" style="display:none;" v-show="bookList.official === 0">{{bookList.official}}</div><span class="circular"></span><span class="title_name">官方公共</span></li></ul>'
       +'<div class="content"><div class="bookBlockList" ><div class="bookBlockList_title"><span class="hr"></span><span class="title">回复我的</span><span class="titleTwo">essential information</span></div>'
       +'<div style="min-height:500px">'
-      +'<div v-for="obj in bookList"><div class="img-attention-headTow" ><img :src="path.rootPath + obj.userHead "/></div><ul class="attention_AI_words"><li class="attention_AI_time" >{{ szxj.getLocalTimeTwo(obj.replyDate) }} </li><li class="attention_AI_detailed">查看详情</li> </ul><div class="attention_AI_name"><span>{{obj.userName}}</span>回复了你:{{obj.replyContent}}</div><div class="attention_AI_comment"><span>“{{obj.commentContent}}”</span></div>   <hr style="border: 1px solid #f9f9f9; margin:0 0 0 5%;  " width="90% " /></div>'
+      +'<div v-for="obj in bookList"><div class="img-attention-headTow" ><img :src="path.rootPath + obj.userHead "/></div><ul class="attention_AI_words"><li class="attention_AI_time" >{{ szxj.getLocalTimeTwo(obj.replyDate) }} </li><li class="attention_AI_detailed"><a :href="path.TemprootPath + \'/view/catalog.html?bookId=\' + obj.bookId">查看详情</a></li> </ul><div class="attention_AI_name"><span>{{obj.userName}}</span>回复了你:{{obj.replyContent}}</div><div class="attention_AI_comment"><span>“{{obj.commentContent}}”</span></div>   <hr style="border: 1px solid #f9f9f9; margin:0 0 0 5%;  " width="90% " /></div>'
       +'</div>'
-      +'<div id="page" class="page" v-if="setPageCount > 1"><ul><li class="btn" @click="setPage((RequestObj.pageNo - 1) >= 1 ? (RequestObj.pageNo - 1) : 1)"><a>上一页</a></li><li v-if="(($index + 1)<= 5 && RequestObj.pageNo< 3 || (($index + 1) > RequestObj.pageNo - 3 &&  $index< RequestObj.pageNo)) || ( (($index + 1)<= RequestObj.pageNo + 2 &&　($index + 1) > RequestObj.pageNo) || (RequestObj.pageNo > obj.totalPage - 3 && ($index + 6) > obj.totalPage) )" :class="objTemp == RequestObj.pageNo? \'active\':\'\'" v-for="objTemp in page" @click="setPage(objTemp)"><a>{{ objTemp }}</a></li><li class="btn" @click="setPage((RequestObj.pageNo + 1)<= obj.totalPage ? (RequestObj.pageNo + 1) : obj.totalPage)"><a>下一页</a></li><li class="goto"><input type="text" v-model="pageNo" style="text-align: center;"/><span>{{ RequestObj.pageNo }}/{{ obj.totalPage }}</span><a class="btn" @click="setPage(pageNo)">转页</a></li></ul></div>'
+      +'<div id="page" class="page" ><ul><li class="btn" @click="setPage((RequestObj.pageNo - 1) >= 1 ? (RequestObj.pageNo - 1) : 1)"><a>上一页</a></li><li v-if="(($index + 1)<= 5 && RequestObj.pageNo< 3 || (($index + 1) > RequestObj.pageNo - 3 &&  $index< RequestObj.pageNo)) || ( (($index + 1)<= RequestObj.pageNo + 2 &&　($index + 1) > RequestObj.pageNo) || (RequestObj.pageNo > obj.pageCount - 3 && ($index + 6) > obj.pageCount) )" :class="objTemp == RequestObj.pageNo? \'active\':\'\'" v-for="objTemp in page" @click="setPage(objTemp)"><a>{{ objTemp }}</a></li><li class="btn" @click="setPage((RequestObj.pageNo + 1)<= obj.pageCount ? (RequestObj.pageNo + 1) : obj.pageCount)"><a>下一页</a></li><li class="goto"><input type="text" v-model="pageNo" style="text-align: center;"/><span>{{ RequestObj.pageNo }}/{{ obj.pageCount }}</span><a class="btn" @click="setPage(pageNo)">转页</a></li></ul></div>'
       +'</div></div></div>'
       ,
       data: function() {
@@ -23,16 +23,14 @@ var message = Vue.extend({
           szxj: SZXJ,
           path: PathList,
          RequestObj:{
-            type:2,
             pageNo: 1,
             pageSize: 10,
           },
-          
           page: [],
           obj: {
             p: 1, // 页码
             n: 10,
-            totalPage: 0,
+            pageCount: 0,
           },
         };
         
@@ -45,15 +43,15 @@ var message = Vue.extend({
       methods: {
          setPageCount: function(v) {
           var obj = this.obj;
-          obj.totalPage =  v;
+          obj.pageCount =  v;
           this.page = [];
-          for (var i = 0; i < obj.totalPage; i++) {
+          for (var i = 0; i < obj.pageCount; i++) {
             this.page.push(i+1);
           } 
           this.$set('obj', obj);
         },
         setPage: function(v) {
-          if (!v || v > obj.totalPage || v <= 0 || v.toString().search(/[^0-9]/g) !== -1 ) {
+          if (!v || v > this.obj.pageCount || v <= 0 || v.toString().search(/[^0-9]/g) !== -1 ) {
             return;
           }
           var obj = this.RequestObj;
@@ -75,15 +73,18 @@ var message = Vue.extend({
           });
         },
         getValueFn: function() {       
-          var _data = {};
-          SZXJ.http(this,'get', PathList.findCommentAndReplyByReplyUserId,{} , (response) => { 
-            console.log(response);  
+          var _data = this.RequestObj;
+          
+          SZXJ.http(this,'get', PathList.findCommentAndReplyByReplyUserId, _data , (response) => { 
+            console.log(response);   
             this.$set('bookList', response.data);
+            this.setPageCount(response.data[0].totalPage);
           });
         },
       },
       ready : function (){
         this.getValueFn();
+        
       },
    });
 export default message;   

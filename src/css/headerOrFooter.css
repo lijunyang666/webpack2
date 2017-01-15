@@ -58,7 +58,7 @@
   border-radius: 22.5px;
   background-size: contain; 
   border: 1px solid #ccc;
-  margin: 2px 30px 0 30px;
+  margin: 2px 0px 0 30px;
   float:left;
   line-height: 45px;
   text-align: center;
@@ -67,10 +67,10 @@
 .qcacg-header-parent .qcacg-header .liBlock .headers_display {
   background-color: white;
   width: 200px;
-  height: 80px;
+  height: 60px;
   position:absolute;
   top: 45px;
-  right: 50px;
+  right: 145px;
   box-shadow: 1px 1px 5px rgba(0,0,0,0.3);  
   border-radius: 3px 3px 6px 6px;
   display: none;
@@ -110,8 +110,7 @@
   right: 130px;
   line-height: 16px;
   font-size: 6px !important;
-  text-align: center;
-  
+  text-align: center; 
 }
 .noMeg{
   height: 18px;
@@ -154,7 +153,7 @@
   width: 200px;
   background-color: #D3D3D3;
   line-height: 30px;
-  margin-top: 30px;
+  margin-top: 10px;
   text-align: center;
   border-radius: 0px 0px 6px 6px; 
 }
@@ -269,4 +268,57 @@
   background-color: #2863b4;
   background: url(../img/LOG0.png);
   cursor: pointer;
+}
+.ul_msg{
+  cursor: pointer;
+  
+}
+.li_msg_ul {
+  width: 100px;
+  background-color: white;
+  box-shadow: 1px 1px 5px rgba(0,0,0,0.3);
+  font-size: 12px;
+  display: none;
+  cursor: pointer;
+  height: 160px;
+  position: relative;
+  top: 5px;
+  left: 7px;
+}
+.li_msg_ul .li_msg_li {
+  height: 40px;
+  text-align: center !important;
+  line-height: 40px !important;
+  cursor: pointer;
+  width: 100px !important;
+  margin:0 !important;
+  position:relative !important;
+  padding-right: 5px;
+}
+.li_msg_ul .li_msg_li:hover {
+  background:rgba(0,0,0,0.03);
+  color: #00A1D6;
+  transition: all 0.3s ease;
+  -webkit-transition: all 0.3s ease;
+}
+.ul_msg:hover .li_msg_ul {
+  display: block;
+  transition: all 0.35s ease;
+  -webkit-transition: all 0.35s ease;
+  position: relative;
+  top: -3px;
+  left: -7px;
+}
+.mag_number_small {
+  position: absolute;
+  width:16px ;
+  height: 16px;
+  border-radius: 10px;
+  background-color: #EA5464;
+  color: white;
+  top: 10px;
+  left: 77px;
+  line-height: 16px;
+  font-size: 6px !important;
+  text-align: center; 
 }

@@ -52,7 +52,7 @@ import PathList from '../../lib/apis/conf.js';
         id: '',
         volume: '',
         status:1,
-        userId:5,
+        userId:'',
         };
       }
     ,route: {
