@@ -652,6 +652,11 @@
 		padding-left: 605px;
 		padding-top: 15px;
 	}
+	 .index .New .New_title .New_More a:hover{
+	   color: #00A1D6;
+	   transition: all 0.2s ease;
+     -webkit-transition: all 0.2s ease;
+	 }
 	.index .New .New_title .New_update {
 		width: 853px;
 		height: 510px;
@@ -744,7 +749,7 @@
 	 .index .Word .Word_content a:hover{
 	   color: #0E9AC8;
 	   transition: all 0.2s ease;
-        -webkit-transition: all 0.2s ease;
+     -webkit-transition: all 0.2s ease;
 	 }
 	.index .Word .Word_content .Word_con {
 		width: 301px;

@@ -663,13 +663,14 @@
 			margin: 0 0 0 -15px;
 		}
 		.index .text_comment ul li {
-			width: 53px;
+			min-width: 30px;
 			float: left;
 		}
 		.index .text_comment ul li span {
 			color: #00A1D6;
 			font-size: 18px;
 			line-height: 5px;
+			min-width: 10.55px;
 		}
 		.index .text_input {
 			width: 675px;

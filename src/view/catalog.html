@@ -43,8 +43,8 @@
               </li>
 							<li @click="setCollect()" v-if="!collect" ><span><img src="../img/sss4.png"/ class="text_Collection"><p>收藏</p><i style="font-style: normal;">{{Collection}}</i></li>
 							<li @click="setCollect()" v-else ><span><img src="../img/sss4.png"/ class="text_Collection"><p>已收藏</p><i style="font-style: normal;">{{Collection}}</i></li>
-							<li <!--v-on:click="rewardFn"--><span><img src="../img/sss3.png"/ class="text_card"><p>打赏</p><i style="font-style: normal;">{{bookCopperCoins}}</i></li>
-							  <li <!--v-on:click="rewardFn"--><span><img src="../img/_thumb_03.png"/ class="text_card"><p>分享</p></li>
+							<li style="display: none;" <!--v-on:click="rewardFn"--><span><img src="../img/sss3.png"/ class="text_card"><p>打赏</p><i style="font-style: normal;">{{bookCopperCoins}}</i></li>
+							  <li style="display: none;" <!--v-on:click="rewardFn"--><span><img src="../img/_thumb_03.png"/ class="text_card"><p>分享</p></li>
 						</ul>
 					</div>
 				</div>
