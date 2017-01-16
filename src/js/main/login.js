@@ -15,6 +15,7 @@ var indexHtml = new Vue({
   },
   methods: {
     handlerPopup: function(captchaObj) {
+      var This = this;
       captchaObj.onReady(function() {
         $('.btn_submit').click(function() {
           $('#Login').submit();
@@ -82,12 +83,12 @@ var indexHtml = new Vue({
           userEntity.geetest_challenge = validate.geetest_challenge;
           userEntity.geetest_validate = validate.geetest_validate;
           userEntity.geetest_seccode = validate.geetest_seccode;
-          SZXJ.http(this,'post', PathList.VerifyLoginServlet, userEntity, (data) => {
+          SZXJ.http(This,'post', PathList.VerifyLoginServlet, userEntity, (data) => {
             localStorage.setItem('JSESSIONID', data.data.msg);
             location.href = PathList.TemprootPath + '/view/user_info.html';
           },(err) => {
             if (data.err.code === 1002) {
-              this.getGeetestFn();
+              This.getGeetestFn();
             }
           });
         })

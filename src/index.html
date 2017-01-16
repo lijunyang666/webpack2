@@ -182,6 +182,7 @@
       <li><span class="span">{{ $index + 1 }}</span></li> 
       <li class="sidebar_tit" title="{{ obj.bookName }}" >
         <a :href="path.TemprootPath + '/view/catalog.html?bookId=' + obj.bookId">{{ obj.bookName }}</a>
+        
       </li>
       <li class="sidebar_li">
         <span v-if="rankingList.copperCoins === 0">{{ obj.everyWeekCopperCoins }}</span>
@@ -279,19 +280,21 @@
     <div class="Side_con" v-for="obj in indexList.weekBookByBookHit" v-if="$index < 3"> 
       <a :href="path.TemprootPath + '/view/catalog.html?bookId=' + indexList.weekBookByBookHit[$index].bookId">
         <img src="img/z-imgBj.jpg" @load="szxj.loadImg(obj.bookCoverImage ? path.rootPath + obj.bookCoverImage: '', $event)" class="bookImg_Sl"/>
+        <img :src="'img/sss' + (25 + $index) + '.png'" class="sidebar_img" />
       </a> 
       <ul> 
         <li class="Side_name" title="{{indexList.weekBookByBookHit[$index].bookName}}">
           <a :href="path.TemprootPath + '/view/catalog.html?bookId=' + indexList.weekBookByBookHit[$index].bookId">
             {{ indexList.weekBookByBookHit[$index].bookName }}
+            
           </a>
         </li> 
         <li class="Side_surname"></li> 
         <li class="Side_card"><a href="javascript:;">
         <img src="img/Side_card_03.png" />{{ indexList.weekBookByBookHit[$index].author }}</a></li> 
         <li class="Side_Percen" style="color: #3781E7;">
-          <li v-if="rankingList.clickSize === 0" class="Side_Percen_Side" title="{{indexList.weekBookByBookHit[$index].everyWeekHit}}"><img src="img/Side_card_06.png" />{{indexList.weekBookByBookHit[$index].everyWeekHit}}</li>
-          <li v-if="rankingList.clickSize === 1" class="Side_Percen_Side" title="{{indexList.weekBookByBookHit[$index].everyWeekHit}}"><img src="img/Side_card_06.png" />{{indexList.weekBookByBookHit[$index].everyMonthHit}}</li>
+          <li v-if="rankingList.clickSize === 0" class="Side_Percen_Side" title="{{indexList.weekBookByBookHit[$index].everyWeekHit}}">{{indexList.weekBookByBookHit[$index].everyWeekHit}}</li>
+          <li v-if="rankingList.clickSize === 1" class="Side_Percen_Side" title="{{indexList.weekBookByBookHit[$index].everyWeekHit}}">{{indexList.weekBookByBookHit[$index].everyMonthHit}}</li>
           <li v-if="rankingList.clickSize === 2" class="Side_Percen_Side" title="{{indexList.weekBookByBookHit[$index].everyWeekHit}}"><img src="img/Side_card_06.png" />{{indexList.weekBookByBookHit[$index].bookHit}}</li>
         </li>
       </ul> 
@@ -364,11 +367,13 @@
     <div class="Word_con" v-for="obj in indexList.weekBookByBookWordCount" v-if="$index < 3"> 
       <a :href="path.TemprootPath + '/view/catalog.html?bookId=' + indexList.weekBookByBookWordCount[$index].bookId">
         <img src="img/z-imgBj.jpg" @load="szxj.loadImg(obj.bookCoverImage ? path.rootPath + obj.bookCoverImage: '', $event)" class="bookImg_Sl"/>
+        <img :src="'img/sss' + (25 + $index) + '.png'" class="sidebar_img" />
       </a> 
       <ul> 
         <li class="Word_name" title="{{indexList.weekBookByBookWordCount[$index].bookName}}">
           <a :href="path.TemprootPath + '/view/catalog.html?bookId=' + indexList.weekBookByBookWordCount[$index].bookId">
             {{ indexList.weekBookByBookWordCount[$index].bookName }}
+            
           </a>
         </li>
         <li class="Word_surname"></li> 

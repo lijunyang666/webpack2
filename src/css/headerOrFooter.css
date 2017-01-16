@@ -50,6 +50,10 @@
   margin: 0px 20px;
   text-align: center;
 }
+.ul_msg {
+  margin: 0 20px 0px 10px !important;
+  width: 60px !important;
+}
  
  /*这是登录后的显示*/
 .qcacg-header-parent .qcacg-header .nav-right .liBlock {
@@ -70,7 +74,7 @@
   height: 60px;
   position:absolute;
   top: 45px;
-  right: 145px;
+  right: 117px;
   box-shadow: 1px 1px 5px rgba(0,0,0,0.3);  
   border-radius: 3px 3px 6px 6px;
   display: none;

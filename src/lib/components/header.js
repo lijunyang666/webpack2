@@ -5,7 +5,7 @@ var header = Vue.extend({
   template: '<header class="qcacg-header-parent" id="qcacg-header-parent" style="position:relative"><div class="qcacg-header"><a :href="path.TemprootPath + \'/index.html\'"><div class="logo">轻创文学网</div></a>   <ul class="nav-left">   <li :class="active"><a :href="path.TemprootPath + \'/index.html\'">首页</a></li><li><a :href="path.TemprootPath + \'/view/class.html\'">分类</a></li><li><a :href="path.TemprootPath + \'/view/ranking.html\'">排行榜</a></li><li class="none"><a href="javascript:;">画师</a></li><li class="none"><a href="javascript:;">周边</a></li><li><a :href="path.TemprootPath + \'/view/welfare.html\'">福利</a></li></ul><ul class="nav-right">'
   +'<li v-if="loginFlag" class="liBlock" :style="loginImg !== \'\' ? loginImg:\'\'"><div class="headers_display"><span class="display_user"><a  :href="path.TemprootPath + \'/view/user_info.html\'">{{ userName }}</a></span> <span class="out"><a  href="javascript:;" @click="backLoginFn">退出</a></span>  <div class="header_more"><a :href="path.TemprootPath + \'/view/user_info.html\'">查看更多</a></div></div></a></li>'
   +'<li v-else class="li_login"><a :href="path.TemprootPath + \'/view/login.html\'">登录/注册</a></li>'
-  +'<li class="ul_msg" ><div class="mag_number" v-if="number > 0" >{{ number }}</div><a :href="path.TemprootPath + \'/view/user_info.html#!/message\'">消息</a><ul class="li_msg_ul" v-if="loginFlag"><li class="li_msg_li"><a :href="path.TemprootPath + \'/view/user_info.html#!/message\'">回复我的</a><div class="mag_number_small" v-if="book > 0" @click="setbookFn" >{{ book }}</div></li><li class="li_msg_li"><a :href="path.TemprootPath + \'/view/user_info.html#!/relevant\'">作品相关</a><div class="mag_number_small" v-if="reply > 0" @click="setreplyFn">{{ reply }}</div></li><li class="li_msg_li"><a :href="path.TemprootPath + \'/view/user_info.html#!/system\'">系统消息</a><div class="mag_number_small" v-if="system > 0" @click="setsystemFn">{{ system }}</div></li><li class="li_msg_li"><a :href="path.TemprootPath + \'/view/user_info.html#!/official\'">官方公共</a><div class="mag_number_small" v-if="official > 0" @click="setofficialFn">{{ official }}</div></li></ul></li>'
+  +'<li v-if="loginFlag" class="ul_msg" ><div class="mag_number" v-if="book+official+reply+system > 0" >{{ book+official+reply+system }}</div><a :href="path.TemprootPath + \'/view/user_info.html#!/message\'">消息</a><ul class="li_msg_ul" ><li @click="setreplyFn" class="li_msg_li"><a :href="path.TemprootPath + \'/view/user_info.html#!/message\'">回复我的</a><div class="mag_number_small" v-if="reply > 0"  >{{ reply }}</div></li><li @click="setbookFn" class="li_msg_li"><a :href="path.TemprootPath + \'/view/user_info.html#!/relevant\'">作品相关</a><div class="mag_number_small" v-if="book > 0" >{{ book }}</div></li><li @click="setsystemFn" class="li_msg_li"><a :href="path.TemprootPath + \'/view/user_info.html#!/system\'">系统消息</a><div class="mag_number_small" v-if="system > 0" >{{ system }}</div></li><li @click="setofficialFn" class="li_msg_li"><a :href="path.TemprootPath + \'/view/user_info.html#!/official\'">官方公共</a><div class="mag_number_small" v-if="official > 0" >{{ official }}</div></li></ul></li>'
   +'<li class="publication">'
   +'<a v-if="loginFlag" @click="setHref(path.TemprootPath + \'/view/user_info.html#!/bookBlockList\')" style="color:#FFFFFF">投&nbsp;稿</a>'
   +'<a v-else style="color:#FFFFFF" :href="path.TemprootPath + \'/view/login.html\'">投&nbsp;稿</a>'
@@ -26,7 +26,7 @@ var header = Vue.extend({
   	return {
   		path: PathList,
   		loginFlag: false,
-  		number: 0,
+  		number1: '',
   		book:'',
   		official:'',
   		reply:'',
@@ -34,6 +34,11 @@ var header = Vue.extend({
   	}
   },
   methods: {
+    setmessageFn:function(){
+      if(this.number>1){
+        this.number
+      }
+    },
     setbookFn: function(){
       this.$set('book', 0);
     },
@@ -44,6 +49,7 @@ var header = Vue.extend({
       this.$set('reply', 0);
     },
     setsystemFn: function(){
+      
       this.$set('system', 0);
     },
     backLoginFn: function() {
@@ -70,11 +76,11 @@ var header = Vue.extend({
       this.loginImg = 'background-image: url('+ this.path.rootPath + response.data.status.userImage +')';
       this.loginFlag = response.data.status.flag;
       this.userName = response.data.status.userName;
-      this.number = response.data.book  + response.data.official + response.data.reply + response.data.system;
       this.book = response.data.book;
       this.official = response.data.official;
       this.reply = response.data.reply;
       this.system = response.data.system;
+      this.number1 = response.data.system + response.data.reply + response.data.official + response.data.book;
     });
   },
   route: { data() {} }
