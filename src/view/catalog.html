@@ -152,6 +152,7 @@
     <a href="javascript:;"><img src="../img/sss8.jpg" @load="szxj.loadImg(obj.userHead ? path.rootPath + obj.userHead: '', $event)"/ ></a>
     <ul class="mes_head">
       <li class="mes_head_user" >
+        
         <a href="javascript:;" class="user_a" title="">{{obj.userName}}</a>
         <a v-if="$index === 0 && obj.strickie != '0'" href="javascript:;" class="user_Top">置顶</a>
         <a v-if="findCommentAndReply.auth && obj.strickie == '0'" @click="strickieFn(obj.commentId)" href="javascript:;" class="user_Top_a">置顶</a>
@@ -161,7 +162,7 @@
         <ul class="updata_mes">
             <li class="mess1">{{ szxj.getLocalTime(obj.commentDate / 1000) }}</li>
             <li class="mess2" @click="messageShow(obj.commentId, 0, obj.replyUserName, obj.userId)">回复</li>
-            <li class="mess3" @click="setReport(1)">举报</li>
+            <li class="mess3" >举报</li>
         </ul>
       </li>
     </ul>
@@ -172,6 +173,7 @@
     <ul class="mes_head">
       
       <li class="mes_head_user" >
+        <a style="display: none;">{{temp.replyId}}</a>
         <a href="javascript:;" class="user_a" title="">{{ temp.userName }}</a>
       </li>
       
@@ -182,8 +184,8 @@
       <li>
         <ul class="updata_mes">
             <li class="mess1">{{ szxj.getLocalTime(temp.replyDate / 1000) }}</li>
-            <li class="mess2" @click="messageShow(temp.commentId, 1, temp.userName, temp.userId)">回复</li>
-            <li class="mess3" @click="setReport(1)">举报</li>
+            <li class="mess2" @click="messageShow(temp.commentId, 1, temp.userName, temp.userId,temp.replyId)">回复</li>
+            <li class="mess3" >举报</li>
         </ul>
       </li>
     </ul>
