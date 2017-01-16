@@ -179,10 +179,10 @@
 	}
 	#content .content_ranking img {
 		display: block;
-		padding: 38px 28px 0 0px;
+		margin: 10px 25px 0 0px;
 		float: left;
-		width: 100px;
-		height: 140px;
+		width: 90px;
+		height: 126px;
 		border-radius: 4px;
 	}
 	#content .content_ranking ul {
@@ -203,7 +203,7 @@
 	 #content .content_ranking ul span:hover{
 	   color: #0E9AC8;
 	   transition: all 0.2s ease;
-        -webkit-transition: all 0.2s ease;
+     -webkit-transition: all 0.2s ease;
 	   }
 	#content .ranking_Collection  {
 		display: block;
