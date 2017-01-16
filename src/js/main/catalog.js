@@ -51,18 +51,21 @@ var vuePractice = new Vue({
   },
   methods: {
     lineHr: function(){
-       for(var i=0; i=this.contentEntityList.length; i++){
-          if(i%4==0){
-            line++;
+       for(var i = 0; i=this.contentEntityList.length; i++){
+          if( i % 4 ==0 ){
+            this.line++;
           };
        };
+    },
+    setreplyFn: function (replyId){
+       this.replyId = replyId;
     },
     strickieFn: function(commentId) {
       SZXJ.http(this,'post', PathList.top, { bookId: this.id,commentId: commentId }, (response) => {
         this.setComment(this.commentStatus);
       });
     },
-    messageShow: function(commentId, v, name, id) {
+    messageShow: function(commentId, v, name, id,replyId) {
       this.commentId = commentId; // editor
       var editor = {};
       var index = 0;
@@ -74,8 +77,9 @@ var vuePractice = new Vue({
         }
       }
       this.replyUserId = id;
+      this.replyId= replyId;
       if (v === 1) {
-        editor.$txt.html('<span style="color:#00A1D6;" contenteditable="false">回复@'+name+'</span><span>:</span>');
+        editor.$txt.html('<span style="color:#00A1D6;" contenteditable="false">回复@'+name+'</span><span style="font-size:12px !important;color:#555 !important;">:</span>');
         this.replyStatus = 1;
       } else {
         this.replyStatus = 0;
@@ -102,7 +106,7 @@ var vuePractice = new Vue({
         pageNo: v,
         pageSize : 10,
         commentId: this.findCommentAndReply.comment[index].commentId,
-        replyId:this.findCommentAndReply.replyId,
+        
       }
       var obj = this.findCommentAndReply;
       this.findCommentAndReply = {};
@@ -133,6 +137,7 @@ var vuePractice = new Vue({
       _data.pageNo = this.findCommentAndReply.pageNo;
       _data.pageSize = 10;
       _data.status = v;
+      
       this.getComment(_data); // 请求
     },
     getComment(_data) {
@@ -146,6 +151,7 @@ var vuePractice = new Vue({
         } else {
           pageNo = 1;
         }
+        
         this.findCommentAndReply = response.data;
         this.findCommentAndReply.page = []; 
         this.findCommentAndReply.pageNo = pageNo;
@@ -209,6 +215,7 @@ var vuePractice = new Vue({
         replyStatus: this.replyStatus,
         commentId: this.commentId,
         replyUserId: this.replyUserId, 
+        repliedId : this.replyId,
         replyContent: editor.$txt.html(), //文本html内容
       };
       SZXJ.http(this,'post', PathList.saveReply, _data, (response) => {

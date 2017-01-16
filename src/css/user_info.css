@@ -1434,28 +1434,23 @@
 .numberAItwo4  .verify:hover {
   background-color: #00A1D6;
 }
-
+.book-navAI .book-navAI_bookid{
+  height: 212px;
+  width: 128px;
+  margin: 10px 20px 0px 55px;
+  display: inline-block;
+}
 .book-navAI .book-img {
   height: 174px;
   width: 128px;
-	margin: 10px 20px 0px 80px;
 	cursor: pointer;
 	border-radius: 6px;
 }
 
-.book-navAI .book-img1 {
-  height: 174px;
-  width: 128px;
-	margin: 10px 20px 0 30px;
-	cursor: pointer;
-	border-radius: 6px;
-}
 
 .book-name {
   text-align: center;
   color: #000000;
-  margin-top: 10px;
-	margin-left: 80px;
   cursor: pointer;
   width: 128px;
   height: 28px;
@@ -1463,17 +1458,6 @@
   display: inline-block;
 }
 
-.book-name1 {
-  text-align: center;
-  color: #000000;
-  margin-top: 10px;
-  display: inline-block;
-  width: 128px;
-  height: 28px;
-  overflow: hidden;
-  margin-left: 50px;
-  cursor: pointer;
-}
 .img-attention {
   width: 70px;
   height: 70px;
@@ -1504,7 +1488,7 @@
 .img-attention .attention-name-sex {
   margin-left: 15px;
   position: absolute;
-  top: 45px;
+  top: 56px;
   left: 30px;
   
 }
@@ -1684,11 +1668,15 @@
 }
 
 .bookBlockList p {
+  display: line-block;
 	padding: 5px 0 0 70px;
 	margin-bottom: 10px;
 	width: 780px;
 	text-indent: 15px;
 	line-height: 1.2;
+	min-height: 16px;
+  word-wrap:break-word; 
+  word-break:normal;
 }
 
 .bookBlockList p span {
@@ -1969,7 +1957,7 @@
 .works_title_p{
   margin-left: 70px;
   font-size: 12px;
-  color: rgba(0,0,0,0.35);
+  color: rgba(0,0,0,0.7);
   padding: 8px  0 13px 0;
   height: 45px;
 }

@@ -79,9 +79,9 @@ body li{
 	padding: 0 15px;
 	cursor: pointer;
 }
-.btn:active {
+/*.btn:active {
 			box-shadow: inset 3px 3px 5px 1px rgba(0,0,0,0.7);
-}
+}*/
 .ui-state-highlight  {
     border: 1px solid red !important;
     background-color: red !important;
