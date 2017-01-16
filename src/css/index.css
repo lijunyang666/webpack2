@@ -91,6 +91,11 @@
 	    margin: 12px 0 0 870px;
 	    
 	}
+	.index .edit .edit_More a:hover{
+	  color: #00A1D6;
+	  transition: all 0.2s ease;
+    -webkit-transition: all 0.2s ease;
+	}
 	.index .edit .details {
 		display: block;
 		width: 1184px;
@@ -133,7 +138,7 @@
 	 .index .main .main_title a:hover {
 	   color: #0e9ac8;
 	   transition: all 0.2s ease;
-        -webkit-transition: all 0.2s ease;
+     -webkit-transition: all 0.2s ease;
 	 }
 	.index .main .main_title .main_recomm {
 		width: 850px;
@@ -266,6 +271,16 @@
 		margin-top: 15px;
 		position: relative;
 		margin-bottom: 20px;
+	}
+	.index .Word .Word_content .Word_con .sidebar_img{
+	  position: absolute;
+    left: 0px;
+    top: 0px;
+	}
+	.index .Side .Side_content .Side_con .sidebar_img {
+	  position: absolute;
+    left: 0px;
+    top: 0px;
 	}
 	.index .sidebar .sidebar_content .sidebar_con .sidebar_img {
 		position: absolute;
@@ -735,7 +750,7 @@
 		width: 301px;
 		height:84px;
 		margin-top: 15px;
-		
+		position: relative;
 	}
 	.index .Word .Word_content .Word_con ul{ 
 		width: 208px;

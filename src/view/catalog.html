@@ -70,8 +70,7 @@
 				
 <div class="text_comment">
 	<ul>
-		<li><span v-if="findCommentAndReply.commentAndReplyTotalCount !=== 0 "  >{{findCommentAndReply.commentAndReplyTotalCount}}</span></li>
-    <li><span v-else> 0 </span></li>
+		<li><span v-if="findCommentAndReply.commentAndReplyTotalCount !== 0 "  >{{findCommentAndReply.commentAndReplyTotalCount}}</span></li>
 		<li>评论</li>
 	</ul>
 </div>
@@ -139,13 +138,11 @@
 			<li class="text_sort_li" :class="commentStatus === 1 ?'active':''" @click="setComment(1)">按回复数</li>
 			
   			<ul class="text_page_up clear">
-            <li>共<b>{{ findCommentAndReply.pageCount }}</b>页</li>
             <li class="page_up" @click="setPage(findCommentAndReply.pageNo - 1, $index)" :style="findCommentAndReply.pageNo > 1 ? 'display:block':'display:none'">上一页</li>
-            
             <li class="page_number" v-if="(($index + 1) <= 5 && findCommentAndReply.pageNo < 3 || (($index + 1) > findCommentAndReply.pageNo - 3 &&  $index < findCommentAndReply.pageNo)) || ( (($index + 1) <= findCommentAndReply.pageNo + 2 &&　($index + 1) > findCommentAndReply.pageNo) || (findCommentAndReply.pageNo > findCommentAndReply.pageCount - 3 && ($index + 6) > findCommentAndReply.pageCount) )" :style="objTemp == findCommentAndReply.pageNo? 'font-weight:bold;color:#00a1d6;':''" v-for="objTemp in findCommentAndReply.page" @click="setPage(objTemp)"><a>{{ objTemp }}</a></li>
-            
             <li v-show="findCommentAndReply.pageNo !== findCommentAndReply.pageCount" class="page_next" @click="setPage(findCommentAndReply.pageNo + 1, $index)">下一页</li>
-        </ul>
+            <li>共<b>{{ findCommentAndReply.pageCount }}</b>页</li>
+  			</ul>
       
 		</ul>
 	</div>

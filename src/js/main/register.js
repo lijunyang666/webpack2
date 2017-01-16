@@ -54,11 +54,11 @@ var indexHtml = new Vue({
           if (this.uid !== '') {
             _data.invitePeople = this.uid;
           }
-          _data.geetestChallenge = validate.geetest_challenge;
-          _data.geetestValidate = validate.geetest_validate;
-          _data.geetestSeccode = validate.geetest_seccode;
+          _data.challenge = validate.geetest_challenge;
+          _data.validate = validate.geetest_validate;
+          _data.seccode = validate.geetest_seccode;
           SZXJ.http(this,'post', PathList.register, _data, (response) => {
-              location.href = this.path.TemprootPath + '/view/login.html';
+            location.href = this.path.TemprootPath + '/view/login.html';
           });
         },
         handlerPopup: function(captchaObj) {
@@ -155,14 +155,16 @@ var indexHtml = new Vue({
         
         if (This.verificationFlag) {
           var _data = {};
-          _data.telephone = this.telephone;
+          _data.telephone = This.telephone;
           _data.geetest_challenge = validate.geetest_challenge;
           _data.geetest_validate = validate.geetest_validate;
           _data.geetest_seccode = validate.geetest_seccode;
+          console.log(_data);
           SZXJ.http(This,'post', PathList.registerTelephoneCode, _data, (data) => {
             This.verificationBtnFlag = false;
             This.verificationTimeFn();
             localStorage.setItem('verificationId', data.data.verificationId);
+            This.getGeetestFn();
           });
         } else {
           This.register(validate);

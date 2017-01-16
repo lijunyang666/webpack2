@@ -838,7 +838,7 @@
 }
 /*上面的小翻页*/
     .text_sort .text_page_up {
-      margin-left:400px ;
+      float: right;
       font-size: 13px;
       
     }
@@ -850,7 +850,7 @@
       height: 27px;
       cursor: pointer;
       text-align: center;
-      float: right;
+      float: left;
     }
      .text_sort .text_page_up .page_number {
       cursor: pointer;

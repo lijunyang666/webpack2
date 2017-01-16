@@ -4,6 +4,7 @@
 PathList.TemprootPath = '';
 
 PathList.rootPath = '/Controller';
+//PathList.rootPath = 'http://192.168.126.34:8080';
 
 
 // 登陆的3个请求
