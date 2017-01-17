@@ -12,6 +12,7 @@ headerOrfooter();
 var vuePractice = new Vue({
   el: '#mask',
   data: {
+    loginFlag: false,
     loginImg: '',
     bodyFlag: false,
     zindex: 0,
@@ -297,6 +298,9 @@ var vuePractice = new Vue({
       _data.pageSize = 10;
       _data.status = this.commentStatus;
       this.getComment(_data);
+      SZXJ.http(this,'get', PathList.getStatus, _data, (response) => {
+         this.loginFlag = response.data.status.flag;
+      });
     },
     rewardFn: function(){
       this.popup = true;

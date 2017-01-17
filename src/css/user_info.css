@@ -308,18 +308,7 @@
 	float: left;
 	font-size: 16px;
 }
-
 .contribution .nav .active:after {
-	display: block;
-	content: "";
-	position: absolute;
-	top: 0;
-	width: 91px;
-	height: 3px;
-	background-color: #92c202;
-}
-
-.contribution.nav li:hover:after {
 	display: block;
 	content: "";
 	position: absolute;
@@ -444,7 +433,17 @@
 	margin-bottom: 26px;
 	padding-top: 1px;
 }
-
+.catalogue .content_bookTitle{
+  float: right;
+  margin-top: 15px;
+  margin-right: 72px;
+  font-size: 15px;
+  cursor: pointer;
+}
+.catalogue .content_bookTitle:hover{
+  color: #009926;
+  transition: all 0.2s;
+}
 .user_info .user_info_right .user_info_content .contribution .content .catalogue  .newBookChapter {
 	width: 300px;
 	height: 150px;
@@ -694,7 +693,7 @@
 }
 
 .user_info .user_info_right .user_info_content .contribution .content .catalogue .catalogue_list {
-	padding: 32px 160px 0 106px;
+	padding: 32px 125px 0 145px;
 }
 
 .user_info .user_info_right .user_info_content .contribution .content .catalogue .catalogue_list .list_title {
@@ -735,7 +734,7 @@
 
 .user_info .user_info_right .user_info_content .contribution .content .catalogue .catalogue_list .create_chapter .chapter_header > div img {
 	vertical-align: middle;
-	margin-right: 10px;
+	margin-right: 5px;
 }
 
 .user_info .user_info_right .user_info_content .contribution .content .catalogue .catalogue_list .create_chapter .chapter_header > div:last-child {
@@ -749,12 +748,13 @@
 
 .user_info .user_info_right .user_info_content .contribution .content .catalogue .catalogue_list .create_chapter .chapter_header .line .span {
 	display: block;
-	padding-left: 25px;
+	padding-left: 21px;
 	overflow: hidden;
 	white-space: nowrap;
 	font-family: "微软雅黑";
 	text-overflow: ellipsis;
 	cursor: pointer;
+	vertical-align: middle;
 }
 
 .user_info .user_info_right .user_info_content .contribution .content .catalogue .catalogue_list .create_chapter .chapter_header .line .lineIcon:hover .handle_left {

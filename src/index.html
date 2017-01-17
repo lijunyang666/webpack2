@@ -88,23 +88,21 @@
      <div> 
       <div class="main_picture"> 
         <figure v-for="obj in indexList.allBook" v-if="$index < 4" @mouseover="setMouseOut($index, $event)">
-          <div class="display"> 
-           
-           <a href="javascript:;"><img src="img/z-imgBj.jpg" @load="szxj.loadImg(obj.bookCoverImage ? path.rootPath + obj.bookCoverImage: '', $event)" class="details_img bookImg_S" /></a> 
-           
-           <a :href="path.TemprootPath + '/view/catalog.html?bookId=' + obj.bookId"> 
-           <div class="Small"> 
-            <img :src="obj.userHead ? path.rootPath + obj.userHead:''" class="imgHeadPortrait" /> 
-            <label>{{ obj.author }}</label> 
-            <ul class="Small_ul"> 
-              <li>字数：{{ obj.bookWordCount }}</li> 
-              <li>点击：{{ obj.bookHit }}</li> 
-              <li>收藏：{{ obj.bookCollect }}</li> 
-              <li>打赏：{{ obj.bookCopperCoins }}</li> 
-            </ul> 
-           </div> 
+          
+           <a class="display" :href="path.TemprootPath + '/view/catalog.html?bookId=' + obj.bookId"> 
+             <img src="img/z-imgBj.jpg" @load="szxj.loadImg(obj.bookCoverImage ? path.rootPath + obj.bookCoverImage: '', $event)" class="details_img bookImg_S" /> 
+             <div class="Small"> 
+                  <img :src="obj.userHead ? path.rootPath + obj.userHead:''" class="imgHeadPortrait" /> 
+                  <label>{{ obj.author }}</label> 
+                  <ul class="Small_ul"> 
+                    <li>字数：{{ obj.bookWordCount }}</li> 
+                    <li>点击：{{ obj.bookHit }}</li> 
+                    <li>收藏：{{ obj.bookCollect }}</li> 
+                    <li>打赏：{{ obj.bookCopperCoins }}</li> 
+                  </ul> 
+             </div> 
            </a>
-          </div> 
+        
           <figcaption>
            <a :href="path.TemprootPath + '/view/catalog.html?bookId=' + obj.bookId" title="{{ obj.bookName }}">{{ obj.bookName }}</a> 
           </figcaption> 
@@ -295,7 +293,7 @@
         <li class="Side_Percen" style="color: #3781E7;">
           <li v-if="rankingList.clickSize === 0" class="Side_Percen_Side" title="{{indexList.weekBookByBookHit[$index].everyWeekHit}}">{{indexList.weekBookByBookHit[$index].everyWeekHit}}</li>
           <li v-if="rankingList.clickSize === 1" class="Side_Percen_Side" title="{{indexList.weekBookByBookHit[$index].everyWeekHit}}">{{indexList.weekBookByBookHit[$index].everyMonthHit}}</li>
-          <li v-if="rankingList.clickSize === 2" class="Side_Percen_Side" title="{{indexList.weekBookByBookHit[$index].everyWeekHit}}"><img src="img/Side_card_06.png" />{{indexList.weekBookByBookHit[$index].bookHit}}</li>
+          <li v-if="rankingList.clickSize === 2" class="Side_Percen_Side" title="{{indexList.weekBookByBookHit[$index].everyWeekHit}}">{{indexList.weekBookByBookHit[$index].bookHit}}</li>
         </li>
       </ul> 
     </div> 
@@ -340,10 +338,10 @@
       <div class="New_content"> 
        <ul v-for="obj in indexList.lastUpdate"> 
         <li class="content_classi">[精品作品]</li> 
-        <li>
+        <li class="content_classi_li">
           <a :href="path.TemprootPath + '/view/catalog.html?bookId=' + obj.bookId" title="{{ obj.bookName +':'+ obj.contentTitle }}">
-            &nbsp;&nbsp;<span style="font-weight: 600;font-size: 14px;">{{ obj.bookName }}</span>&nbsp;
-            <span>最新章节:{{ obj.contentTitle }}</span>
+            &nbsp;&nbsp;<span class="content_classi_span" >{{ obj.bookName }}</span>&nbsp;
+            <span class="content_classi_NewSpan">最新章节:{{ obj.contentTitle }}</span>
           </a>
         </li> 
         <li class="content_time"> {{ szxj.getLocalTime(obj.bookUpdate / 1000) }}</li> 

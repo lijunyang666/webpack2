@@ -125,10 +125,10 @@
 		<li class="user_head"><a href="javascript:;">
 		  <img src="../img/sss8.jpg" @load="szxj.loadImg(loginImg ? path.rootPath + loginImg: '', $event)"/></a></li>
 
-		<li class="user_msg" >
+		<li class="user_msg" v-if="loginFlag" >
 		  <editor :id="'editor_'" v-ref:editor></editor>
 		</li>
-		<!--<li class="user_msgTow" v-else ><a :href="path.TemprootPath + /view/login.html">登录</a>后才可以进行操作 </li>-->
+		<li class="user_msgTow" v-else ><a :href="path.TemprootPath + '/view/login.html'">登录</a>后才可以进行操作 </li>
 
 		<li class="MessageBtn" @click="saveComment"><span>发表评论</span></li>
 	</ul>
