@@ -440,7 +440,10 @@
   font-size: 15px;
   cursor: pointer;
 }
-.catalogue .content_bookTitle:hover{
+.catalogue .content_bookTitle a:visited{
+  color: black;
+}
+.catalogue .content_bookTitle a:hover{
   color: #009926;
   transition: all 0.2s;
 }
@@ -1514,9 +1517,11 @@
   margin-top: 15px;
   cursor: pointer;
 }
-.attention_AI_words .attention_AI_detailed:hover {
-  color:#92C202 ;
-  
+.attention_AI_words .attention_AI_detailed a:visited {
+  color:black;
+}
+.attention_AI_words .attention_AI_detailed a:hover {
+  color:#92C202; 
 } 
 .attention_AI_name {
   text-overflow: ellipsis;
