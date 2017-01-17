@@ -443,20 +443,25 @@ a {
   left: 70px;
   padding-right: 80px;
   top: 30px;
+
 }
 
 .class-content .line-vertical .vertical-img .vertical-font-size {
   position: absolute;
-  top: 80px;
+  top: 90px;
   padding-right: 20px;
   left: 25px;
+  font-size: 13px;
+  font-weight: 600;
 }
 
 .class-content .line-vertical .vertical-img .vertical-click-size {
   position: absolute;
-  top: 110px;
+  top: 115px;
   padding-right: 20px;
   left: 25px;
+  font-size: 13px;
+  font-weight: 600;
 }
 
 .class-content .line-vertical .vertical-img .vertical-collection-size {
@@ -464,13 +469,17 @@ a {
   top: 140px;
   padding-right: 20px;
   left: 25px;
+  font-size: 13px;
+  font-weight: 600;
 }
 
 .class-content .line-vertical .vertical-img .vertical-a-reward {
   position: absolute;
-  top: 170px;
+  top: 165px;
   padding-right: 20px;
   left: 25px;
+  font-size: 13px;
+  font-weight: 600;
 }
 
 .class-content .line-vertical .vertical-title {
