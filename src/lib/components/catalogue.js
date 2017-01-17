@@ -6,7 +6,7 @@ import PathList from '../../lib/apis/conf.js';
       template: 
       '<div class="user_info_right"><div class="user_info_title"><div class="titleBlock">contribute</div><div class="titleBlock_LG">个人投稿</div></div><div class="user_info_content"><div class="contribution">'
       +'<ul class="nav"><li v-link="{path: \'/bookBlockList\'}"><span class="circular"></span><span class="title_name">轻小说</span></li><li v-if="showFlag === 999"><span class="circular"></span><span class="title_name">画集</span></li><li v-link="{path: \'/works_update/\' + id}"><span class="circular"></span><span class="title_name">修改信息</span></li></ul>'
-      +'<div class="content"><div class="catalogue"><div class="catalogue_header"><span>作品目录</span><span>catalogue</span></div>'
+      +'<div class="content"><div class="catalogue"><div class="catalogue_header"><span>作品目录</span><span>catalogue</span><span class="content_bookTitle"><a :href="path.TemprootPath + \'/view/catalog.html?bookId=\' + bookCustom.bookId">>><b>{{bookCustom.bookName}}</b></a></span></div>'
       +'<div class="newBookChapter" v-if="newBookChapter"><div class="clearX" v-on:click="newBookChapterClearFn">x</div><h4 class="newBookTitle">请输入卷的标题</h4><div><input type="text" class="inputText" placeholder="第一卷" v-model="volume" /></div><div class="hr"></div><a href="javascript:;" class="btn-addBookChapter" v-on:click="submitVolumeFn">提交</a></div>'
       +'<div  class="SubmitAudit" v-if="SubmitAudit"><div class="clearX" v-on:click="SubmitAuditClearFn">x</div><h4 class="newBookTitle">提交审核</h4><div><textarea type="text" class="inputTextTow" placeholder="我想对编辑说(选填)" v-model="volume" /></textarea></div><div class="hr"></div><a href="javascript:;" class="btn-addBookChapter" v-on:click="SetSubmitAudit">提交</a></div>'
 
@@ -31,8 +31,9 @@ import PathList from '../../lib/apis/conf.js';
       +'<p v-else style="color:#cccccc;cursor: not-allowed;"><img src="../img/to_right.jpg" /> 章节后移</p>'
       +'<p @click="contentDelete(bookObj.contentId)"><img src="../img/to_right.jpg"/> 删除章节</p>'
       +'<p @click="updateContentFn(bookObj.contentId,bookObj.volumeId)"><img src="../img/to_right.jpg" /> 重命名</p>'
-      +'</div></div><span class="span" uid="{{bookObj.volumeId}}"  uid2="{{bookObj.contentId}}" v-link="{path: \'/chapter_edit/\' + bookObj.volumeId + \'_\' +  bookObj.contentId }">{{bookObj.contentTitle}}</span></div><div class="line"><div class="lineIcon"><img src="../img/create_icon.jpg" />              </div>              <span class="span" uid="{{obj.volumeId}}" v-link="{ path: \'/chapter/\' + obj.volumeId }">创建新章节</span></div></div></div></div><div class="chapter_handle"><div class="handle_right"><div><span  v-on:click="newBookChapterFn">新增卷</span><span  v-on:click="SubmitAuditFn">提交审核</span>'
-      +'<span style="display:none;">提交审核</span>'
+      +'</div></div><span class="span" uid="{{bookObj.volumeId}}"  uid2="{{bookObj.contentId}}" v-link="{path: \'/chapter_edit/\' + bookObj.volumeId + \'_\' +  bookObj.contentId }">{{bookObj.contentTitle}}</span></div><div class="line"><div class="lineIcon"><img src="../img/create_icon.jpg" />              </div>              <span class="span" uid="{{obj.volumeId}}" v-link="{ path: \'/chapter/\' + obj.volumeId }">创建新章节</span></div></div></div></div><div class="chapter_handle"><div class="handle_right"><div><span  v-on:click="newBookChapterFn">新增卷</span>'
+      +'<span style="display:none;"  v-on:click="SubmitAuditFn">提交审核</span>'
+      +'<a :href="path.TemprootPath + \'/view/user_info.html#!/bookBlockList\'"><span>返回</span></a>'
       +'</div></div></div></div></div>'
       +'</div></div></div>'	
     ,data: function() {
@@ -53,6 +54,7 @@ import PathList from '../../lib/apis/conf.js';
         volume: '',
         status:1,
         userId:'',
+        path: PathList,
         };
       }
     ,route: {
@@ -158,6 +160,7 @@ import PathList from '../../lib/apis/conf.js';
           SZXJ.http(this,'get', PathList.queryBook, _data, 
           (response) => {
           	console.log(response);
+          	this.$set('bookCustom', response.data.bookCustom);
             this.$set('volumeCustomList', response.data.bookCustom.volumeCustomList);
           });
         },

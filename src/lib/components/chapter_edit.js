@@ -6,7 +6,7 @@ import PathList from '../../lib/apis/conf.js';
       template: 
       '<div class="user_info_right"><div class="user_info_title"><div class="titleBlock">contribute</div><div class="titleBlock_LG">个人投稿</div></div><div class="user_info_content"><div class="contribution">'
       +'<ul class="nav"><li v-link="{path: \'/bookBlockList\'}"><span class="circular"></span><span class="title_name">轻小说</span></li><li v-if="showFlag === 999"><span class="circular"></span><span class="title_name">画集</span></li><li v-link="{path: \'/works\'}"><span class="circular"></span><span class="title_name">创建作品</span></li></ul>'
-      +'<div class="content"><div class="chapter"><span>章节</span><span>chapter</span><div class="labelTitle clear"><label class="label">标题:</label><input type="text" class="input" placeholder="请输入章节名" v-model="contentTitle"  /></div><div class="inputTextarea clear"><textarea id="ipt-content-post" required="" spellcheck="false" placeholder="" class="form-control input-sm" style="display: none;"></textarea><div class="chapter_handle"><div class="handle_right"><div><span  v-on:click="submitFn">保存章节</span>'
+      +'<div class="content"><div class="chapter"><span>章节</span><span>chapter</span><div class="labelTitle clear"><label class="label">标题:</label><input type="text" class="input" placeholder="请输入章节名" v-model="contentTitle"  /></div><div class="inputTextarea clear"><textarea id="ipt-content-post" required="" spellcheck="false" placeholder="" class="form-control input-sm" style="display: none;"></textarea><div class="number_chapter">字数统计：{{ fontSize }}</div><div class="chapter_handle"><div class="handle_right"><div><span  v-on:click="submitFn">保存章节</span>'
       +'<span><a href="javascript:;" style="width:100%;height:100%;display:inline-block;color:#ffffff;" onclick="history.back(-1);">返回</a></span></div></div></div></div></div></div>'
       +'</div></div></div>'
     ,data: function() {
@@ -14,6 +14,7 @@ import PathList from '../../lib/apis/conf.js';
     		contentTitle: '',
     		id: -1,
     		contentId: -1,
+    		fontSize: 0,
     	}
     }
     ,route: { 
