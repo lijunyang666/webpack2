@@ -16,7 +16,7 @@ var worksUpdate = Vue.extend({
       +'</p>'
       +'<form class="works_form">更新：<input name="sign" type="radio" value=""  /><div class="works_img" v-if="updateCycle==1" @click="SetupdateCycle"></div><div class="works_img2" v-if="updateCycle !== 1" @click="SetupdateCycle"></div><label  @click="SetupdateCycle" class="works_label">日更</label><input name="sign" type="radio" value="" /><div class="works_img" v-if="updateCycle==2" @click="SetupdateCycle2"></div><div class="works_img2" v-if="updateCycle !== 2" @click="SetupdateCycle2"></div><label @click="SetupdateCycle2" class="works_label">月更</label></form>'
       +'<p  class="works_title_p">*注意事项：一经修改，下月才会开始生效，请慎重考虑</p>'
-      +'<span>简介：</span><textarea placeholder="0/300字" v-model="textArea"></textarea><div class="works_Deposit " v-on:click="submitFn">修改</div></div><div class="works_chart"><img style="width:150px;height:210px" src="../img/user_inco.jpg" v-el:img/><p  v-on:click="clickFileActiveFn">选择封面</p><div class="works_notes"><span>注：</span><ul><li>最大上传2M</li><li>建议尺寸大小比例：</li><li>宽320px</li><li>高480px</li><li>上传前请确认比例</li></ul></div></div><div class="works_line"></div><div class="works_Remarks"><label>注意事项：</label><ul><li>1.请慎重填写书名，选择作品分类，一旦提交将不可修改，书籍亦不可删除。</li><li>2.作品封面请选择大尺寸高清的ACG风格图片，本站拒绝三次元图片或与轻小说感觉严重不符的图片，请勿使用违规图片，违规者将被处罚</li><li>3.严禁盗图行为，上传插图请使用具有授权的图片！并与编辑提供授权证明。如无法提供，网站将封面撤回</li><li>4.书名与间接内容请不要填写令读者不适的内容</li><li>5.分类最多可选择三项</li><li>6.欢迎加入轻创文学QQ群交流写作心得，作者群：********，加群申请请附上书籍网站后六位数字。</li></ul></div><div class="Popup" style="display: none;"><ul class="Popup_title"><li>幻想</li><li>搞笑</li><li>后宫</li><li>科幻</li><li>恐怖</li></ul><ul class="Popup_content"><li>战斗</li><li class="content_li">幻想</li><li>恋爱</li><li>异界</li><li class="content_li">搞笑</li><li>日常</li><li>校园</li><li class="content_li">后宫</li><li>推理</li><li class="content_li">科幻</li><li>治愈</li><li>超能力</li><li class="content_li">恐怖</li><li>伪娘</li><li>乙女</li><li>同人</li><li>悬疑</li><li>网游</li></ul></div></div></div> '
+      +'<span>简介：</span><textarea placeholder="0/300字" v-model="textArea"></textarea><div class="works_Deposit " v-on:click="submitFn">修改</div></div><div class="works_chart"><img style="width:150px;height:210px" src="../img/user_inco.jpg" v-el:img/><p  v-on:click="clickFileActiveFn">选择封面</p><div class="works_notes"><span>注：</span><ul><li>最大上传2M</li><li>建议尺寸大小比例：</li><li>宽320px</li><li>高480px</li><li>上传前请确认比例</li></ul></div></div><div class="works_line"></div><div class="works_Remarks"><label>注意事项：</label><ul><li>1.请慎重填写书名，选择作品分类，一旦提交将不可修改，书籍亦不可删除。</li><li>2.作品封面请选择大尺寸高清的ACG风格图片，本站拒绝三次元图片或与轻小说感觉严重不符的图片，请勿使用违规图片，违规者将被处罚</li><li>3.严禁盗图行为，上传插图请使用具有授权的图片！并与编辑提供授权证明。如无法提供，网站将封面撤回</li><li>4.书名与间接内容请不要填写令读者不适的内容</li><li>5.分类最多可选择五项</li><li>6.欢迎加入轻创文学QQ群交流写作心得，作者群：562697313，加群申请请附上书籍网站的数字。</li></ul></div><div class="Popup" style="display: none;"><ul class="Popup_title"><li>幻想</li><li>搞笑</li><li>后宫</li><li>科幻</li><li>恐怖</li></ul><ul class="Popup_content"><li>战斗</li><li class="content_li">幻想</li><li>恋爱</li><li>异界</li><li class="content_li">搞笑</li><li>日常</li><li>校园</li><li class="content_li">后宫</li><li>推理</li><li class="content_li">科幻</li><li>治愈</li><li>超能力</li><li class="content_li">恐怖</li><li>伪娘</li><li>乙女</li><li>同人</li><li>悬疑</li><li>网游</li></ul></div></div></div> '
     	+'</div></div></div>'
     ,data: function() {
       return {
@@ -237,7 +237,7 @@ var worksUpdate = Vue.extend({
             (response) => {
               this.$set('classFlag', true);
               var classArr = response.data;
-              if (this.classList) {
+              if (this.classList ) {
                 var arrTemp = this.classList.split(",");
                 for (var i = 0; i < classArr.length; i++) {
                   for (var j = 0; j < arrTemp.length; j++) {
@@ -257,9 +257,15 @@ var worksUpdate = Vue.extend({
           var obj = this.classArr[v];
           obj.flag = false;
           this.classArr.$set(v, obj);
-          this.$set('trueClass', this.trueClass - 1);
+          this.$set('trueClass', this.trueClass -1 );
+          
+        } else if (this.trueClass == 0)
+             {           
+              
+              obj.flag = false;         
         } else {
-          if (this.trueClass < 5) {
+             if (this.trueClass < 5){
+            
             var obj = this.classArr[v];
             obj.flag = true;
             this.classArr.$set(v, obj);

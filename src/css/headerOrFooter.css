@@ -285,9 +285,6 @@
   display: none;
   cursor: pointer;
   height: 160px;
-  position: relative;
-  top: 5px;
-  left: 7px;
 }
 .li_msg_ul .li_msg_li {
   height: 40px;
@@ -311,7 +308,7 @@
   -webkit-transition: all 0.35s ease;
   position: relative;
   top: -3px;
-  left: -7px;
+  left: -18px;
 }
 .mag_number_small {
   position: absolute;
