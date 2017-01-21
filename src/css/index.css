@@ -109,18 +109,38 @@
 		margin: 17px;
 		
 	}
+	 .index .edit .details figure .display{
+	  display: block;
+    width: 160px;
+    height: 240px;
+    position: relative;
+    overflow: hidden;
+    color: #fff;
+    background-color: #eee;
+    border-radius: 4px;
+	   
+	 }
+	 .index .edit .details figure .display .details_img{
+    width: 160px;
+    height: 240px;
+  }
 	.index .edit .details figure figcaption {
-	    width: 157px;
-	    overflow: hidden;
-	    display: -webkit-box;
-	    -webkit-line-clamp: 3;
-	    -webkit-box-orient: vertical;
+	  width: 157px;
+	  overflow: hidden;
+	  display: -webkit-box;
+	  -webkit-line-clamp: 2;
+	  -webkit-box-orient: vertical;
 		text-align: center;
 		margin-top: 8px;
+		height: 28px;
 	}
 	.index .edit .details figure figcaption a {
 		color: #7d7d7d;
 	}
+	 .index .edit .details figure figcaption a:hover {
+	   color: #00A1D6;
+	   transition: all 0.2s ease; 
+	 } 
 	
 	.index .main {
 		width: 1164px;
@@ -302,14 +322,11 @@
 	    
 	}
 	.index .sidebar .sidebar_content .sidebar_con ul .sidebar_surname {
-		
-		
 		height: 10px;
 		width: 208px;
-		
-	    overflow: hidden;
-	    white-space: nowrap;
-	    text-overflow: ellipsis;
+	  overflow: hidden;
+	  white-space: nowrap;
+	  text-overflow: ellipsis;
 	}
 	.index .sidebar .sidebar_content .sidebar_con ul .sidebar_card {
 		width: 64px;
@@ -329,12 +346,10 @@
 		margin-top:10px ;
 	}
 	.index .sidebar .sidebar_content .sidebar_cont ul{
-		width: 278px;
+		  width: 278px;
 	    height: 25px;
 	    text-align: center;
 	    margin-top: 10px ;
-	  
-	   
 	}
 	.index .sidebar .sidebar_content .sidebar_cont ul li {
 		height: 20px;
@@ -736,7 +751,7 @@
 		width: 301px;
 		float: right;
 		height: 517px;
-		margin: 50px -20px 0 0;
+		margin: 60px -20px 0 0;
 	}
 	.index .Word .Word_Title {
 		width: 278px;
@@ -921,31 +936,46 @@
 	.index  .display:hover .details_img{
 		-webkit-filter:blur(6px);
 	}
-	.index  .hide {
-		width: 161px;
-		height: 240px;
+	.index .hide {
 		position: absolute;
-		top: 0;
-		color: #FFFFFF;	
-		opacity: 0;
-		z-index: 1;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    background-color: #000;
+    background-color: rgba(0,0,0,.15);
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+    padding: 10px;
+    opacity: 0;
+    -webkit-transition: opacity .5s ease;
+    transition: opacity .5s ease;
+    border-radius: 4px;
+    color: #FFFFFF; 
 	}
-	.index  .hide img {
-		margin: 11px 0px 0 17px;
+	.index .edit .details figure .display:hover .hide{
+    opacity: 1;
+    -webkit-transition: opacity .5s ease;
+    transition: opacity .5s ease;
+  }
+	.index .hide img {
+		margin: 15px 0px 0 5px;
+		width: 54px;
+		height: 54px;
+		border-radius: 54px;
 	}
-	.index  .hide label {
+	.index .hide label {
 		position: absolute;
-		top: 30px;
-		left: 72px;
-		
-		white-space: nowrap;
-    
+    top: 45px;
+    left: 75px;
+    white-space: nowrap;
     text-overflow: ellipsis;
+    overflow: hidden;
+    width: 75px;
 	}
 	.index  .hide .hide_ul {
 		position: absolute;
-		bottom: 10px;
-		left: 16px;
+    bottom: 10px;
+    left: 30px;
 	}
 	.index  .hide .hide_ul li {
 		height:35px;
@@ -953,6 +983,9 @@
 		width: 120px;
 	  white-space: nowrap;
 	  text-overflow: ellipsis;
+	  overflow: hidden;
+	  font-size: 13px;
+	  font-weight: 600;
 	}
 	.index .Small label {
 		position: absolute;
@@ -1008,8 +1041,8 @@
     border-radius: 4px;
   }
   .white {
-    height: 180px;
+    height: 155px;
   }
   .white_sidebar {
-    height: 160px;
+    height: 140px;
   }

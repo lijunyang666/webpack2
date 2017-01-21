@@ -1451,16 +1451,20 @@
 }
 
 
-.book-name {
+.book-navAI_bookid .book-name {
   text-align: center;
-  color: #000000;
   cursor: pointer;
   width: 128px;
   height: 28px;
   overflow: hidden;
   display: inline-block;
 }
-
+.book-navAI_bookid .book-name a{
+  color: black;
+}
+.book-navAI_bookid .book-name a:visited{
+  color: black;
+}
 .img-attention {
   width: 70px;
   height: 70px;

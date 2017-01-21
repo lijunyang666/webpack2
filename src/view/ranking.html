@@ -58,17 +58,17 @@
 	  			<li style="padding-top: 6px;">作者：{{obj.author}}</li>
 	  			<li><!-- 占位符 --></li>
 	  			
-	  			<li v-if="RequestObj.timeRank === 0">点击：{{obj.everyWeekHit}}</li>
-	  			<li v-if="RequestObj.timeRank === 1">点击：{{obj.everyMonthHit}}</li>
-	  			<li v-if="RequestObj.timeRank === 2">点击：{{obj.bookHit}}</li>
+	  			<li class="hit" v-if="RequestObj.timeRank === 0">点击：{{obj.everyWeekHit}}</li>
+	  			<li class="hit" v-if="RequestObj.timeRank === 1">点击：{{obj.everyMonthHit}}</li>
+	  			<li class="hit" v-if="RequestObj.timeRank === 2">点击：{{obj.bookHit}}</li>
 	  			
-	  			<li v-if="RequestObj.timeRank === 0">好人卡：{{obj.everyWeekCopperCoins}}</li>
-          <li v-if="RequestObj.timeRank === 1">好人卡：{{obj.everyMonthCopperCoins}}</li>
-          <li v-if="RequestObj.timeRank === 2">好人卡：{{obj.bookCopperCoins}}</li>
+	  			<li class="hit" v-if="RequestObj.timeRank === 0">好人卡：{{obj.everyWeekCopperCoins}}</li>
+          <li class="hit" v-if="RequestObj.timeRank === 1">好人卡：{{obj.everyMonthCopperCoins}}</li>
+          <li class="hit" v-if="RequestObj.timeRank === 2">好人卡：{{obj.bookCopperCoins}}</li>
           
-          <li v-if="RequestObj.timeRank === 0">字数：{{obj.everyWeekWordCount}}</li>
-	  			<li v-if="RequestObj.timeRank === 1">字数：{{obj.everyMonthWordCount}}</li>
-	  			<li v-if="RequestObj.timeRank === 2">字数：{{obj.bookWordCount}}</li>
+          <li class="hit" v-if="RequestObj.timeRank === 0">字数：{{obj.everyWeekWordCount}}</li>
+	  			<li class="hit" v-if="RequestObj.timeRank === 1">字数：{{obj.everyMonthWordCount}}</li>
+	  			<li class="hit" v-if="RequestObj.timeRank === 2">字数：{{obj.bookWordCount}}</li>
 	  			
 	  		</ul>
 	  		<a @click="setCollect(obj.bookId)" v-if="obj.collect" class="ranking_Collection " href="javascript:;">取消收藏</a>
