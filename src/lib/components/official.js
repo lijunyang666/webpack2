@@ -28,7 +28,7 @@ var official = Vue.extend({
         	obj: {
             p: 1, // 页码
             n: 10,
-            pageCount: 0,
+            pageCount: 1,
           },
           messageStatus:0,
         };

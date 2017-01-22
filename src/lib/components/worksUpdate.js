@@ -258,14 +258,10 @@ var worksUpdate = Vue.extend({
           obj.flag = false;
           this.classArr.$set(v, obj);
           this.$set('trueClass', this.trueClass -1 );
-          
-        } else if (this.trueClass == 0)
-             {           
-              
+        } else if (this.trueClass == 0){           
               obj.flag = false;         
         } else {
              if (this.trueClass < 5){
-            
             var obj = this.classArr[v];
             obj.flag = true;
             this.classArr.$set(v, obj);

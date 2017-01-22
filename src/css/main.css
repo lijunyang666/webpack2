@@ -2,7 +2,7 @@
   box-sizing: border-box;
   margin: 0px;
   padding: 0px;
-  outline: none;
+  outline: none !important;
   font-family: "微软雅黑";
 }
 
@@ -408,6 +408,8 @@ a {
   border-radius: 25px;
   overflow: hidden;
   border: 0px;
+  top: 18px;
+  left: 15px;
 }
 
 .class-content .line-vertical .vertical-img:hover .cover {
@@ -440,9 +442,9 @@ a {
 
 .class-content .line-vertical .vertical-img .vertical-Author-name {
   position: absolute;
-  left: 70px;
+  left: 75px;
   padding-right: 80px;
-  top: 30px;
+  top: 35px;
 
 }
 
@@ -457,7 +459,7 @@ a {
 
 .class-content .line-vertical .vertical-img .vertical-click-size {
   position: absolute;
-  top: 115px;
+  top: 118px;
   padding-right: 20px;
   left: 25px;
   font-size: 13px;
@@ -466,7 +468,7 @@ a {
 
 .class-content .line-vertical .vertical-img .vertical-collection-size {
   position: absolute;
-  top: 140px;
+  top: 146px;
   padding-right: 20px;
   left: 25px;
   font-size: 13px;
@@ -475,7 +477,7 @@ a {
 
 .class-content .line-vertical .vertical-img .vertical-a-reward {
   position: absolute;
-  top: 165px;
+  top: 174px;
   padding-right: 20px;
   left: 25px;
   font-size: 13px;

@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>  
+		<meta charset="UTF-8">
+		<title>个人空间</title>
+    <link rel="stylesheet" href="../css/main.css" />
+    <link rel="stylesheet" href="../css/catalog.css" />
+    <link rel="stylesheet" href="../css/headerOrFooter.css" />
+    <link rel="stylesheet" href="../css/LOgin.css" />
+    <link rel="stylesheet" href="../css/jquery-ui.min.css" />
+	</head>
+	<style>
+    .body{
+      background-color: rgba(0,0,0,0.018);
+    }
+    .background_div{
+      position: relative;
+      background-image: url(../img/bbg_03.png);
+      height:285px ;
+      min-width: 1200px;
+    } 
+    .background_div .background_userHeard{
+      position: absolute;
+      top: 100px;
+      left: 700px;
+      height: 185px;
+      width: 500px;
+      color: white;
+    }
+    .background_div .background_userHeard .background_userHeard_img{
+      height: 104px;
+      width: 104px;
+      border-radius:72px;
+      background-image: url(../img/232x232.jpg);
+    }
+    .background_div .background_userHeard li {
+      text-align: center;
+      margin: auto;
+      margin-bottom: 10px;
+      
+    }
+    .background_div .background_userHeard .background_userHeard_name {
+      font-size: 14px;
+      padding-left: 16px;
+      vertical-align: middle;
+    }
+    .background_div .background_userHeard .background_userHeard_name img{
+      vertical-align:  bottom;
+      padding-left: 5px;
+    }
+    .B_box {
+      margin-top: 10px;
+      width: 830px;
+   
+      display: inline-block;
+      margin-left: 250px;
+    }
+    .B_box .space_nav{
+      width: 830px;
+      height: 60px;
+      background-color: white;
+      box-shadow: 0px 0px 3px rgba(0,0,0,0.15);
+      float: right;
+      padding: 20px 50px 0 50px;
+      margin-bottom: 20px;
+    }
+    .B_box .space_nav ul{
+      width: 750px;
+      height: 40px;
+      font-family: "微软雅黑";
+      line-height: 25px;
+    }
+    .B_box .space_nav ul li{
+      float: left;
+      margin-left:200px ;
+      cursor: pointer;
+      font-size: 16px;
+      height: 40px;
+    }
+    .B_box .space_nav ul li:hover{
+      border-bottom: 3px solid #67cdef;
+    }
+    .B_box .space_Book {
+     width:830px;
+     float: right;
+     min-height:285px ;
+     background-color: white;
+     box-shadow: 0px 0px 3px rgba(0,0,0,0.1);
+     margin-bottom: 20px;
+   }
+    .B_box .space_Book .space_Book_class {
+      width: 750px;
+      height: 65px;
+      margin: 0px 0px 0 40px;
+      border-bottom: 1px solid rgba(0,0,0,0.03);
+    }
+    .B_box .space_Book .space_Book_class li{
+      float: left;     
+      display: inline-block; 
+    }
+    .B_box .space_Book .space_Book_class .one{
+      color: rgba(0,0,0,0.4);
+      width:80px;
+      padding-top: 28px;
+      font-size: 24px;
+      font-family: '幼圆';
+    }
+    .B_box .space_Book .space_Book_class .active{
+      background-color: #67CDEF;
+      color: white !important;
+      border-radius: 10px;
+    }
+    .B_box .space_Book .space_Book_class .worksClass {
+      margin-top: 35px;
+      width: 50px;
+      text-align: center;
+      cursor: pointer;
+      height: 20px;
+      line-height: 20px;
+      color:#5ec5e8 ;
+      margin-left: 5px;
+    }
+    .B_box .space_Book .space_Book_class .workSum {
+      float: right;
+      padding-top: 38px;
+    }
+    .B_box .space_Book .space_Book_class .workSum b{
+      margin: 0 5px;
+      color: #67cdef;
+      font-size: 16px;
+    }
+    .B_box .space_Book .space_Book_class .worksClass:hover {
+      border-radius: 10px;
+      border: 1px solid #67cdef;
+    }
+    .B_box .space_Book .space_Book_book {
+      width: 750px;
+      margin: 20px 30px 10px 40px;
+      min-height: 195px;
+    }
+    .B_box .space_Book .space_Book_book li{
+      float: left;
+      width: 104px;
+      height: 200px;
+    }
+    .B_box .space_Book .space_Book_book li img{
+      width: 104px;
+      height: 156px;
+      border-radius: 4px;
+    }
+    .B_box .space_Book .space_Book_book li h6{
+      text-align: center;
+      height: 28px;
+      font-weight: 0;
+      margin-top: 5px;
+      cursor: pointer;
+    }
+    .C_Box {
+      display: inline-block;
+      min-width: 750px;
+      margin: 10px 0 0 15px;
+    }
+    .space_show {
+      width: 290px;
+      height: 60px;
+      background-color: white;
+      box-shadow: 0px 0px 3px rgba(0,0,0,0.1);
+      margin-bottom: 20px;
+      padding: 10px;
+    }
+    
+	</style>
+	<body class="body">
+	  <myheader></myheader>
+	   <div class="background_div">
+	      <ul class="background_userHeard">
+  	      <li class="background_userHeard_img"></li>
+  	      <li class="background_userHeard_name">huhuf5 <img src="../img/sex_001.png" alt="" /></li>
+  	      <li class="background_userHeard_work">据说人死后摒弃一切包括记忆，只留下羽毛一般轻重的灵魂，便于飘向天堂。如果记起了俗世的羁绊是否会徜恍百次成为孤魂野鬼……</li>
+	      </ul>
+	   </div>
+	   <!--左边-->
+	  <div class="B_box"> 
+	   <div class="space_nav">
+  	   <ul>
+  	     <li >TA的作品</li>
+  	     <li>TA的关注</li>
+  	   </ul>
+	   </div>
+	   <!--作品-->
+	 
+    	   <div class="space_Book">
+           <ul class="space_Book_class">
+             <li class="one">书籍&nbsp/</li>
+             <li class="worksClass active">全部</li>
+             <li class="worksClass">悬疑</li>
+             <li class="worksClass">悬疑</li>
+             <li class="worksClass">悬疑</li>
+             <li class="worksClass">悬疑</li>
+             <li class="workSum">共<b>2</b>篇作品</li>
+           </ul>
+           <ul class="space_Book_book">
+              <li><img src="../img/b0994b01-9333-4b3f-888d-a5d98e6c6961.jpg" alt="" /> <h6>武器大师</h6></li>
+           </ul>
+         </div>
+         
+         <div class="space_Book">
+           <ul class="space_Book_class">
+             <li class="one">绘画&nbsp/</li>
+             <li class="workSum">共<b>2</b>篇作品</li>
+           </ul>
+           <ul class="space_Book_book">
+              <li><img src="../img/b0994b01-9333-4b3f-888d-a5d98e6c6961.jpg" alt="" /> <h6>武器大师</h6></li>
+           </ul>
+         </div>
+         
+         
+     </div>
+      <!--关注-->
+
+	   <!--右边-->
+	   <div class="C_Box">
+    	   <div class="space_show">
+           <ul>
+             <li><span></span>关注</li>
+             <li><span></span>粉丝</li>
+             <li><span></span>作品</li>
+           </ul>
+         </div>
+         
+         
+    	     <div>
+    	        <div>个人资料</div>
+    	        <div></div>
+    	     </div>
+    	     
+    	    <div>
+    	       <p>公告</p>
+    	       <textarea name="" rows="" cols=""></textarea>
+    	    </div>
+    
+          <div>
+             <p>留言板</p>
+             <div>
+                <img src="" alt="" />
+                <p>他的名字</p>
+                <p>留言内容</p>
+                <div>留下足迹</div>
+            </div>
+          </div>
+      
+      </div>
+	   <myfooter></myfooter>
+	<script src="../lib/jquery.min.js"></script>   
+	</body>
+</html>
