@@ -440,6 +440,9 @@
   font-size: 15px;
   cursor: pointer;
 }
+.catalogue .content_bookTitle a{
+  color: black;
+}
 .catalogue .content_bookTitle a:visited{
   color: black;
 }
