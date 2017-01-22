@@ -34,11 +34,6 @@ var header = Vue.extend({
   	}
   },
   methods: {
-    setmessageFn:function(){
-      if(this.number>1){
-        this.number
-      }
-    },
     setbookFn: function(){
       this.$set('book', 0);
     },
@@ -49,7 +44,6 @@ var header = Vue.extend({
       this.$set('reply', 0);
     },
     setsystemFn: function(){
-      
       this.$set('system', 0);
     },
     backLoginFn: function() {
