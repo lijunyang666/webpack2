@@ -30,9 +30,11 @@
       },
       methods: {
         sumbit: function() {
-          var _Url = "http://127.0.0.1:8080/reply/findReplyUserId.shtml";
+          var _Url = "http://127.0.0.1:7788/updatePasswordTelephoneCode.shtml";
           var _data = {};
-          alert('66');
+          
+          Vue.http.headers.common['JSESSIONID'] = 'a836265bb174b1735ff9e85bbe476c9a';
+           
           SZXJ.http(this,'get', _Url, this._data, (response) => {
             console.log(response);
           })

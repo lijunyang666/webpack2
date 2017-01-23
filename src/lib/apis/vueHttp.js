@@ -64,7 +64,9 @@ SZXJ.http = (This,_method, _url, _data, successfn, errorfn) => {
   if (_method === 'get') {
     Vue.http.get(_URL, _data).then(
       (response) => {
-        successfn(response);
+        if (response.data.length !== 0) {
+          successfn(response);
+        }
       },
       (err) => {
         if (!err.status) {
@@ -93,7 +95,9 @@ SZXJ.http = (This,_method, _url, _data, successfn, errorfn) => {
   if (_method === 'post') {
     Vue.http.post(_URL, _data).then(
       (response) => {
-        successfn(response);
+        if (response.data.length !== 0) {
+          successfn(response);
+        }
       },
       (err) => {
         if (!err.status) {

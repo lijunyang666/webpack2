@@ -5,9 +5,44 @@ var uglify = require('gulp-uglify');
 var del = require('del');
 var spriter = require('gulp-css-spriter');
 var base64 = require('gulp-css-base64');
+
+
+var path = require('path');
+var fs = require("fs");
+var deleteFolderRecursive = function(path) {
+  var files = [];
+  if( fs.existsSync(path) ) {
+    files = fs.readdirSync(path);
+    files.forEach(function(file,index){
+      var curPath = path + "/" + file;
+      if(fs.statSync(curPath).isDirectory()) { // recurse
+        deleteFolderRecursive(curPath,function(err){
+          if(err){
+            throw err;
+          }
+        });
+  
+      } else { // delete file
+        fs.unlinkSync(curPath);
+  
+      }
+    });
+    fs.rmdirSync(path);
+  }
+};
+// deleteFolderRecursive(path.join(__dirname, "./dist/img"));
+deleteFolderRecursive(path.join(__dirname, "./dist/css"));
+// deleteFolderRecursive(path.join(__dirname, "./dist/js"));
+
+
+
 //  gulp.task('clean', function(cb) {
 //    del(['dist/css/*.css', 'dist/js/main/*.js'], cb)
 //  });
+
+
+
+
 gulp.task('md5:js', function (done) {
     gulp.src('dist/js/main/*.js')
         .pipe(uglify())
@@ -15,16 +50,18 @@ gulp.task('md5:js', function (done) {
         .pipe(gulp.dest('dist/js/main'))
         .on('end', done);
 });
+
+
 gulp.task('md5:css', function (done) {
     var timestamp = +new Date();
-    gulp.src('dist/css/*.css')
-        .pipe(spriter({
-            spriteSheet: 'dist/images/spritesheet' + timestamp + '.png',
-            pathToSpriteSheetFromCSS: '../images/spritesheet' + timestamp + '.png',
-            spritesmithOptions: {
-                padding: 10
-            }
-        }))
+    gulp.src('src/css/*.css')
+//      .pipe(spriter({
+//          spriteSheet: 'dist/images/spritesheet' + timestamp + '.png',
+//          pathToSpriteSheetFromCSS: '../images/spritesheet' + timestamp + '.png',
+//          spritesmithOptions: {
+//              padding: 10
+//          }
+//      }))
         // .pipe(base64())
         .pipe(cssmin({
             advanced: false,//类型：Boolean 默认：true [是否开启高级优化（合并选择器等）]
@@ -37,45 +74,8 @@ gulp.task('md5:css', function (done) {
         .pipe(gulp.dest('dist/css'))
         .on('end', done);
 });
+
 gulp.task('default', function (done) {
     gulp.run('md5:js', 'md5:css');
 });
 
-
-
-/*
-1.雪碧图合并
-
-gulp-css-spriter默认会对样式文件里，所有的background/background-image的图片合并，
-
-但实际项目中，我们不是所有的图片都需要合并。
-
-background-image:url(../slice/p1-3.png?__spriter);//有?__spriter后缀的合并
-
-background-image:url(../slice/p-cao1.png);//不合并
- 
-修改下面文件可以按需合并。
-
-node_modules\gulp-css-spriter\lib\map-over-styles-and-transform-background-image-declarations.js
-
-48行开始的if-else if代码块中，替换为下面代码：
-
-//background-imagealwayshasaurl且判断url是否有?__spriter后缀
-
-if(transformedDeclaration.property==='background-image'&&/\?__spriter/i.test(transformedDeclaration.value)){
-
-transformedDeclaration.value=transformedDeclaration.value.replace('?__spriter','');
-return cb(transformedDeclaration,declarationIndex,declarations);
-}
-//Backgroundisashorthandpropertysomakesure`url()`isinthere且判断url是否有?__spriter后缀
-else if (transformedDeclaration.property==='background'&&/\?__spriter/i.test(transformedDeclaration.value)){
-
-transformedDeclaration.value=transformedDeclaration.value.replace('?__spriter','');
-var hasImageValue=spriterUtil.backgroundURLRegex.test(transformedDeclaration.value);
-
-if(hasImageValue){
-return cb(transformedDeclaration,declarationIndex,declarations);
-}
-}
- 
-* */
