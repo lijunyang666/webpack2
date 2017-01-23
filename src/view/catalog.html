@@ -44,7 +44,7 @@
 							<li @click="setCollect()" v-if="!collect" ><span><img src="../img/sss4.png"/ class="text_Collection"><p>收藏</p><i style="font-style: normal;">{{Collection}}</i></li>
 							<li @click="setCollect()" v-else ><span><img src="../img/sss4.png"/ class="text_Collection"><p>已收藏</p><i style="font-style: normal;">{{Collection}}</i></li>
 							<li style="display: none;" <!--v-on:click="rewardFn"--><span><img src="../img/sss3.png"/ class="text_card"><p>打赏</p><i style="font-style: normal;">{{bookCopperCoins}}</i></li>
-							  <li style="display: none;" <!--v-on:click="rewardFn"--><span><img src="../img/_thumb_03.png"/ class="text_card"><p>分享</p></li>
+							<li><div class="bdsharebuttonbox"><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间">QQ空间</a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博">新浪微博</a><a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友">QQ好友</a></div></li>
 						</ul>
 					</div>
 				</div>
@@ -427,6 +427,7 @@
 <script src="../lib/jquery.min.js"></script>
 <script src="../lib/wangEditor.min.js"></script>
 <script src="../js/main/catalog.js"></script>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"16"},"share":{"bdSize":16},"image":{"viewList":["qzone","tsina","weixin","sqq"],"viewText":"分享到：","viewSize":"16"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","weixin","sqq"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
 </body>
 </html>
 
