@@ -4,19 +4,22 @@
 PathList.TemprootPath = '';
 
 PathList.rootPath = '/Controller';
-//PathList.rootPath = 'http://192.168.126.34:8080';
-//PathList.rootPath = 'http://192.168.126.25:8080';
+PathList.rootPath = 'http://192.168.126.34:8080';
+PathList.rootPath = 'http://192.168.126.25:8080';
 PathList.rootPath = 'http://121.196.194.211:8080/Controller';
 //PathList.rootPath = "http://127.0.0.1:7788"
 // 登陆的3个请求
 PathList.VerifyLoginServlet = PathList.rootPath + '/VerifyLoginServlet.shtml';
 PathList.StartCaptchaServlet = PathList.rootPath + '/StartCaptchaServlet';
-
-
 PathList.login = PathList.rootPath + '/login.shtml';
 // 注册的2个请求
 PathList.registerTelephoneCode = PathList.rootPath + '/registerTelephoneCode.shtml';
 PathList.register = PathList.rootPath + '/register.shtml';
+// 找回密码或修改密码
+PathList.updatePasswordTelephoneCode = PathList.rootPath + '/updatePasswordTelephoneCode.shtml';
+PathList.updatePassword = PathList.rootPath + '/updatePassword.shtml';
+
+
 // 查看用户创建作品列表 不需要传数据
 PathList.findBookByUser = PathList.rootPath + '/book/findBookByUser.shtml';
 // 查看作者创建作品目录页 需要传入作品id
@@ -95,8 +98,6 @@ PathList.saveInfo = PathList.rootPath + '/info/saveInfo.shtml';
 PathList.queryMsg = PathList.rootPath + '/info/queryMsg.shtml';
 // 获取回复
 PathList.findCommentAndReplyByReplyUserId = PathList.rootPath + '/reply/findCommentAndReplyByReplyUserId.shtml';
-// 修改密码 or 忘记密码
-PathList.updatePassword = PathList.rootPath + '/updatePassword.shtml';
 // 审核
 PathList.userUpdateBookStatus = PathList.rootPath + '/book/userUpdateBookStatus.shtml';
 

@@ -1440,6 +1440,24 @@
 .numberAItwo4  .verify:hover {
   background-color: #00A1D6;
 }
+
+.numberAItwo4  .verify_no {
+  color: white;
+  display: inline-block;
+  background-color: #bcbcc3;
+  text-align: center;
+  width: 70px;
+  height: 22px;
+  font-size: 12px;
+  padding-top: 5px;
+  margin-left: 20px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+
+
+
 .book-navAI .book-navAI_bookid{
   height: 212px;
   width: 128px;

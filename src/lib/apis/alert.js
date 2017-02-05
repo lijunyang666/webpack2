@@ -39,7 +39,7 @@ var VueAlert = Vue.extend({
   methods: {
     setMessage(trueFlag,message,Fn) {
       this.flag = true;
-      this.trueFlag = trueFlag;
+      this.$set('trueFlag', trueFlag);
       this.message = message;
       this.Fn = Fn;
     },

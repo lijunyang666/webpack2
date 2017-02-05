@@ -17,6 +17,16 @@ body li{
   margin-top: 25px;
   height: 510px;
 }
+
+.regist .Password_rec {
+  border: 1px solid #6c4274;
+  border-radius: 10px;
+  box-shadow: 0 3px 9px rgba(0,0,0,.5) ;
+  margin-top: 25px;
+  height: 373px;
+}
+
+
 .regist .regist_img {
   float: right;
   margin: -25px 10px 0 0;
@@ -93,6 +103,20 @@ body li{
 	box-shadow:  0px 3px 0px 0px #63246a;
 	border-radius: 5px;
 	cursor: pointer;
+}
+.regist .Password_rec_btn_a {
+  display: block;
+  width: 310px;
+  height: 54px;
+  line-height: 54px;
+  text-align: center;
+  background: #96539a;
+  color: #FFFFFF;
+  font-size: 25px;
+  margin: 30px 0 0 30px;
+  box-shadow:  0px 3px 0px 0px #63246a;
+  border-radius: 5px;
+  cursor: pointer;
 }
 .regist .regist_p {
 	float: right;
