@@ -41,10 +41,20 @@
 							  <a v-if="BookList[0] && BookList[0].contentEntityList[0]" class="text_Read" target="_blank"  :href="path.TemprootPath + '/view/read_book.html?contentId=' + BookList[0].contentEntityList[0].contentId  + '&bookId='+ bookId" >开始阅读</a>
 							  <a v-else class="text_Read" href="javascript:;" target="_blank">开始阅读</a>
               </li>
-							<li @click="setCollect()" v-if="!collect" ><span><img src="../img/sss4.png"/ class="text_Collection"><p>收藏</p><i style="font-style: normal;">{{Collection}}</i></li>
-							<li @click="setCollect()" v-else ><span><img src="../img/sss4.png"/ class="text_Collection"><p>已收藏</p><i style="font-style: normal;">{{Collection}}</i></li>
-							<li style="display: none;" <!--v-on:click="rewardFn"--><span><img src="../img/sss3.png"/ class="text_card"><p>打赏</p><i style="font-style: normal;">{{bookCopperCoins}}</i></li>
-							<li><div class="bdsharebuttonbox"><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间">QQ空间</a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博">新浪微博</a><a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友">QQ好友</a></div></li>
+							<li @click="setCollect()" v-if="!collect" ><span><img src="../img/zzzz.png"/ class="text_Collection"><p >收藏</p><i style="font-style: normal;display: none;">{{Collection}}</i></li>
+							<li @click="setCollect()" v-else ><span><img src="../img/zzzz.png"/ class="text_Collection"><p >已收藏</p><i style="font-style: normal;display: none;">{{Collection}}</i></li>
+							<li  <!--v-on:click="rewardFn"--><span><img src="../img/zzz.png"/ class="text_card"><p>打赏</p><i style="font-style: normal;display: none;">{{bookCopperCoins}}</i></li>
+							<li class="four">
+							  <span>
+    							  <img src="../img/zzzzz.png"/ class="text_card">
+    							  <p>分享</p>
+							  </span>
+							           <div class="bdsharebuttonbox bdshare_t bds_tools get-codes-bdshare" id="bdshare">
+							             <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间" style="background-position: center !important ;" ></a>
+							             <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博" style="background-position: center !important ;"></a>
+							             <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友" style="background-position: center !important ;"></a>
+							           </div>
+							</li>
 						</ul>
 					</div>
 				</div>
@@ -173,16 +183,15 @@
     <ul class="mes_head">
       
       <li class="mes_head_user" >
-        <a style="display: none;">{{temp.replyId}}</a>
-        <a href="javascript:;" class="user_a" title="">{{ temp.userName }}</a>
+        <span class="user_comment"  title=""><a href="javascript:;" class="user_a" title="">{{ temp.userName }}</a><label v-if="temp.replyStatus==1">回复<span class="aite_user">@{{ temp.replyUserName }}</span></label>{{{ temp.replyContent }}}</span>
       </li>
       
       <li>
-        <span class="user_comment"  title=""><label v-if="temp.replyStatus==1">回复<span class="aite_user">@{{ temp.replyUserName }}</span></label>{{{ temp.replyContent }}}</span>
-      </li> 
         
+      </li> 
+       
       <li>
-        <ul class="updata_mes">
+         <ul class="updata_mes">
             <li class="mess1">{{ szxj.getLocalTime(temp.replyDate / 1000) }}</li>
             <li class="mess2" @click="messageShow(temp.commentId, 1, temp.userName, temp.userId,temp.replyId)">回复</li>
             <li class="mess3" >举报</li>
@@ -427,7 +436,16 @@
 <script src="../lib/jquery.min.js"></script>
 <script src="../lib/wangEditor.min.js"></script>
 <script src="../js/main/catalog.js"></script>
-<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"16"},"share":{"bdSize":16},"image":{"viewList":["qzone","tsina","weixin","sqq"],"viewText":"分享到：","viewSize":"16"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","weixin","sqq"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+<script type="text/javascript" id="bdshare_js" data="type=tools&mini=1" ></script> 
+<script type="text/javascript" id="bdshell_js"></script>
+<script type="text/javascript">
+  //在这里定义bds_config
+  var bds_config = {'bdText':'QC轻创轻小说_小说目录页'};
+  document.getElementById('bdshell_js').src = "http://share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000);
+  var bds_config = {'bdDesc':'QC轻创轻小说_小说目录页'};
+  document.getElementById('bdshell_js').src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000);
+</script>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"16"},"share":{"bdSize":16},"image":{"viewList":["qzone","tsina","weixin","sqq"],"viewText":"分享到：","viewSize":"16"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","weixin","sqq"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('scrip t')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
 </body>
 </html>
 

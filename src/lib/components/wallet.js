@@ -17,17 +17,17 @@ var wallet = Vue.extend({
       },
       route: {
         data() {
-          this.setFlag();
+//        this.setFlag();
         } 
       },
       methods: {
-        setFlag: function() {
-          console.log(this.$parent);
-          var url = this.path.TemprootPath + '/view/user_info.html';
-          this.$parent.setMessage(false,'此功能暂未开放！',function() {
-            location.href = url;
-          });
-        },
+//      setFlag: function() {
+//        console.log(this.$parent);
+//        var url = this.path.TemprootPath + '/view/user_info.html';
+//        this.$parent.setMessage(false,'此功能暂未开放！',function() {
+//          location.href = url;
+//        });
+//      },
         getBookListFn: function() {
           var _data = {};
           SZXJ.http(this,'get', PathList.findBookByUser, {}, (response) => {
