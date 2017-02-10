@@ -1719,14 +1719,40 @@
 }
 
 .pay-income {
-	overflow: hidden;
-	margin: 15px 0 50px 400px;
+	width: 842px;
+  height: 20px;
+	margin: 0px 0 25px 350px;
 }
 
 .pay-income li {
 	float: left;
-	font-size: 20px;
-	padding-left: 20px;
+	font-size: 17px;
+	padding-left: 10px;
+}
+.pay-incomeTow {
+  width: 842px;
+  height: 20px;
+  margin: 0px 0 50px 358px;
+}
+
+.pay-incomeTow li {
+  float: left;
+  font-size: 17px;
+  padding-left: 3px;
+}
+.goodman {
+
+}
+.money {
+  width: 150px;
+  font-size: 18px !important;
+}
+.moneyTow {
+  width: 142px;
+  font-size: 18px !important;
+}
+.goodmanTow {
+
 }
 
 .pay-a {
@@ -1794,6 +1820,7 @@
 	text-align: center;
 	line-height: 25px;
 	letter-spacing: 2px;
+	margin-right: 50px;
 }
 
 .pay-c:hover {
@@ -1990,4 +2017,107 @@
   color: rgba(0,0,0,0.7);
   padding: 8px  0 13px 0;
   height: 45px;
+}
+.exchange {
+  width: 350px;
+  height: 250px;
+  background-color: white;
+  position: fixed;
+  top: 30%;
+  left: 40%; 
+  box-shadow: 0px 1px 8px rgba(0,0,0,0.35);
+  border-radius: 8px;
+  display: none;
+}
+.exchange_ul{
+  width: 350px;
+  height: 95px;
+  
+}
+.exchange_ul li{
+  width: 55px;
+  height: 26px;
+  font-size: ;
+  border-radius: 13px;
+  float: left;
+  margin-left: 25px;
+  border: 1px solid #E0E0E0;
+  line-height: 26px;
+  text-align: center;
+  cursor: pointer;
+  margin-top: 15px;
+  margin-bottom: 05px;
+  font-family: '幼圆';
+}
+.exchange_ul li:hover{
+  color: white;
+  background-color: #00A1D6;
+  transition: all 0.2s ease;
+  -webkit-transition: all 0.2s ease;
+}
+.exchange_div {
+  width: 350px;
+  border-bottom: 1px solid #E0E0E0;
+  border-top: 1px solid #E0E0E0;
+  height: 35px;
+  overflow: hidden;
+}
+
+.exchange_div span{
+  margin-left: 5px;
+  font-family: '幼圆';
+}
+.exchange_div input{
+  border: none;
+  height: 35px;
+  width: 250px;
+  padding-left: 200px;
+  font-family: '幼圆';
+}
+.exchange_span{
+  font-family: '幼圆';
+  font-size: 16px;
+  margin-top: 15px;
+  display: inline-block;
+  margin-left: 5px;
+}
+.exchange_spanTow{
+  margin-left: 215px;
+  width: 135px;
+  display: inline-block;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  font-family: '幼圆';
+}
+.exchange_divTow{
+  margin-left: 70px;
+  width: 65px;
+  height: 26px;
+  border: 1px solid #E0E0E0;
+  display: inline-block;
+  line-height: 26px;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 13px;
+  font-family: '幼圆';
+  margin-top: 10px;
+}
+.exchange_divTow:hover{
+  color: white;
+  background-color: #00A1D6;
+  transition: all 0.2s ease;
+  -webkit-transition: all 0.2s ease;
+}
+.exchange_div_span{
+  
+  margin-left: 250px;
+  font-size: 12px;
+  font-family: '幼圆';
+  display: none;
+}
+.exchange_ul:hover .exchange_div_span{
+  display: block;
+}
+.exchange_divOne{
+  height: 12px;
 }

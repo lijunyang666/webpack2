@@ -67,7 +67,7 @@ var vuePractice = new Vue({
       });
     },
     messageShow: function(commentId, v, name, id,replyId) {
-      this.commentId = commentId; // editor
+      if(this.loginFlag){this.commentId = commentId;}; // editor
       var editor = {};
       var index = 0;
       for (var i = 0; i < this.findCommentAndReply.comment.length; i++) {
