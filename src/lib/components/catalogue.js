@@ -13,7 +13,7 @@ import PathList from '../../lib/apis/conf.js';
       +'<div class="newBookChapter" v-if="updateBookChapter"><div class="clearX" v-on:click="updateVolumeFn">x</div><h4 class="newBookTitle">修改卷的标题</h4><div><input type="text" class="inputText" placeholder="修改卷名称" v-model="updateBookChapterName" /></div><div class="hr"></div><a href="javascript:;" class="btn-addBookChapter" v-on:click="updateVolumeNameFn">提交</a></div>'
       
       +'<div class="newBookChapter" v-if="updateBookContentChapter"><div class="clearX" v-on:click="updateContentFn">x</div><h4 class="newBookTitle">修改章节的名称</h4><div><input type="text" class="inputText" placeholder="修改章节名称" v-model="updateBookContentChapterName" /></div><div class="hr"></div><a href="javascript:;" class="btn-addBookChapter" v-on:click="updateContentNameFn">提交</a></div>'
-      
+      +'<div class="sign-Block" v-if="SigNing" ><div class="sign_parent"><div class="sign_sub"><p class="sign_title">我要签约</p><p class="sign_headers"><span class="sign_sign"></span>姓名</p><input type="text" class="sign_input" v-model="uname" /><p class="sign_headers"><span class="sign_sign"></span>更新方式</p><form class="sign_form"><label class="sign_label"><input name="sign" type="radio" value="" checked="checked" @click="signbuttomFn" />日更</label><label class="sign_label"><input name="sign" type="radio" value="" @click="SubmitsignbuttomFn" />月更</label><p class="sign_pp">*在一个月内，更新一次或者更新多次，所更新的字数的总和要至少达到8万字</p><p class="sign_pp" style="display: none;">*一个月内，必须每日更新，每日更新至少更新2000字，一个月更新字数总和达到6万字</p></form><p class="sign_headers"><span class="sign_sign"></span>联系方式</p><div class="sign_div">      QQ&nbsp;:<input type="text" class="sign_contact" v-model="qq" /></div><div class="sign_div">E-meil&nbsp;:<input type="text" class="sign_contact" v=model="emeil" /></div><div class="sign_div">手机&nbsp;:<input type="text" class="sign_contact" v-model="phone" /></div><div class="sign_div">住址&nbsp;:<input type="text" class="sign_contact" v-model="address" /></div><div style="clear: both;"></div><p class="sign_headers TowHeadrs"><span class="sign_sign"></span>小说大纲</p><textarea type="text" class="sign_Biginput" v-model="message" /></textarea><div class="sign_btn" @click="SigNingUpFn" >提交申请</div><div class="sign_btnTow" @click="SigNingDownFn" >取消</div><img style="display:none;" src="../img/logo_11.png" class="sign_img" /></div></div></div>'
       
       +'<div class="catalogue_list" v-for="obj in volumeCustomList"><div class="list_title"><h4 class="listBlock">{{obj.volumeName}}<span style="font-size:12px; padding-left:5px; font-weight:normal;  ">({{obj.volumeWordCount}})</span></h4>'
       +'<div class="list_action">'
@@ -32,15 +32,19 @@ import PathList from '../../lib/apis/conf.js';
       +'<p @click="contentDelete(bookObj.contentId)"><img src="../img/to_right.jpg"/> 删除章节</p>'
       +'<p @click="updateContentFn(bookObj.contentId,bookObj.volumeId)"><img src="../img/to_right.jpg" /> 重命名</p>'
       +'</div></div><span class="span" uid="{{bookObj.volumeId}}"  uid2="{{bookObj.contentId}}" v-link="{path: \'/chapter_edit/\' + bookObj.volumeId + \'_\' +  bookObj.contentId }">{{bookObj.contentTitle}}</span></div><div class="line"><div class="lineIcon"><img src="../img/create_icon.jpg" />              </div>              <span class="span" uid="{{obj.volumeId}}" v-link="{ path: \'/chapter/\' + obj.volumeId }">创建新章节</span></div></div></div></div><div class="chapter_handle"><div class="handle_right"><div><span  v-on:click="newBookChapterFn">新增卷</span>'
-      +'<span  v-on:click="SubmitAuditFn">提交审核</span>'
+     +'<span v-if="bookReviewStatus === \'已审核\'"  v-on:click="signingFn"  >申请签约</span>'
+     +'<span v-else  v-on:click="SubmitAuditFn">提交审核</span>'
+      
       +'<a style="dispaly:none;" :href="path.TemprootPath + \'/view/user_info.html#!/bookBlockList\'"><span>返回</span></a>'
       +'</div></div></div></div></div>'
       +'</div></div></div>'	
     ,data: function() {
         return {
+        
         volumeCustomList: [],
         newBookChapter:false,
         SubmitAudit:false,
+        SigNing:false,
         updateBookChapter:false,
         updateBookChapterId: '',
         updateBookChapterName: '',
@@ -56,6 +60,15 @@ import PathList from '../../lib/apis/conf.js';
         status:1,
         userId:'',
         path: PathList,
+        
+        updateType:1,
+        uname:'',
+        qq:'',
+        email:'',
+        phone:'',
+        address:'',
+        message:'',
+        bookReviewStatus:'',
         };
       }
     ,route: {
@@ -142,6 +155,33 @@ import PathList from '../../lib/apis/conf.js';
             this.$set('updateBookChapterId', volumeId);
           }
         },
+        signbuttomFn(){
+          this.$set('updateType', 1);
+        },
+        SubmitsignbuttomFn(){
+          this.$set('updateType', 1);
+        },
+        signingFn(){
+          this.$set('SigNing', true);
+        },
+        SigNingDownFn(){
+          this.$set('SigNing', false);
+        },
+        SigNingUpFn(){
+          this.$set('SigNing', false);
+          var _data = {};
+          _data.bookId = parseInt(this.id, 10);
+          _data.uname = this.uname;
+          _data.updateType = this.updateType;
+          _data.qq = this.qq;
+          _data.email = this.email;
+          _data.phone = this.phone;
+          _data.address = this.address;
+          _data.message = this.message;
+          SZXJ.http(this,'post', PathList.userUpdateBookSign, _data, (response) => {
+          
+          });
+        },
         SubmitAuditvolumeLFn(){
            if (this.SubmitAudit) {
              this.$set('SubmitAuditvolume', '');
@@ -166,6 +206,7 @@ import PathList from '../../lib/apis/conf.js';
           SZXJ.http(this,'get', PathList.queryBook, _data, 
           (response) => {
           	console.log(response);
+          	this.bookReviewStatus = response.data.bookCustom.bookReviewStatus;
           	this.$set('bookCustom', response.data.bookCustom);
             this.$set('volumeCustomList', response.data.bookCustom.volumeCustomList);
           });

@@ -9,18 +9,18 @@
     <link rel="stylesheet" href="../css/headerOrFooter.css" />
 		<link rel="stylesheet" href="../css/LOgin.css" />
 		<link rel="stylesheet" href="../css/jquery-ui.min.css" />
-	</head>
+	</head>  
 	<body id="mask" id="app"
 	  v-show="bodyFlag" style="display: none;"
 		v-bind:style="popup === true? 'overflow:hidden':''">
     <alert v-ref:vue-alert></alert>
 	  <myheader :login-img="loginImg"></myheader>
 		<div id="search"></div>
-		<div class="index" >
+		<div class="index" >  
 			<div class="index_Line"></div>
 			<img v-for="obj in bookCustom" id="{{obj.bookCoverImage}}"  class="picture" src="../img/z-imgBj.jpg" @load="szxj.loadImg(obj.bookCoverImage ? path.rootPath + obj.bookCoverImage: '', $event)" />
 			<div class="text">
-			  <h4>{{ title }}</h4>
+			  <h4>{{ title }}</h4>   
 				<ul class="text_ul">
 					<li>字数: <span style="color:#7e7e7e">&nbsp {{words}}</span></li>
 					<li>点击: <span style="color:#7e7e7e">&nbsp {{cursor}}</span></li>
@@ -172,7 +172,7 @@
         <ul class="updata_mes">
             <li class="mess1">{{ szxj.getLocalTime(obj.commentDate / 1000) }}</li>
             <li class="mess2" @click="messageShow(obj.commentId, 0, obj.replyUserName, obj.userId)">回复</li>
-            <li class="mess3" >举报</li>
+            <li class="mess3"  @click="reportShow(obj.commentId)">举报</li>
         </ul>
       </li>
     </ul>
@@ -194,7 +194,7 @@
          <ul class="updata_mes">
             <li class="mess1">{{ szxj.getLocalTime(temp.replyDate / 1000) }}</li>
             <li class="mess2" @click="messageShow(temp.commentId, 1, temp.userName, temp.userId,temp.replyId)">回复</li>
-            <li class="mess3" >举报</li>
+            <li class="mess3" @click="reportShowFn(temp.replyId)">举报</li>
         </ul>
       </li>
     </ul>
@@ -223,7 +223,7 @@
 </div>
    
 
-<div class="Report" style="display: none;">
+<div class="Report" v-if="report" >
     <form action="" method="get">请输入举报理由
     <br /><br /> 
     <ul>
@@ -237,7 +237,7 @@
       <li><label><input name="Fruit" type="radio" value="" />&nbsp其他</label></li>
     </ul>
 </form> 
-<div class="true">确定</div>
+<div class="true" @click="reportDown">确定</div>
 </div>
 
 

@@ -49,15 +49,12 @@ var vuePractice = new Vue({
     Report:0,
     commentAndReplyTotalCount:'',
     replyId:'',
+    report:false,
+    reportTypeId:1,
+    reportContent:'',   
+    reportFlag:false,
   },
   methods: {
-    lineHr: function(){
-       for(var i = 0; i=this.contentEntityList.length; i++){
-          if( i % 4 ==0 ){
-            this.line++;
-          };
-       };
-    },
     setreplyFn: function (replyId){
        this.replyId = replyId;
     },
@@ -140,6 +137,29 @@ var vuePractice = new Vue({
       _data.status = v;
       
       this.getComment(_data); // 请求
+    },
+    reportShow: function(commentId){
+       this.report = true;
+       this.commentId = commentId;
+    },
+    reportShowFn: function(replyId){
+       this.report = true; 
+       this.replyId = replyId;
+    },
+    reportDown: function(){
+       this.report = false;
+       var _data={
+           reporterId:this.userId,
+           reportTypeId:this.reportTypeId,
+           commentId:function (){
+              return reportShow(commentId);
+           },
+           replyId:function (){
+              return reportShowFn(replyId);
+           },
+         };       
+       SZXJ.http(this,'post', PathList.report, _data, (response) => {            
+       });
     },
     getComment(_data) {
       SZXJ.http(this,'get', PathList.findCommentAndReply, _data, (response) => {

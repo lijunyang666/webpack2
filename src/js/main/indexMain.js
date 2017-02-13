@@ -23,7 +23,7 @@ var indexHtml = new Vue({
     indexList: {
     }, // 首页默认渲染数据
     theHotList: [], // 小编推荐
-    pageNo: 0,
+    pageNo: 1,
     newBookimg: 0, // 全站推荐的切换下标
     newBookimg1: 0, // 新书推荐的切换下标
     RequestObj: {

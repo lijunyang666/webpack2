@@ -31,7 +31,7 @@ var deleteFolderRecursive = function(path) {
   }
 };
 // deleteFolderRecursive(path.join(__dirname, "./dist/img"));
-deleteFolderRecursive(path.join(__dirname, "./dist/css"));
+// sdeleteFolderRecursive(path.join(__dirname, "./dist/css"));
 // deleteFolderRecursive(path.join(__dirname, "./dist/js"));
 
 

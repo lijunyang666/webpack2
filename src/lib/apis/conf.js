@@ -5,8 +5,8 @@ PathList.TemprootPath = '';
 
 PathList.rootPath = '/Controller';
 PathList.rootPath = 'http://192.168.126.40:8080';
-PathList.rootPath = 'http://192.168.126.25:8080';
-PathList.rootPath = 'http://121.196.194.211:8080/Controller';
+PathList.rootPath = 'http://192.168.126.39:8080';
+//PathList.rootPath = 'http://121.196.194.211:8080/Controller';
 //PathList.rootPath = "http://127.0.0.1:7788"
 
 // 登陆的3个请求
@@ -101,6 +101,16 @@ PathList.queryMsg = PathList.rootPath + '/info/queryMsg.shtml';
 PathList.findCommentAndReplyByReplyUserId = PathList.rootPath + '/reply/findCommentAndReplyByReplyUserId.shtml';
 // 审核
 PathList.userUpdateBookStatus = PathList.rootPath + '/book/userUpdateBookStatus.shtml';
+// 举报
+PathList.report = PathList.rootPath + '/report/report.shtml';
+// 钱包余额
+PathList.amount = PathList.rootPath + '/pay/amount.shtml';
+// 申请签约
+PathList.userUpdateBookSign = PathList.rootPath + '/book/userUpdateBookSign.shtml';
+// 充值钱包
+PathList.recharge = PathList.rootPath + '/pay/recharge.shtml';
+// 获取好人卡
+PathList.cardamount = PathList.rootPath + '/card/amount.shtml';
 
 
 export default PathList;
