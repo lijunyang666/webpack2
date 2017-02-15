@@ -30,6 +30,7 @@ import system from '../../lib/components/system.js';
 import official from '../../lib/components/official.js';
 import wallet from '../../lib/components/wallet.js';
 import bill from '../../lib/components/bill.js';
+import goodmen from '../../lib/components/goodmen.js';
 var router = new VueRouter();
 router.map({
   '/bookBlockList': { component: bookBlockList },
@@ -51,6 +52,7 @@ router.map({
   '/official': { component: official },
   '/wallet': { component: wallet },
   '/bill': { component: bill },
+  '/goodmen': { component: goodmen },
 })
 var App = Vue.extend({
   el: '#app',

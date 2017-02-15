@@ -13,8 +13,9 @@ import PathList from '../../lib/apis/conf.js';
       +'<div class="newBookChapter" v-if="updateBookChapter"><div class="clearX" v-on:click="updateVolumeFn">x</div><h4 class="newBookTitle">修改卷的标题</h4><div><input type="text" class="inputText" placeholder="修改卷名称" v-model="updateBookChapterName" /></div><div class="hr"></div><a href="javascript:;" class="btn-addBookChapter" v-on:click="updateVolumeNameFn">提交</a></div>'
       
       +'<div class="newBookChapter" v-if="updateBookContentChapter"><div class="clearX" v-on:click="updateContentFn">x</div><h4 class="newBookTitle">修改章节的名称</h4><div><input type="text" class="inputText" placeholder="修改章节名称" v-model="updateBookContentChapterName" /></div><div class="hr"></div><a href="javascript:;" class="btn-addBookChapter" v-on:click="updateContentNameFn">提交</a></div>'
-      +'<div class="sign-Block" v-if="SigNing" ><div class="sign_parent"><div class="sign_sub"><p class="sign_title">我要签约</p><p class="sign_headers"><span class="sign_sign"></span>姓名</p><input type="text" class="sign_input" v-model="uname" /><p class="sign_headers"><span class="sign_sign"></span>更新方式</p><form class="sign_form"><label class="sign_label"><input name="sign" type="radio" value="" checked="checked" @click="signbuttomFn" />日更</label><label class="sign_label"><input name="sign" type="radio" value="" @click="SubmitsignbuttomFn" />月更</label><p class="sign_pp">*在一个月内，更新一次或者更新多次，所更新的字数的总和要至少达到8万字</p><p class="sign_pp" style="display: none;">*一个月内，必须每日更新，每日更新至少更新2000字，一个月更新字数总和达到6万字</p></form><p class="sign_headers"><span class="sign_sign"></span>联系方式</p><div class="sign_div">      QQ&nbsp;:<input type="text" class="sign_contact" v-model="qq" /></div><div class="sign_div">E-meil&nbsp;:<input type="text" class="sign_contact" v=model="emeil" /></div><div class="sign_div">手机&nbsp;:<input type="text" class="sign_contact" v-model="phone" /></div><div class="sign_div">住址&nbsp;:<input type="text" class="sign_contact" v-model="address" /></div><div style="clear: both;"></div><p class="sign_headers TowHeadrs"><span class="sign_sign"></span>小说大纲</p><textarea type="text" class="sign_Biginput" v-model="message" /></textarea><div class="sign_btn" @click="SigNingUpFn" >提交申请</div><div class="sign_btnTow" @click="SigNingDownFn" >取消</div><img style="display:none;" src="../img/logo_11.png" class="sign_img" /></div></div></div>'
-      
+      +'<div class="sign-Block" v-if="SigNing" ><div class="sign_parent"><div class="sign_sub"><p class="sign_title">我要签约</p><p class="sign_headers"><span class="sign_sign"></span>姓名</p><input type="text" class="sign_input" v-model="uname" /><p class="sign_headers"><span class="sign_sign"></span>更新方式</p><form class="sign_form"><label class="sign_label" @click="signbuttomFn" ><input name="sign" type="radio" value="" checked="checked"  />日更</label><label class="sign_label"  @click="SubmitsignbuttomFn" ><input name="sign" type="radio" value="" />月更</label><p class="sign_pp" v-if=" updateType==2 ">*在一个月内，更新一次或者更新多次，所更新的字数的总和要至少达到8万字</p><p class="sign_pp" v-if=" updateType==1 ">*一个月内，必须每日更新，每日更新至少更新2000字，一个月更新字数总和达到6万字</p></form><p class="sign_headers"><span class="sign_sign"></span>联系方式</p><div class="sign_div">      QQ&nbsp;:<input type="text" class="sign_contact" v-model="qq" /></div><div class="sign_div">E-meil&nbsp;:<input type="text" class="sign_contact" v=model="emeil" /></div><div class="sign_div">手机&nbsp;:<input type="text" class="sign_contact" v-model="phone" /></div><div class="sign_div">住址&nbsp;:<input type="text" class="sign_contact" v-model="address" /></div><div style="clear: both;"></div><p class="sign_headers TowHeadrs"><span class="sign_sign"></span>小说大纲</p><textarea type="text" class="sign_Biginput" v-model="message" /></textarea><div class="sign_btn" @click="isTrueOrFalseFn" >提交申请</div><div class="sign_btnTow" @click="SigNingDownFn" >取消</div><img style="display:none;" src="../img/logo_11.png" class="sign_img" /></div></div></div>'
+      +'<div v-if="isTrueOrFalse" class="isTrueOrFalse isTrueOrFalseTow"><div class="isTrueOrFalse_div">提示</div><span class="isTrueOrFalse_span">请注意认真审核信息是否填写正确，签约后平台将会以此信息为标准，联系作者，如需修改，请联系工作人员。 （*注：如此次申请失败，下次申请时，作品需在原基础上提高2万字数方可再次申请提交）。</span> <div class="moneyRecharge_div isTrueOrFalseDiv"  @click="SigNingUpFn" >确认</div>  <div class="moneyRecharge_div isTrueOrFalseDiv" @click="SubmitisTrueOrFalseFn" >取消</div> </div>'
+
       +'<div class="catalogue_list" v-for="obj in volumeCustomList"><div class="list_title"><h4 class="listBlock">{{obj.volumeName}}<span style="font-size:12px; padding-left:5px; font-weight:normal;  ">({{obj.volumeWordCount}})</span></h4>'
       +'<div class="list_action">'
       +'<a v-if="$index !== 0" @click="volumeChange(volumeCustomList[$index - 1].volumeId, volumeCustomList[$index].volumeId)" href="javascript:;">前移</a>'
@@ -40,7 +41,7 @@ import PathList from '../../lib/apis/conf.js';
       +'</div></div></div>'	
     ,data: function() {
         return {
-        
+        isTrueOrFalse:false,
         volumeCustomList: [],
         newBookChapter:false,
         SubmitAudit:false,
@@ -159,7 +160,7 @@ import PathList from '../../lib/apis/conf.js';
           this.$set('updateType', 1);
         },
         SubmitsignbuttomFn(){
-          this.$set('updateType', 1);
+          this.$set('updateType', 2);
         },
         signingFn(){
           this.$set('SigNing', true);
@@ -169,6 +170,7 @@ import PathList from '../../lib/apis/conf.js';
         },
         SigNingUpFn(){
           this.$set('SigNing', false);
+          this.$set('isTrueOrFalse', false);
           var _data = {};
           _data.bookId = parseInt(this.id, 10);
           _data.uname = this.uname;
@@ -187,6 +189,12 @@ import PathList from '../../lib/apis/conf.js';
              this.$set('SubmitAuditvolume', '');
            }
         },
+        isTrueOrFalseFn:function(){
+         this.$set('isTrueOrFalse', true);
+       },
+       SubmitisTrueOrFalseFn:function(){
+         this.$set('isTrueOrFalse', false);
+       },
         updateVolumeNameFn() {
           var _data = {};
           _data.bookId = parseInt(this.id, 10);

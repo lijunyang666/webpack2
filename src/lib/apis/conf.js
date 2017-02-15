@@ -5,7 +5,7 @@ PathList.TemprootPath = '';
 
 PathList.rootPath = '/Controller';
 PathList.rootPath = 'http://192.168.126.40:8080';
-PathList.rootPath = 'http://192.168.126.39:8080';
+//PathList.rootPath = 'http://192.168.126.39:8080';
 //PathList.rootPath = 'http://121.196.194.211:8080/Controller';
 //PathList.rootPath = "http://127.0.0.1:7788"
 
@@ -111,6 +111,22 @@ PathList.userUpdateBookSign = PathList.rootPath + '/book/userUpdateBookSign.shtm
 PathList.recharge = PathList.rootPath + '/pay/recharge.shtml';
 // 获取好人卡
 PathList.cardamount = PathList.rootPath + '/card/amount.shtml';
+// 好人卡记录
+PathList.cardlist = PathList.rootPath + '/card/list.shtml';
+// 钱包记录
+PathList.paylist = PathList.rootPath + '/pay/list.shtml';
+// 购买好人卡
+PathList.buyCard = PathList.rootPath + '/pay/buyCard.shtml';
+
+
+
+
+
+
+
+
+
+
 
 
 export default PathList;

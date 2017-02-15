@@ -1255,6 +1255,7 @@
 	border-radius: 75px;
 	margin: 10px 10px 10px 50px;
 	float: left;
+	position: relative;
 }
 
 .messageAI {
@@ -1513,11 +1514,18 @@
   width: 64px;
   height: 64px;
 }
-.img-attention .attention-name-sex {
+.attention-name-sex {
   margin-left: 15px;
   position: absolute;
   top: 56px;
   left: 30px;
+  
+}
+.attention-name-sexTow {
+  margin-left: 15px;
+  position: absolute;
+  top: 100px !important;
+  left: 75px !important;
   
 }
 .sex_img {
@@ -1721,7 +1729,7 @@
 .pay-income {
 	width: 842px;
   height: 20px;
-	margin: 0px 0 25px 350px;
+	margin: 0px 0 50px 350px;
 }
 
 .pay-income li {
@@ -1773,8 +1781,9 @@
 .table-a {
 	text-align: center;
 	color: #7F7E7E;
-	margin-top: 20px;
-	margin-left: 80px;
+  margin-top: 10px;
+	margin-left: 75px;
+	min-height: 450px;
 }
 
 .table-a tr {
@@ -2209,7 +2218,7 @@
   font-family:"华康少女文字W5(P)" ;
 }
 .sign-Block .sign_sub .sign_form .sign_pp {
-  color: #c5e2f5;
+  color: #F26A81;
   font-size: 10.5px;
   width: 255px;
   margin-left: 40px;
@@ -2289,8 +2298,8 @@
   height: 315px;
   box-shadow: 0px 1px 8px rgba(0,0,0,0.35);
   position: fixed;
-  left: 45%;
-  top: 35%;
+  left: 40%;
+  top: 30%;
   background-color: white;
   border-radius: 8px;
 }
@@ -2383,8 +2392,8 @@
   height: 330px;
   box-shadow: 0px 1px 8px rgba(0,0,0,0.35);
   position: fixed;
-  left: 45%;
-  top: 35%;
+  left: 40%;
+  top: 30%;
   background-color: white;
   border-radius: 8px;
 }
@@ -2436,6 +2445,19 @@
   top: 45%;
   background-color: white;
   border-radius: 8px;
+  z-index: 9999999999999999;
+}
+
+.isTrueOrFalseTow{
+  width: 400px;
+  min-height: 150px;
+  box-shadow: 0px 1px 8px rgba(0,0,0,0.35);
+  position: fixed;
+  left: 39%;
+  top: 30%;
+  background-color: white;
+  border-radius: 8px;
+  z-index: 9999999999999999;
 }
 
 .isTrueOrFalse_span{
