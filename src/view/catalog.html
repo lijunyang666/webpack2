@@ -43,7 +43,7 @@
               </li>
 							<li @click="setCollect()" v-if="!collect" ><span><img src="../img/zzzz.png"/ class="text_Collection"><p >收藏</p><i style="font-style: normal;display: none;">{{Collection}}</i></li>
 							<li @click="setCollect()" v-else ><span><img src="../img/zzzz.png"/ class="text_Collection"><p >已收藏</p><i style="font-style: normal;display: none;">{{Collection}}</i></li>
-							<li  <!--v-on:click="rewardFn"--><span><img src="../img/zzz.png"/ class="text_card"><p>打赏</p><i style="font-style: normal;display: none;">{{bookCopperCoins}}</i></li>
+							<li  v-on:click="rewardFn"><span><img src="../img/zzz.png"/ class="text_card"><p>打赏</p><i style="font-style: normal;display: none;">{{bookCopperCoins}}</i></li>
 							<li class="four">
 							  <span>
     							  <img src="../img/zzzzz.png"/ class="text_card">
@@ -159,7 +159,9 @@
 </div>
 <div class="CommentArea"  v-for="obj in findCommentAndReply.comment">
   <div class="text_user clear">
-    <a href="javascript:;"><img src="../img/sss8.jpg" @load="szxj.loadImg(obj.userHead ? path.rootPath + obj.userHead: '', $event)"/ ></a>
+    <a href="javascript:;"><img src="../img/sss8.jpg" @load="szxj.loadImg(obj.userHead ? path.rootPath + obj.userHead: '', $event)"/ >
+<!--         <span v-if="obj.sex == '男生'" class="attention-name-sex-Tow"><img src="../../img/sex_001.png" alt="" /></span><span v-if="obj.sex == '女生'" class="attention-name-sex-Tow"><img src="../../img/sex_002.png" alt="" /></span>
+-->    </a>
     <ul class="mes_head">
       <li class="mes_head_user" >
         
@@ -179,7 +181,9 @@
   </div >
   
   <div class="text_userTow clear"  v-for="temp in obj.replyEntityList" :style=" replyEntityList.length == replyEntityList[$index+1] 'border-bottom: 1px solid rgba(0,0,0,0.06);':''  ">
-    <a href="javascript:;"><img src="../img/smallHead.png" @load="szxj.loadImg(temp.userHead ? path.rootPath + temp.userHead: '', $event)" / ></a>
+    <a href="javascript:;"><img src="../img/smallHead.png" @load="szxj.loadImg(temp.userHead ? path.rootPath + temp.userHead: '', $event)" / >
+<!--        <span v-if="temp.sex == '男生'" class="attention-name-sex-thr"><img src="../../img/sex_001.png" alt="" /></span><span v-if="temp.sex == '女生'" class="attention-name-sex-thr"><img src="../../img/sex_002.png" alt="" /></span>
+-->    </a>
     <ul class="mes_head">
       
       <li class="mes_head_user" >
@@ -266,7 +270,9 @@
 				
 <div class="screen">
 	<h3>作者相关</h3>
-	<a href="javascript:;"><img :src="path.rootPath + userHead " class="head"></a>
+	<a href="javascript:;"><img :src="path.rootPath + userHead " class="head">
+	   <span v-if="sex == '男生'" class="attention-name-sex"><img src="../../img/sex_001.png" alt="" /></span><span v-if="sex == '女生'" class="attention-name-sex"><img src="../../img/sex_002.png" alt="" /></span>
+	</a>
 	<ul class="author">
 		<li><label>作者：</label>
 			<a href="javascript:;" class="span span_author" title="{{authorName}}">{{authorName}}</a>
@@ -406,7 +412,7 @@
 					</div>-->
 			</div>
 		</div>
-<!--<div 
+<div 
 	v-if="popup" 
 	v-on:click="rewardFn"
 	style="position: fixed;top: 50%;bottom: 0px;left: 0px;right: 0px; ">
@@ -429,7 +435,7 @@
 		<a class="reward_Recharge">充值></a>
 		<a class="reward_My">我的好人卡：1000</a>
 	</div>
-</div>-->
+</div>
 
 <myfooter></myfooter>
 <link rel="stylesheet" href="../css/wangEditor.min.css" />

@@ -53,6 +53,12 @@ var vuePractice = new Vue({
     reportTypeId:1,
     reportContent:'',   
     reportFlag:false,
+    RequestObj: {
+        status: 0,
+        pageNo: 1,
+        pageSize: 5,
+    },
+    sex:'',
   },
   methods: {
     setreplyFn: function (replyId){

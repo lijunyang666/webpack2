@@ -287,7 +287,7 @@
 	color: #454545;
 	cursor: pointer;
 	padding: 20px 30px;
-	width: 158px;
+	width: 165px;
 	position: relative;
 	float: left;
 }
@@ -1508,12 +1508,23 @@
   width: 64px;
   height: 64px;
   margin: 10px 18px 0px 80px;
+  position: relative;
+}
+.attention-name-sex-Tow img{
+  border-radius: 40px;
+  width: 18px !important;
+  height: 18px !important;
+  position: absolute;
+  left: 44px;
+  top: -22px;
 }
 .img-attention-headTow img{
   border-radius: 40px;
   width: 64px;
   height: 64px;
+  position: relative;
 }
+
 .attention-name-sex {
   margin-left: 15px;
   position: absolute;
@@ -2078,6 +2089,12 @@
   height: 35px;
   overflow: hidden;
 }
+.exchange_div:hover {
+    border-bottom: 1px solid #00A1D6;
+  border-top: 1px solid #00A1D6;
+    transition: all 0.2s ease;
+  -webkit-transition: all 0.2s ease;
+}
 
 .exchange_div span{
   margin-left: 30px;
@@ -2087,8 +2104,9 @@
     border: none;
     height: 35px;
     width: 320px;
-    padding-left: 250px;
+    padding-left: 275px;
     font-family: '幼圆';
+    font-size: 16px;
 }
 .exchange_span{
   font-family: '幼圆';
@@ -2098,12 +2116,17 @@
   margin-left: 5px;
 }
 .exchange_spanTow{
-  margin-left: 365px;
+  margin-left: 350px;
   width: 135px;
   display: inline-block;
   margin-top: 5px;
   margin-bottom: 10px;
   font-family: '幼圆';
+}
+.exchange_spanTowTow{
+    margin-left: 66px;
+    font-size: 16px;
+    margin-bottom: 25px;
 }
 .exchange_divTow{
   margin-left: 130px;
@@ -2128,13 +2151,13 @@
   margin-left: 315px;
   font-size: 12px;
   font-family: '幼圆';
-  display: none;
+  color: #F26A81;
 }
-.exchange_ul:hover .exchange_div_span{
-  display: block;
-}
+
+
 .exchange_divOne{
   height: 12px;
+  margin-bottom: 5px;
 }
 .exchange_divTow_spanTow {
   margin-left: 390px;
@@ -2304,7 +2327,7 @@
   border-radius: 8px;
 }
 .moneyRecharge_header{
-  font-size: 16px;
+  font-size: 18px;
   margin: 18px 0 20px 0px;
   font-family: '幼圆';
   height: 30px;
@@ -2334,6 +2357,10 @@
   font-family: '幼圆';
   padding-left: 25px;
   line-height: 35px;
+}
+.moneyRecharge_number:hover{
+  border-bottom: 1px solid #00A1D6;
+  border-top: 1px solid #00A1D6;
 }
 .moneyRecharge_number input {
   width: 350px;
@@ -2377,7 +2404,10 @@
   cursor: pointer;
   border-radius: 13px;
   font-family: '幼圆';
-  margin-top: 10px;
+  margin-top: 18px;
+}
+.moneyRecharge_div_div{
+  margin-top: 12px;
 }
 .moneyRecharge_div:hover {
   color: white;
@@ -2389,7 +2419,7 @@
 /*提现*/
 .registration{
   width: 510px;
-  height: 330px;
+  height: 340px;
   box-shadow: 0px 1px 8px rgba(0,0,0,0.35);
   position: fixed;
   left: 40%;
@@ -2405,6 +2435,9 @@
   display: block;
   border-bottom: 1px solid #E0E0E0;
   height: 26px;
+}
+.registrationTow{
+  height: 238px;
 }
 
 .humanName{
@@ -2435,14 +2468,67 @@
 .verification_span:hover{
   background-color: rgba(56,192,236,0.66) ;
 }
+.verification_div{
+  font-family: '幼圆';
+  font-size: 16px;  
+  height: 55px;
+  padding-left: 67px;
+
+  border-bottom: 1px solid #E0E0E0;
+  
+}
+.verification_div input{
+  width: 80px;
+  border-left: none;
+  border-right: none;
+  vertical-align: bottom;
+  height: 26px;
+  border-top:1px solid #E0E0E0 ;
+  border-bottom:1px solid #E0E0E0 ;
+  text-align: center;
+}
+
+.verification_letf{
+  display: inline-block;
+  height: 26px;
+  width: 50px;
+  border-radius: 4px 0 0 4px;
+  text-align: center;
+  cursor: pointer;
+  border: 1px solid #E0E0E0;
+  font-size: 20px;
+  font-weight: 600;
+}
+.verification_right{
+  display: inline-block;
+  height: 26px;
+  width: 50px;
+  border-radius:  0 4px 4px 0;
+  border: 1px solid #E0E0E0;
+  font-weight: 600;
+  text-align: center;
+  cursor: pointer;
+  vertical-align: bottom;
+  font-size: 20px;
+}
+.verification_letf:hover{
+  background-color: #DADADA;
+      transition: all 0.2s ease;
+  -webkit-transition: all 0.2s ease;
+}
+.verification_right:hover{
+  background-color: #DADADA;
+      transition: all 0.2s ease;
+  -webkit-transition: all 0.2s ease;
+}
 
 .isTrueOrFalse{
   width: 400px;
   min-height: 150px;
   box-shadow: 0px 1px 8px rgba(0,0,0,0.35);
   position: fixed;
-  left: 50%;
-  top: 45%;
+  left: 43%;
+  top: 40%;
   background-color: white;
   border-radius: 8px;
   z-index: 9999999999999999;
