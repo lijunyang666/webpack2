@@ -120,8 +120,9 @@ PathList.buyCard = PathList.rootPath + '/pay/buyCard.shtml';
 // 提现
 PathList.withdrawals = PathList.rootPath + '/pay/withdrawals.shtml';
 // 保存提现信息登记
-PathList.saveAlipay = PathList.rootPath + '/pay/saveAlipay.shtml';
-
+PathList.saveAlipay = PathList.rootPath + '/updateAlipay.shtml';
+// 打赏好人卡  
+PathList.cardgive = PathList.rootPath + '/card/give.shtml';
 
 
 

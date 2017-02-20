@@ -59,6 +59,9 @@ var vuePractice = new Vue({
         pageSize: 5,
     },
     sex:'',
+    payCardAmount:'',
+    numb:0,
+    amount:0,
   },
   methods: {
     setreplyFn: function (replyId){
@@ -327,13 +330,40 @@ var vuePractice = new Vue({
       SZXJ.http(this,'get', PathList.getStatus, _data, (response) => {
          this.loginFlag = response.data.status.flag;
       });
+      SZXJ.http(this,'get', PathList.cardamount, _data, (response) => {
+        this.payCardAmount =response.data.amount.payCardAmount;
+        });
     },
     rewardFn: function(){
       this.popup = true;
     },
+    numberOne: function(){
+      this.amount = 30;
+    },
+    numberTow: function(){
+      this.amount = 88;
+    },
+    numberThr: function(){
+      this.amount = 100;
+    },
+    numberFou: function(){
+      this.amount = 250;
+    },
+    numberFif: function(){
+      this.amount = 500;
+    },
     rewardShow: function(){
       this.popup = false;
-    }
+      var _data={};
+     _data.amount = this.amount;
+     _data.bookId = this.bookId;
+      SZXJ.http(this,'get', PathList.cardgive, _data, (response) => {
+       
+        });
+    SZXJ.http(this,'get', PathList.cardamount, _data, (response) => {
+         this.payCardAmount =response.data.amount.payCardAmount;
+      });
+    },
   },
   ready: function() {
     this.bodyFlag = true;

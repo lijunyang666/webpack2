@@ -15,7 +15,7 @@
 		v-bind:style="popup === true? 'overflow:hidden':''">
     <alert v-ref:vue-alert></alert>
 	  <myheader :login-img="loginImg"></myheader>
-		<div id="search"></div>
+		<div id="search"></div>  
 		<div class="index" >  
 			<div class="index_Line"></div>
 			<img v-for="obj in bookCustom" id="{{obj.bookCoverImage}}"  class="picture" src="../img/z-imgBj.jpg" @load="szxj.loadImg(obj.bookCoverImage ? path.rootPath + obj.bookCoverImage: '', $event)" />
@@ -414,26 +414,21 @@
 		</div>
 <div 
 	v-if="popup" 
-	v-on:click="rewardFn"
-	style="position: fixed;top: 50%;bottom: 0px;left: 0px;right: 0px; ">
+	style="position: fixed;top: 35%;bottom: 0px;left: 0px;right: 0px; ">
 	<div class="reward" >
-		<div class="reward_cancel"><img src="../img/card-8.png"/ v-on:click="rewardShow"></div>
-		<h4>这本书超赞，我要打赏他<span>(づ￣3￣)づ╭❤～</span></h4>
+	  <span class="reward_head">这本书超赞，我要打赏它ლ(°◕‵ƹ′◕ლ)</span>
 		<div class="reward_Num">
 			<label>选择打赏的数量：</label>		
 			<ul>	
-				<li><a><img src="../img/card-1.png" />X10</a></li>
-				<li class="reward_Choice"><a><img src="../img/card-2.png" /><img src="../img/card-7.png" class="Choice_img"/>X20</a></li>
-				<li><a><img src="../img/card-3.png" />X30</a></li>
-				<li><a><img src="../img/card-4.png" />X40</a></li>
-				<li><a><img src="../img/card-5.png" />X50</a></li>
-				<li><a><img src="../img/card-6.png" />X60</a></li>
+				 <li @click="numberOne" :class=" amount == 30 ? 'reward_Num_active':'' "><a :class=" amount == 30 ? 'reward_Num_active_a':'' "></a><span>×30</span></li>
+				 <li @click="numberTow" :class=" amount == 88 ? 'reward_Num_active':'' "><a :class=" amount == 88 ? 'reward_Num_active_a':'' "></a><span>×88</span></li>
+				 <li @click="numberThr" :class=" amount == 100 ? 'reward_Num_active':'' "><a :class=" amount == 100 ? 'reward_Num_active_a':'' "></a><span>×100</span></li>
+				 <li @click="numberFou" :class=" amount == 250 ? 'reward_Num_active':'' "><a :class=" amount == 250 ? 'reward_Num_active_a':'' "></a><span>×250</span></li>
+				 <li @click="numberFif" :class=" amount == 500 ? 'reward_Num_active':'' "><a :class=" amount == 500 ? 'reward_Num_active_a':'' "></a><span>×500</span></li>
 			</ul>
-			<p><textarea>自定义</textarea>X<img src="../img/card-1.png"/></p>
-			<a class="reward_Pay btn">立刻打赏！</a>
 		</div>	
-		<a class="reward_Recharge">充值></a>
-		<a class="reward_My">我的好人卡：1000</a>
+		<a class="reward_My">我的好人卡：{{payCardAmount}}</a>
+		<div class="reward_ture" @click="rewardShow">确认</div>
 	</div>
 </div>
 
