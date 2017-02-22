@@ -22,12 +22,9 @@
     <div class="user_info_account">
      {{ userName }}
     </div> 
-    <div class="user_info_btn_qiandaoY " style="display: none;">
-     已签到
-    </div> 
-    <div class="user_info_btn_qiandao ">
-     签到
-    </div> 
+     <div class="user_info_btn_qiandao " @click="signFn" v-if="Sign">签到</div> 
+     <div class="user_info_btn_qiandaoY " v-else >已签到</div> 
+
     <div class="user_info_nva clear"> 
      <ul> 
       <li :class="active === 'info'?'active':''" @click="setShowFlagFn | debounce 100">

@@ -69,13 +69,9 @@ var goodmen = Vue.extend({
           SZXJ.http(this,'get', PathList.findBookByUser, {}, (response) => {
             this.$set('bookList', response.data);
           });
-          SZXJ.http(this,'get', PathList.amount, {}, (response) => {
-            this.exchangeableCashAmount = response.data.amount.exchangeableCashAmount;
-            this.totalAmount = response.data.amount.unexchangeableCashAmount + response.data.amount.exchangeableCashAmount;
-          });
           SZXJ.http(this,'get', PathList.cardamount, {}, (response) => {
             this.givenPayCardAmount = response.data.amount.givenPayCardAmount + response.data.amount.givenWelfareCardAmount;
-            this.payCardAmount = response.data.amount.payCardAmount;
+            this.payCardAmount = response.data.amount.payCardAmount + response.data.amount.welfareCardAmount ;
           });  
           SZXJ.http(this,'get', PathList.getStatus, {}, (response) => {
             this.$set('data', response.data.status);

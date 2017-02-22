@@ -123,7 +123,8 @@ PathList.withdrawals = PathList.rootPath + '/pay/withdrawals.shtml';
 PathList.saveAlipay = PathList.rootPath + '/updateAlipay.shtml';
 // 打赏好人卡  
 PathList.cardgive = PathList.rootPath + '/card/give.shtml';
-
+// 签到获取好人卡
+PathList.cardsign = PathList.rootPath + '/card/sign.shtml';
 
 
 
