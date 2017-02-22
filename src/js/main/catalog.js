@@ -148,27 +148,32 @@ var vuePractice = new Vue({
       this.getComment(_data); // 请求
     },
     reportShow: function(commentId){
+       this.commentId = '';
+       this.replyId = '';
        this.report = true;
        this.commentId = commentId;
     },
     reportShowFn: function(replyId){
-       this.report = true; 
-       this.replyId = replyId;
+      this.commentId = '';
+      this.replyId = '';
+      this.report = true; 
+      this.replyId = replyId;
     },
     reportDown: function(){
-       this.report = false;
-       var _data={
-           reporterId:this.userId,
-           reportTypeId:this.reportTypeId,
-           commentId:function (){
-              return reportShow(commentId);
-           },
-           replyId:function (){
-              return reportShowFn(replyId);
-           },
-         };       
-       SZXJ.http(this,'post', PathList.report, _data, (response) => {            
-       });
+      this.report = false;
+      var _data={
+        reporterId:this.userId, // 被举报人的id
+        reportTypeId:this.reportTypeId, // 举报类型
+      }; 
+      if (this.commentId === '') {
+        _data.replyId = this.replyId;
+      } else {
+        _data.commentId = this.commentId;
+      }
+      SZXJ.http(this,'post', PathList.report, _data, (response) => {
+        var Utils = this.$refs.vueAlert ? this.$refs.vueAlert : this.$parent.$refs.vueAlert;
+        Utils.setMessage(false, '举报成功');
+      });
     },
     getComment(_data) {
       SZXJ.http(this,'get', PathList.findCommentAndReply, _data, (response) => {
