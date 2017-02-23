@@ -22,8 +22,9 @@
     <div class="user_info_account">
      {{ userName }}
     </div> 
-     <div class="user_info_btn_qiandao " @click="signFn" v-if="Sign">签到</div> 
-     <div class="user_info_btn_qiandaoY " v-else >已签到</div> 
+     <div class="user_info_btn_qiandaoY "  v-if="sign" >已签到</div> 
+     <div class="user_info_btn_qiandao " @click="signFn" v-else>签到</div> 
+     
 
     <div class="user_info_nva clear"> 
      <ul> 

@@ -900,7 +900,7 @@
 	}	
 	.index .display{
 	  display: block;
-    width: 128px;
+    width: 124px;
     height: 174px;
     position: relative;
     overflow: hidden;
@@ -1036,7 +1036,7 @@
     border-radius: 4px;
   }
 	.bookImg_X {
-    width: 319px;
+    width: 310px;
     height: 435px;
     border-radius: 4px;
   }

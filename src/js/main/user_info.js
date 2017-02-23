@@ -63,11 +63,11 @@ var App = Vue.extend({
       active: '',
       userName: '',
       loginImg:'',
+      sign:'',
     }
   },
   methods: {
     signFn: function() {  
-      this.$set('Sign',false);
       var _data = {};
       SZXJ.http(this,'get', PathList.cardsign, {}, (response) => {
       });
@@ -76,6 +76,9 @@ var App = Vue.extend({
       const href = window.location.href;
       const str = href.substring(href.lastIndexOf('#!/') + 3, href.length);
       this.$set('active', str);
+      SZXJ.http(this,'get', PathList.getStatus, {}, (response) => {
+        this.sign = response.data.status.sign;
+      });
     },
     setMessage(flag,message,Fn) {
       this.$refs.vueAlert.setMessage(flag,message,Fn);
@@ -83,7 +86,7 @@ var App = Vue.extend({
   },
  ready : function (){
     this.bodyFlag = true;
-    this.setShowFlagFn();
+    this.setShowFlagFn(); 
   },
 });
 App.component('myfooter', footer);

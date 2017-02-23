@@ -335,12 +335,12 @@ var vuePractice = new Vue({
       SZXJ.http(this,'get', PathList.getStatus, _data, (response) => {
          this.loginFlag = response.data.status.flag;
       });
-      SZXJ.http(this,'get', PathList.cardamount, _data, (response) => {
-        this.payCardAmount =response.data.amount.payCardAmount;
-        });
     },
     rewardFn: function(){
       this.popup = true;
+     SZXJ.http(this,'get', PathList.cardamount, _data, (response) => {
+        this.payCardAmount =response.data.amount.payCardAmount;
+        });
     },
     numberOne: function(){
       this.amount = 30;
@@ -368,6 +368,9 @@ var vuePractice = new Vue({
     SZXJ.http(this,'get', PathList.cardamount, _data, (response) => {
          this.payCardAmount =response.data.amount.payCardAmount;
       });
+    },
+    rewardShowFn:function(){
+      this.popup = false;
     },
   },
   ready: function() {

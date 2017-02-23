@@ -159,9 +159,8 @@
 </div>
 <div class="CommentArea"  v-for="obj in findCommentAndReply.comment">
   <div class="text_user clear">
-    <a href="javascript:;"><img src="../img/sss8.jpg" @load="szxj.loadImg(obj.userHead ? path.rootPath + obj.userHead: '', $event)"/ >
-<!--         <span v-if="obj.sex == '男生'" class="attention-name-sex-Tow"><img src="../../img/sex_001.png" alt="" /></span><span v-if="obj.sex == '女生'" class="attention-name-sex-Tow"><img src="../../img/sex_002.png" alt="" /></span>
--->    </a>
+    <a href="javascript:;"><img class="text_user_img" src="../img/sss8.jpg" @load="szxj.loadImg(obj.userHead ? path.rootPath + obj.userHead: '', $event)"/ >
+    </a>
     <ul class="mes_head">
       <li class="mes_head_user" >
         
@@ -417,6 +416,7 @@
 	style="position: fixed;top: 35%;bottom: 0px;left: 0px;right: 0px; ">
 	<div class="reward" >
 	  <span class="reward_head">这本书超赞，我要打赏它ლ(°◕‵ƹ′◕ლ)</span>
+	  <img src="../img/false_03.png" @click="rewardShowFn"/>
 		<div class="reward_Num">
 			<label>选择打赏的数量：</label>		
 			<ul>	

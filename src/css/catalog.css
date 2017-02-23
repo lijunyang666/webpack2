@@ -32,7 +32,7 @@
 		position: absolute;
 		top: 30px;
 		left: 15px;
-		padding-top:20px;
+		margin-top:20px;
 		border-radius: 4px;
 	}
 	.text {
@@ -479,7 +479,7 @@
 	}
 		.index .text_brief {
 			width: 555px;
-			height: 91px;
+			height: 111px;
 			border-bottom: 1px dashed #E1E1E1;
 			margin-top: 10px;
 		}	
@@ -489,7 +489,7 @@
 		    display: -webkit-box;
 		    -webkit-line-clamp: 5;
 		    -webkit-box-orient: vertical;
-		    height: 83px;
+		    height: 103px;
 		    font-size: 12px;
 		    line-height: 1.4;
 		    color: #666;
@@ -613,7 +613,7 @@
 			width: 770px;
 			min-height: 775px;
 			border: 1px solid #dddddd;
-			margin: 10px 0 0 15px;
+			margin: 25px 0 0 15px;
 			border-radius: 8px;
 		}
 		.index .text_Catalog ul {
@@ -990,11 +990,11 @@
 		 	position: relative;
 		 }
 
-		 .index .text_user img {
-		 	position: relative;
-		 	top: 5px;
-		 left: 15px;
-		     width: 54px;
+.text_user_img {
+		position: relative;
+		top: 5px;
+		left: 15px;
+		width: 54px;
     height: 54px;
     border-radius: 32px;
 		 }
@@ -1271,13 +1271,19 @@
 			outline: 0;
 			margin: 0 auto;
 		}
+		.reward img{
+		  position: absolute;
+		  right: 20px;
+		  top: 20px;
+		  cursor: pointer;
+		}
 		.reward .reward_Num {
 			width: 538px;
 			height: 200px;
       border: 1px dashed #DADADA;
 			border-radius: 4px;
 			margin: 0 auto;
-
+		
 		}
     .reward_Num label{
       margin-top: 15px;
