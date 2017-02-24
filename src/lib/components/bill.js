@@ -150,12 +150,12 @@ var bill = Vue.extend({
          this.$set('registration', 0);         
          this.$set('isTrueOrFalse',false);
            var _data={};
-           if(this.realName == ''){
+           if(this.realName == null || this.name !=='' ){
              _data.realName = this.name;
            }else{
              _data.realName = this.realName;
            };
-           if(this.alipayAccount == ''){
+           if(this.alipayAccount == '' || this.aliAccount !== ''){
              _data.alipayAccount = this.aliAccount;
            }else{
              _data.alipayAccount = this.alipayAccount;
@@ -191,10 +191,10 @@ var bill = Vue.extend({
          this.$set('amount', 100);
        },
 		   isTrueOrFalseFn:function(){
-		     if(this.alipayAccount === ''){
+		     if(this.alipayAccount == null || this.aliAccount !== '' ){
              if(this.againNumber !== this.aliAccount ){
                       var Utils = this.$refs.vueAlert ? this.$refs.vueAlert : this.$parent.$refs.vueAlert;
-                      Utils.setMessage(true, '两次支付宝账号不正确');
+                      Utils.setMessage(true, '两次支付宝账号不正确'); 
                       return;
                  } else if(this.inputCode == ''){
                    var Utils = this.$refs.vueAlert ? this.$refs.vueAlert : this.$parent.$refs.vueAlert;
