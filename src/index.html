@@ -56,10 +56,10 @@
     <div class="details"> 
      <figure v-for="obj in theHotList"> 
       <div class="display"> 
-       <a :href="path.TemprootPath + '/view/catalog.html?bookId=' + obj.bookId"> 
+       <a target="_blank" :href="path.TemprootPath + '/view/catalog.html?bookId=' + obj.bookId"> 
          <img src="img/z-imgBj.jpg" @load="szxj.loadImg(obj.bookCoverImage ? path.rootPath + obj.bookCoverImage: '', $event)" class="details_img bookImg_L" />
        </a> 
-       <a :href="path.TemprootPath + '/view/catalog.html?bookId=' + obj.bookId"> 
+       <a target="_blank" :href="path.TemprootPath + '/view/catalog.html?bookId=' + obj.bookId"> 
         <div class="hide"> 
          <img :src="obj.userHead ? path.rootPath + obj.userHead:''" class="imgHeadPortrait" /> 
          <label>{{ obj.author }}</label> 
@@ -73,7 +73,7 @@
        </a> 
       </div> 
       <figcaption> 
-       <a :href="path.TemprootPath + '/view/catalog.html?bookId=' + obj.bookId" title="{{obj.bookName}}">{{ obj.bookName }}</a>
+       <a target="_blank" :href="path.TemprootPath + '/view/catalog.html?bookId=' + obj.bookId" title="{{obj.bookName}}">{{ obj.bookName }}</a>
       </figcaption> 
      </figure> 
     </div> 
@@ -91,7 +91,7 @@
       <div class="main_picture"> 
         <figure v-for="obj in indexList.allBook" v-if="$index < 4" @mouseover="setMouseOut($index, $event)">
           
-           <a class="display" :href="path.TemprootPath + '/view/catalog.html?bookId=' + obj.bookId"> 
+           <a class="display" target="_blank" :href="path.TemprootPath + '/view/catalog.html?bookId=' + obj.bookId"> 
              <img src="img/z-imgBj.jpg" @load="szxj.loadImg(obj.bookCoverImage ? path.rootPath + obj.bookCoverImage: '', $event)" class="details_img bookImg_S" /> 
              <div class="Small"> 
                   <img :src="obj.userHead ? path.rootPath + obj.userHead:''" class="imgHeadPortrait" /> 
@@ -106,7 +106,7 @@
            </a>
         
           <figcaption>
-           <a :href="path.TemprootPath + '/view/catalog.html?bookId=' + obj.bookId" title="{{ obj.bookName }}">{{ obj.bookName }}</a> 
+           <a target="_blank" :href="path.TemprootPath + '/view/catalog.html?bookId=' + obj.bookId" title="{{ obj.bookName }}">{{ obj.bookName }}</a> 
           </figcaption> 
         </figure> 
       </div>
@@ -116,7 +116,7 @@
        <figure v-for="obj in indexList.allBook" v-if="$index >= 4"  @mouseover="setMouseOut($index, $event)"> 
         <div class="display"> 
          <a href="javascript:;"><img src="img/z-imgBj.jpg" @load="szxj.loadImg(obj.bookCoverImage ? path.rootPath + obj.bookCoverImage: '', $event)" class="details_img bookImg_S" /></a> 
-         <a :href="path.TemprootPath + '/view/catalog.html?bookId=' + obj.bookId"> 
+         <a target="_blank" :href="path.TemprootPath + '/view/catalog.html?bookId=' + obj.bookId"> 
          <div class="Small"> 
           <img :src="obj.userHead ? path.rootPath + obj.userHead:''" class="imgHeadPortrait" /> 
           <label>{{ obj.author }}</label> 
@@ -130,7 +130,7 @@
          </a>
         </div> 
         <figcaption>
-         <a :href="path.TemprootPath + '/view/catalog.html?bookId=' + obj.bookId" title="{{ obj.bookName }}">{{ obj.bookName }}</a> 
+         <a target="_blank" :href="path.TemprootPath + '/view/catalog.html?bookId=' + obj.bookId" title="{{ obj.bookName }}">{{ obj.bookName }}</a> 
         </figcaption> 
        </figure> 
       
@@ -140,7 +140,7 @@
         <img :src="indexList.allBook[newBookimg].bookCoverImage ? path.rootPath + indexList.allBook[newBookimg].bookCoverImage : ''"  class="main_img bookImg_X" />
       </a>
       <p v-if="indexList.allBook && indexList.allBook.length > 0" class="main_p" title="{{ indexList.allBook[newBookimg].bookName }}">
-        <a :href="path.TemprootPath + '/view/catalog.html?bookId=' + indexList.allBook[newBookimg].bookId">
+        <a target="_blank" :href="path.TemprootPath + '/view/catalog.html?bookId=' + indexList.allBook[newBookimg].bookId">
           {{ indexList.allBook[newBookimg].bookName }}
         </a>  
       </p>
@@ -157,13 +157,13 @@
 </div> 
 <div class="sidebar_content"> 
   <div class="sidebar_con" v-for="obj in indexList.weekBookByBookCopperCoins" v-if="$index < 3"> 
-    <a :href="path.TemprootPath + '/view/catalog.html?bookId=' + indexList.weekBookByBookCopperCoins[$index].bookId">
+    <a target="_blank" :href="path.TemprootPath + '/view/catalog.html?bookId=' + indexList.weekBookByBookCopperCoins[$index].bookId">
       <img src="img/z-imgBj.jpg" @load="szxj.loadImg(obj.bookCoverImage ? path.rootPath + obj.bookCoverImage: '', $event)" class="bookImg_Sl" />
     </a> 
     <img :src="'img/sss' + (25 + $index) + '.png'" class="sidebar_img" />
     <ul> 
       <li class="sidebar_name" title="{{ indexList.weekBookByBookCopperCoins[$index].bookName }}">
-        <a :href="path.TemprootPath + '/view/catalog.html?bookId=' + indexList.weekBookByBookCopperCoins[$index].bookId">
+        <a target="_blank" :href="path.TemprootPath + '/view/catalog.html?bookId=' + indexList.weekBookByBookCopperCoins[$index].bookId">
           {{ indexList.weekBookByBookCopperCoins[$index].bookName }}
         </a>
       </li> 
@@ -181,7 +181,7 @@
     <ul> 
       <li><span class="span">{{ $index + 1 }}</span></li> 
       <li class="sidebar_tit" title="{{ obj.bookName }}" >
-        <a :href="path.TemprootPath + '/view/catalog.html?bookId=' + obj.bookId">{{ obj.bookName }}</a>
+        <a target="_blank" :href="path.TemprootPath + '/view/catalog.html?bookId=' + obj.bookId">{{ obj.bookName }}</a>
         
       </li>
       <li class="sidebar_li">
@@ -213,7 +213,7 @@
        <figure v-for="obj in indexList.newBookRecom" v-if="$index < 4" @mouseover="setMouseOutTwo($index, $event)"> 
         <div class="display"> 
          <a href="javascript:;"><img src="img/z-imgBj.jpg" @load="szxj.loadImg(obj.bookCoverImage ? path.rootPath + obj.bookCoverImage: '', $event)" class="details_img bookImg_S" /></a> 
-         <a :href="path.TemprootPath + '/view/catalog.html?bookId=' + obj.bookId"> 
+         <a target="_blank" :href="path.TemprootPath + '/view/catalog.html?bookId=' + obj.bookId"> 
          <div class="Small"> 
           <img :src="obj.userHead ? path.rootPath + obj.userHead:''" class="imgHeadPortrait" /> 
           <label>{{ obj.author }}</label> 
@@ -227,7 +227,7 @@
          </a>
         </div> 
         <figcaption>
-         <a :href="path.TemprootPath + '/view/catalog.html?bookId=' + obj.bookId">{{ obj.bookName }}</a> 
+         <a target="_blank" :href="path.TemprootPath + '/view/catalog.html?bookId=' + obj.bookId">{{ obj.bookName }}</a> 
         </figcaption> 
        </figure> 
 
@@ -238,7 +238,7 @@
        <figure v-for="obj in indexList.newBookRecom" v-if="$index >= 4" @mouseover="setMouseOutTwo($index, $event)"> 
         <div class="display"> 
          <a href="javascript:;"><img src="img/z-imgBj.jpg" @load="szxj.loadImg(obj.bookCoverImage ? path.rootPath + obj.bookCoverImage: '', $event)" class="details_img bookImg_S" /></a> 
-         <a :href="path.TemprootPath + '/view/catalog.html?bookId=' + obj.bookId"> 
+         <a target="_blank" :href="path.TemprootPath + '/view/catalog.html?bookId=' + obj.bookId"> 
          <div class="Small"> 
           <img :src="obj.userHead ? path.rootPath + obj.userHead:''" class="imgHeadPortrait" /> 
           <label>{{ obj.author }}</label> 
@@ -252,7 +252,7 @@
          </a>
         </div> 
         <figcaption>
-         <a :href="path.TemprootPath + '/view/catalog.html?bookId=' + obj.bookId">{{ obj.bookName }}</a> 
+         <a target="_blank" :href="path.TemprootPath + '/view/catalog.html?bookId=' + obj.bookId">{{ obj.bookName }}</a> 
         </figcaption> 
        </figure>
       </div> 
@@ -260,7 +260,7 @@
         <img :src="indexList.newBookRecom[newBookimg1].bookCoverImage ? path.rootPath + indexList.newBookRecom[newBookimg1].bookCoverImage:''" class="secon_img bookImg_X" />
       </a>
       <p v-if="indexList.newBookRecom && indexList.newBookRecom.length > 0" class="secon_p" title="{{ indexList.newBookRecom[newBookimg1].bookName }}">
-        <a :href="path.TemprootPath + '/view/catalog.html?bookId=' + indexList.newBookRecom[newBookimg1].bookId">
+        <a target="_blank" :href="path.TemprootPath + '/view/catalog.html?bookId=' + indexList.newBookRecom[newBookimg1].bookId">
           {{ indexList.newBookRecom[newBookimg1].bookName }}
         </a>  
       </p> 
@@ -278,13 +278,13 @@
   </div> 
   <div class="Side_content"> 
     <div class="Side_con" v-for="obj in indexList.weekBookByBookHit" v-if="$index < 3"> 
-      <a :href="path.TemprootPath + '/view/catalog.html?bookId=' + indexList.weekBookByBookHit[$index].bookId">
+      <a target="_blank" :href="path.TemprootPath + '/view/catalog.html?bookId=' + indexList.weekBookByBookHit[$index].bookId">
         <img src="img/z-imgBj.jpg" @load="szxj.loadImg(obj.bookCoverImage ? path.rootPath + obj.bookCoverImage: '', $event)" class="bookImg_Sl"/>
         <img :src="'img/sss' + (25 + $index) + '.png'" class="sidebar_img" />
       </a> 
       <ul> 
         <li class="Side_name" title="{{indexList.weekBookByBookHit[$index].bookName}}">
-          <a :href="path.TemprootPath + '/view/catalog.html?bookId=' + indexList.weekBookByBookHit[$index].bookId">
+          <a target="_blank" :href="path.TemprootPath + '/view/catalog.html?bookId=' + indexList.weekBookByBookHit[$index].bookId">
             {{ indexList.weekBookByBookHit[$index].bookName }}
             
           </a>
@@ -304,7 +304,7 @@
       <div class="Side_cont_block">
        {{$index + 1}}
       </div> 
-      <a :href="path.TemprootPath + '/view/catalog.html?bookId=' + obj.bookId">{{ obj.bookName}}</a>
+      <a target="_blank" :href="path.TemprootPath + '/view/catalog.html?bookId=' + obj.bookId">{{ obj.bookName}}</a>
       <div style="width: 120px;float: right;text-align: end;padding-right: 23px;">
         <li v-if="rankingList.clickSize === 0">{{obj.everyWeekHit}}</li>
         <li v-if="rankingList.clickSize === 1">{{obj.everyMonthHit}}</li>
@@ -341,7 +341,7 @@
        <ul v-for="obj in indexList.lastUpdate"> 
         <li class="content_classi">[精品作品]</li> 
         <li class="content_classi_li">
-          <a :href="path.TemprootPath + '/view/catalog.html?bookId=' + obj.bookId" title="{{ obj.bookName +':'+ obj.contentTitle }}">
+          <a target="_blank" :href="path.TemprootPath + '/view/catalog.html?bookId=' + obj.bookId" title="{{ obj.bookName +':'+ obj.contentTitle }}">
             &nbsp;&nbsp;<span class="content_classi_span" >{{ obj.bookName }}</span>&nbsp;
             <span class="content_classi_NewSpan">最新章节:{{ obj.contentTitle }}</span>
           </a>
@@ -365,13 +365,13 @@
   <div class="Word_content">
     
     <div class="Word_con" v-for="obj in indexList.weekBookByBookWordCount" v-if="$index < 3"> 
-      <a :href="path.TemprootPath + '/view/catalog.html?bookId=' + indexList.weekBookByBookWordCount[$index].bookId">
+      <a target="_blank" :href="path.TemprootPath + '/view/catalog.html?bookId=' + indexList.weekBookByBookWordCount[$index].bookId">
         <img src="img/z-imgBj.jpg" @load="szxj.loadImg(obj.bookCoverImage ? path.rootPath + obj.bookCoverImage: '', $event)" class="bookImg_Sl"/>
         <img :src="'img/sss' + (25 + $index) + '.png'" class="sidebar_img" />
       </a> 
       <ul> 
         <li class="Word_name" title="{{indexList.weekBookByBookWordCount[$index].bookName}}">
-          <a :href="path.TemprootPath + '/view/catalog.html?bookId=' + indexList.weekBookByBookWordCount[$index].bookId">
+          <a target="_blank" :href="path.TemprootPath + '/view/catalog.html?bookId=' + indexList.weekBookByBookWordCount[$index].bookId">
             {{ indexList.weekBookByBookWordCount[$index].bookName }}
             
           </a>
@@ -390,7 +390,7 @@
       <div class="Word_cont_block">
        {{ $index + 1 }}
       </div> 
-      <a :href="path.TemprootPath + '/view/catalog.html?bookId=' + obj.bookId">{{obj.bookName}}</a>
+      <a target="_blank" :href="path.TemprootPath + '/view/catalog.html?bookId=' + obj.bookId">{{obj.bookName}}</a>
       <div style="width: 120px;float: right;color: black;text-align: end;padding-right: 45px;">
           <span v-if="rankingList.fontSize === 0">{{indexList.weekBookByBookWordCount[$index].everyWeekWordCount}}字</span>
           <span v-if="rankingList.fontSize === 1">{{indexList.weekBookByBookWordCount[$index].everyMonthWordCount}}字</span>
