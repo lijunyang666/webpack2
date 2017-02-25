@@ -77,8 +77,9 @@
   right: 117px;
   box-shadow: 1px 1px 5px rgba(0,0,0,0.3);  
   border-radius: 3px 3px 6px 6px;
-  display: none;
-
+  pointer-events: none;
+  opacity: 0;
+  
 }
 .emil_message {
    position: absolute;
@@ -127,8 +128,10 @@
 }
 .qcacg-header-parent .qcacg-header .liBlock:hover .headers_display {
   display: block;
-
-  
+  opacity: 100;
+  transition: all 0.35s ease;
+  -webkit-transition: all 0.35s ease;
+  pointer-events: all;
 }
 .qcacg-header-parent .qcacg-header .nav-right .headers_display a{
   cursor: pointer;
@@ -282,9 +285,10 @@
   background-color: white;
   box-shadow: 1px 1px 5px rgba(0,0,0,0.3);
   font-size: 12px;
-  display: none;
+  opacity: 0;
   cursor: pointer;
   height: 160px;
+  pointer-events: none;
 }
 .li_msg_ul .li_msg_li {
   height: 40px;
@@ -301,14 +305,16 @@
   color: #00A1D6;
   transition: all 0.3s ease;
   -webkit-transition: all 0.3s ease;
+  
 }
 .ul_msg:hover .li_msg_ul {
-  display: block;
+  opacity: 100;
   transition: all 0.35s ease;
   -webkit-transition: all 0.35s ease;
   position: relative;
   top: -3px;
   left: -18px;
+  pointer-events: all;
 }
 .mag_number_small {
   position: absolute;

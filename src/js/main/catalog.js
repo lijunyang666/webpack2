@@ -59,7 +59,7 @@ var vuePractice = new Vue({
         pageSize: 5,
     },
     sex:'',
-    payCardAmount:'',
+    payCardAmount:0,
     numb:0,
     amount:0,
   },
@@ -363,7 +363,11 @@ var vuePractice = new Vue({
      _data.amount = this.amount;
      _data.bookId = this.bookId;
       SZXJ.http(this,'get', PathList.cardgive, _data, (response) => {
-       
+              if(response.data.code == 200){
+                var Utils = this.$refs.vueAlert ? this.$refs.vueAlert : this.$parent.$refs.vueAlert;
+                Utils.setMessage(false, '打赏成功');
+                return;
+              }
         });
     SZXJ.http(this,'get', PathList.cardamount, _data, (response) => {
          this.payCardAmount =response.data.amount.payCardAmount;
