@@ -27,7 +27,7 @@ var system = Vue.extend({
             pageNo: 1,
             pageSize: 10,
           },
-          page: [],
+          page: [1],
           obj: {
             p: 1, // 页码
             n: 10,
@@ -63,7 +63,7 @@ var system = Vue.extend({
           this.page = [];
           for (var i = 0; i < obj.pageCount; i++) {
             this.page.push(i+1);
-          }
+          } 
           this.$set('obj', obj);
         },
         setPage: function(v) {
@@ -75,8 +75,9 @@ var system = Vue.extend({
           this.$set('RequestObj', obj);
           this.getValueFn(); // 请求
         },
-        getValueFn: function() {         
-          SZXJ.http(this,'get', PathList.queryMsg, this.RequestObj , (response) => {
+        getValueFn: function() {     
+          var _data = this.RequestObj;
+          SZXJ.http(this,'get', PathList.queryMsg, _data , (response) => {
             this.$set('bookList', response.data);
             this.setPageCount(response.data.totalPage);
             console.log(this.bookList);

@@ -71,8 +71,7 @@ var App = Vue.extend({
       var _data = {};
       SZXJ.http(this,'get', PathList.cardsign, {}, (response) => {
       });
-      SZXJ.http(this,'get', PathList.getStatus, {}, (response) => {
-      });
+      this.$set('sign', true);
     },
     setShowFlagFn: function() {
       const href = window.location.href;

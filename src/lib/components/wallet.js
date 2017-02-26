@@ -20,13 +20,12 @@ var wallet = Vue.extend({
           givenPayCardAmount:'',
           payCardAmount:'',
           pageSize:10,
-      
           list:[],
           RequestObj:{
             pageNum: 1,
             pageSize: 10,
           },
-          page: [],
+          page: [1],
           obj: {
             p: 1, // 页码
             n: 10,

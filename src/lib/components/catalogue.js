@@ -33,7 +33,7 @@ import PathList from '../../lib/apis/conf.js';
       +'<p @click="contentDelete(bookObj.contentId)"><img src="../img/to_right.jpg"/> 删除章节</p>'
       +'<p @click="updateContentFn(bookObj.contentId,bookObj.volumeId)"><img src="../img/to_right.jpg" /> 重命名</p>'
       +'</div></div><span class="span" uid="{{bookObj.volumeId}}"  uid2="{{bookObj.contentId}}" v-link="{path: \'/chapter_edit/\' + bookObj.volumeId + \'_\' +  bookObj.contentId }">{{bookObj.contentTitle}}</span></div><div class="line"><div class="lineIcon"><img src="../img/create_icon.jpg" />              </div>              <span class="span" uid="{{obj.volumeId}}" v-link="{ path: \'/chapter/\' + obj.volumeId }">创建新章节</span></div></div></div></div><div class="chapter_handle"><div class="handle_right"><div><span  v-on:click="newBookChapterFn">新增卷</span>'
-     +'<span v-if="bookReviewStatus === \'已审核\' || bookIsSign == \'0\' "  v-on:click="signingFn"  >申请签约</span>'
+     +'<span v-if="bookReviewStatus == \'已审核\' && bookIsSign == \'0\' "  v-on:click="signingFn"  >申请签约</span>'
      +'<span v-else  v-on:click="SubmitAuditFn">提交审核</span>'
       
       +'<a style="dispaly:none;" :href="path.TemprootPath + \'/view/user_info.html#!/bookBlockList\'"><span>返回</span></a>'

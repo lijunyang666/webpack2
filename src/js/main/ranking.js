@@ -19,7 +19,7 @@ var indexHtml = new Vue({
     result:[],  
     bookInfo: [],
     // 分页
-    page: [],
+    page: [1],
         RequestObj: {
           rankList: 0, // 好人 字数 点击
           timeRank: 0, // 周 月 总
