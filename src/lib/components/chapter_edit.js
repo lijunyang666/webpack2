@@ -23,8 +23,7 @@ import PathList from '../../lib/apis/conf.js';
 			const href = window.location.href;
         const str = href.substring(href.lastIndexOf('/') + 1, href.length);
         this.volumeId = str.substring(0, str.indexOf('_'));
-        this.contentId = str.substring(str.indexOf('_') + 1, str.length);
-        
+        this.contentId = str.substring(str.indexOf('_') + 1, str.length);        
         this.getBookListFn();
       } 
     },

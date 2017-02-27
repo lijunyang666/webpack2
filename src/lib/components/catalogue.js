@@ -8,7 +8,7 @@ import PathList from '../../lib/apis/conf.js';
       +'<ul class="nav"><li v-link="{path: \'/bookBlockList\'}"><span class="circular"></span><span class="title_name">轻小说</span></li><li v-if="showFlag === 999"><span class="circular"></span><span class="title_name">画集</span></li><li v-link="{path: \'/works_update/\' + id}"><span class="circular"></span><span class="title_name">修改信息</span></li></ul>'
       +'<div class="content"><div class="catalogue"><div class="catalogue_header"><span>作品目录</span><span>catalogue</span><span class="content_bookTitle"><a :href="path.TemprootPath + \'/view/catalog.html?bookId=\' + bookCustom.bookId">>><b>{{bookCustom.bookName}}</b></a></span></div>'
       +'<div class="newBookChapter" v-if="newBookChapter"><div class="clearX" v-on:click="newBookChapterClearFn">x</div><h4 class="newBookTitle">请输入卷的标题</h4><div><input type="text" class="inputText" placeholder="第一卷" v-model="volume" /></div><div class="hr"></div><a href="javascript:;" class="btn-addBookChapter" v-on:click="submitVolumeFn">提交</a></div>'
-      +'<div  class="SubmitAudit" v-if="SubmitAudit"><div class="clearX" v-on:click="SubmitAuditClearFn">x</div><h4 class="newBookTitle">提交审核</h4><div><textarea type="text"  class="inputTextTow" placeholder="我想对编辑说(选填)" v-model="SubmitAuditvolume" /></textarea></div><div class="hr"></div><a :href="path.TemprootPath + \'/view/user_info.html#!/bookBlockList\'" class="btn-addBookChapter" v-on:click="SetSubmitAudit">提交</a></div>'
+      +'<div  class="SubmitAudit" v-if="SubmitAudit"><div class="clearX" v-on:click="SubmitAuditClearFn">x</div><h4 class="newBookTitle">提交审核</h4><div><textarea type="text"  class="inputTextTow" placeholder="我想对编辑说(选填)" v-model="SubmitAuditvolume" /></textarea></div><div class="hr"></div><a class="btn-addBookChapter" v-on:click="SetSubmitAudit">提交</a></div>'
       
       +'<div class="newBookChapter" v-if="updateBookChapter"><div class="clearX" v-on:click="updateVolumeFn">x</div><h4 class="newBookTitle">修改卷的标题</h4><div><input type="text" class="inputText" placeholder="修改卷名称" v-model="updateBookChapterName" /></div><div class="hr"></div><a href="javascript:;" class="btn-addBookChapter" v-on:click="updateVolumeNameFn">提交</a></div>'
       
@@ -190,7 +190,12 @@ import PathList from '../../lib/apis/conf.js';
           _data.address = this.address;
           _data.message = this.message;
           SZXJ.http(this,'post', PathList.userUpdateBookSign, _data, (response) => {
-          
+              if(response.data.code == 200){
+              var Utils = this.$refs.vueAlert ? this.$refs.vueAlert : this.$parent.$refs.vueAlert;
+                      Utils.setMessage(false, '申请成功');
+                      window.location.href = PathList.TemprootPath + '/view/user_info.html#!/bookBlockList'; 
+                      return;
+            }  
           });
         },
         SubmitAuditvolumeLFn(){
@@ -274,10 +279,16 @@ import PathList from '../../lib/apis/conf.js';
           var _data = {};
           _data.bookId = parseInt(this.id, 10);
           _data.message = this.SubmitAuditvolume;
-          SZXJ.http(this,'post', PathList.userUpdateBookStatus, _data, 
-            (response) => {
-              this.$set('SubmitAudit', false);
+          SZXJ.http(this,'post', PathList.userUpdateBookStatus, _data, (response) => {
+              this.$set('SubmitAudit', false);             
               this.getBookListFn();
+              if(response.data.code !== '200' ){
+                 var Utils = this.$refs.vueAlert ? this.$refs.vueAlert : this.$parent.$refs.vueAlert;
+                      Utils.setMessage(true, '提交失败');
+                      return;
+                  }else{
+                    window.location.href = PathList.TemprootPath + '/view/user_info.html#!/bookBlockList';
+                  }
             });
         },
       }
