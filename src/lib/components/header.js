@@ -48,8 +48,12 @@ var header = Vue.extend({
     },
     backLoginFn: function() {
       this.loginFlag = false;
-      localStorage.removeItem('JSESSIONID');
+    
       window.location.reload();
+      var _data = {};
+      SZXJ.http(this,'get', PathList.logout, {}, (response) => {
+       });
+       localStorage.removeItem('JSESSIONID');
       // window.location.href = this.path.TemprootPath + '/index.html';
     },
     setHref(v) {
