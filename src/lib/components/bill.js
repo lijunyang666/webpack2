@@ -95,7 +95,7 @@ var bill = Vue.extend({
        WithdrawalsFn:function(){
           this.$set('WithdrawalsFlag', false);
           var _data= {};
-          _data.doubleamount = this.doubleamount;
+          _data.cashAmount = this.doubleamount;
           _data.cardAmount = this.cardAmount;
           SZXJ.http(this,'get', PathList.withdrawals, _data, (response) => { 
           });
