@@ -15,6 +15,7 @@ import PathList from '../../lib/apis/conf.js';
     		id: -1,
     		contentId: -1,
     		fontSize: 0,
+    		volumeTowId:'',
     	}
     }
     ,route: { 
@@ -23,6 +24,7 @@ import PathList from '../../lib/apis/conf.js';
         const str = href.substring(href.lastIndexOf('/') + 1, href.length);
         this.volumeId = str.substring(0, str.indexOf('_'));
         this.contentId = str.substring(str.indexOf('_') + 1, str.length);
+        
         this.getBookListFn();
       } 
     },
@@ -36,7 +38,7 @@ import PathList from '../../lib/apis/conf.js';
                   formatText: this.editor.$txt.formatText(),      //文本格式化内容
                     content: this.editor.$txt.html(),      //文本html内容
                     contentTitle: this.contentTitle,    // 内容名称
-                    volumeId: this.volumeId, // 卷id
+                    volumeId: this.volumeTowId, // 卷id
                     contentId: this.contentId,
               };
                SZXJ.http(this,'post', PathList.saveOrUpdateContent, _data, (response) => {
@@ -50,6 +52,7 @@ import PathList from '../../lib/apis/conf.js';
                 };
                 SZXJ.http(this,'get', PathList.ContentfindContent, _data, (response) => {
             	this.contentTitle = response.data.contentTitle;
+            	this.volumeTowId = response.data.volumeId;
             	this.editor.$txt.html(response.data.content);
           	  });
         },

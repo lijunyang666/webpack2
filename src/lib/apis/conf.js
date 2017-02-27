@@ -129,8 +129,8 @@ PathList.cardsign = PathList.rootPath + '/card/sign.shtml';
 PathList.detail_21 = PathList.rootPath + '/log/detailForCash.shtml';
 // 退出登录
 PathList.logout = PathList.rootPath + '/logout.shtml';
-
-
+// 回复签约 
+PathList.userRegainBookSign = PathList.rootPath + '/book//userRegainBookSign.shtml';
 
 
 export default PathList;

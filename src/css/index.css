@@ -552,7 +552,7 @@
 	    display: -webkit-box;
 	    -webkit-line-clamp: 2;
 	    -webkit-box-orient: vertical;
-	    height: 45px;
+	    height: 42px;
 	    margin-left: 6px;
 	}
 	.index .Side .Side_content .Side_con ul .Side_surname {
@@ -809,7 +809,7 @@
 	    display: -webkit-box;
 	    -webkit-line-clamp: 2;
 	    -webkit-box-orient: vertical;
-	    height: 45px;
+	    height: 42px;
 	    margin-left: 6px;
 	}
 	.index .Word .Word_content .Word_con ul .Word_surname {
