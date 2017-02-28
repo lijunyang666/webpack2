@@ -2592,7 +2592,6 @@
   margin-bottom: 10px;
 }
 
-
 .detailFn{
   margin-left:80px !important;
   width: 80px !important;
@@ -2608,4 +2607,12 @@
   padding-top: 15px;
   border-top: 1px solid #E0E0E0;
   padding-left:36px;
+}
+.isTrueShow{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.15);
 }

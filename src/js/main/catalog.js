@@ -262,6 +262,7 @@ var vuePractice = new Vue({
           This.commentId = -1;   
         },300);
       });
+      this.$set('loginFlag', false);
     },
     setAttention: function(){
       var _data = {};
@@ -338,6 +339,8 @@ var vuePractice = new Vue({
     },
     rewardFn: function(){
       this.popup = true;
+      var _data={};
+      _data.bookId = this.bookId;
      SZXJ.http(this,'get', PathList.cardamount, _data, (response) => {
         this.payCardAmount =response.data.amount.payCardAmount;
         });
@@ -358,20 +361,20 @@ var vuePractice = new Vue({
       this.amount = 500;
     },
     rewardShow: function(){
-      this.popup = false;
       var _data={};
      _data.amount = this.amount;
      _data.bookId = this.bookId;
+      SZXJ.http(this,'get', PathList.cardamount, _data, (response) => {
+         this.payCardAmount =response.data.amount.payCardAmount;
+      });
+      this.popup = false;
       SZXJ.http(this,'get', PathList.cardgive, _data, (response) => {
               if(response.data.code == 200){
                 var Utils = this.$refs.vueAlert ? this.$refs.vueAlert : this.$parent.$refs.vueAlert;
                 Utils.setMessage(false, '打赏成功');
                 return;
               }
-        });
-    SZXJ.http(this,'get', PathList.cardamount, _data, (response) => {
-         this.payCardAmount =response.data.amount.payCardAmount;
-      });
+      });    
     },
     rewardShowFn:function(){
       this.popup = false;

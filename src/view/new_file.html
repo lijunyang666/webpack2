@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<style type="text/css">
+		.Success{
+		  position: fixed;
+		  width: 1200px;
+		  height: 180px;
+		  border: 1px solid #C7C7C7;
+		  top: 30%;
+		  left: 20%;
+		  
+		}
+		.Success p{
+		  text-align: center;
+		  margin-top: 60px;
+		}
+		.Success_p{
+		  margin-top: 30px !important;
+		  color: #92C202;
+		}
+	</style>
+	<body>
+	  <div class="Success">
+	       <p id="show"></p>  
+	       <p class="Success_p">如果怕你的浏览器没反应，那你就手动关闭....</p>
+	  </div>
+	</body>
+    	<script type="text/javascript">   
+        var time=5;   //设置倒计时时间
+        function closeWindow(){   //自定义函数
+        window.setTimeout('closeWindow()',1000);  //设置的时间函数
+          if(time>0){   
+            document.getElementById("show").innerHTML="充值成功!将于 <b>"+time+"</b> 秒后关闭 ";   
+            time--;   
+          }   
+          else{   
+            window.opener=null; //关闭窗口时不出现提示窗口   
+            window.close();   //这个就是JS不带任何提示关闭窗口的代码
+          }   
+      } 
+         closeWindow();
+      </script> 
+</html>
