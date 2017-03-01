@@ -93,8 +93,8 @@ var message = Vue.extend({
           var _data = this.RequestObj;
           SZXJ.http(this,'get', PathList.findCommentAndReplyByReplyUserId, _data , (response) => { 
             console.log(response);   
-            this.$set('bookList', response.data);
-            this.setPageCount(response.data[0].totalPage);
+            this.$set('bookList', response.data.info);
+            this.setPageCount(response.data.totalPage);
           });
           SZXJ.http(this,'get', PathList.getStatus, {}, (response) => {
             this.userName = response.data.status.userName;
