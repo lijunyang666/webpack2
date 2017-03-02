@@ -50,7 +50,7 @@ var vuePractice = new Vue({
     commentAndReplyTotalCount:'',
     replyId:'',
     report:false,
-    reportTypeId:1,
+    reportTypeId:'',
     reportContent:'',   
     reportFlag:false,
     RequestObj: {
