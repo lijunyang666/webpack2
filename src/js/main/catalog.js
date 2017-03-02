@@ -208,6 +208,30 @@ var vuePractice = new Vue({
       this.report = true; 
       this.replyId = replyId;
     },
+    oneFn:function(){
+      this.$set('reportTypeId',1);
+    },
+    towFn:function(){
+      this.$set('reportTypeId',2);
+    },
+    thrFn:function(){
+      this.$set('reportTypeId',3);
+    },
+    fouFn:function(){
+      this.$set('reportTypeId',4);
+    },
+    fifFn:function(){
+      this.$set('reportTypeId',5);
+    },
+    sixFn:function(){
+      this.$set('reportTypeId',6);
+    },
+    sveFn:function(){
+      this.$set('reportTypeId',7);
+    },
+    nigFn:function(){
+      this.$set('reportTypeId',8);
+    },   
     reportDown: function(){
       this.report = false;
       var _data={
