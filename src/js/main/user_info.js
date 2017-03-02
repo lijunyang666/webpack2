@@ -72,6 +72,9 @@ var App = Vue.extend({
       SZXJ.http(this,'get', PathList.cardsign, {}, (response) => {
       });
       this.$set('sign', true);
+      var Utils = this.$refs.vueAlert ? this.$refs.vueAlert : this.$parent.$refs.vueAlert;
+           Utils.setMessage(false, '签到成功，获得10张好人卡');
+           return;
     },
     setShowFlagFn: function() {
       const href = window.location.href;

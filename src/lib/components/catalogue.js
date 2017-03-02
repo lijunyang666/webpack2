@@ -120,7 +120,7 @@ import PathList from '../../lib/apis/conf.js';
             contentTitle: this.updateBookContentChapterName, // 标题
             contentId: this.updateBookContentChapterId, // 卷 id
           };
-          SZXJ.http(this,'post', PathList.saveOrUpdateContent, _data, 
+          SZXJ.http(this,'get', PathList.saveOrUpdateContent, _data, 
             (response) => {
               this.$set('updateBookContentChapter', false);
               this.$set('updateBookContentChapterId', '');
@@ -133,18 +133,15 @@ import PathList from '../../lib/apis/conf.js';
           var _data = {};
           _data.volumeUpId = volumeUpId;
           _data.volumeDownId = volumeDownId;
-          SZXJ.http(this,'get', PathList.volumeChange, _data, 
-          (response) => {
+          SZXJ.http(this,'get', PathList.volumeChange, _data, (response) => {
             this.getBookListFn();
           });
         },
         volumeDelete(volumeId) {
           var This = this;
-          this.$parent.$refs.vueConfirm.setConfirm('是否删除卷',function(){
-            var _data = {};
+          this.$parent.$refs.vueConfirm.setConfirm('是否删除卷',function(){            
             _data.volumeId = volumeId;
-            SZXJ.http(this,'get', PathList.removeVolume, _data, 
-            (response) => {
+            SZXJ.http(this,'get', PathList.removeVolume, _data, (response) => {
               This.getBookListFn();
             });
           });
@@ -171,7 +168,7 @@ import PathList from '../../lib/apis/conf.js';
         signingTowFn(){
            var _data = {};
           _data.bookId = parseInt(this.id, 10);
-          SZXJ.http(this,'post', PathList.userRegainBookSign, _data, (response) => {
+          SZXJ.http(this,'get', PathList.userRegainBookSign, _data, (response) => {
           });
         },
         SigNingDownFn(){
@@ -228,7 +225,7 @@ import PathList from '../../lib/apis/conf.js';
           _data.bookId = parseInt(this.id, 10);
           _data.volumeName = this.updateBookChapterName;
           _data.volumeId = this.updateBookChapterId;
-          SZXJ.http(this,'post', PathList.saveOrUpdateVolume, _data, 
+          SZXJ.http(this,'get', PathList.saveOrUpdateVolume, _data, 
             (response) => {
               this.$set('updateBookChapter', false);
               this.$set('updateBookChapterId', '');
@@ -268,7 +265,7 @@ import PathList from '../../lib/apis/conf.js';
           _data.volumeName = this.volume;
           _data.volumeId = '';
           
-          SZXJ.http(this,'post', PathList.saveOrUpdateVolume, _data, 
+          SZXJ.http(this,'get', PathList.saveOrUpdateVolume, _data, 
             (response) => {
               this.$set('newBookChapter', false);
               this.volume = '';
