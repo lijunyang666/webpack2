@@ -40,7 +40,7 @@ import PathList from '../../lib/apis/conf.js';
                     volumeId: this.volumeTowId, // 卷id
                     contentId: this.contentId,
               };
-               SZXJ.http(this,'post', PathList.saveOrUpdateContent, _data, (response) => {
+               SZXJ.http(this,'get', PathList.saveOrUpdateContent, _data, (response) => {
             	 history.back();
           	  });
           },
