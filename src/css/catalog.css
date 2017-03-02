@@ -1495,3 +1495,15 @@
       background-position: center !important;
    }
    
+    .alert_one {
+      position: fixed;
+      top: 25%;
+      left: 45%;
+      display: none;
+      filter: alpha(opacity=0);
+      width:150px;
+      height:50px;
+      text-align:center;
+      color:white;
+      background-color:black;
+    }

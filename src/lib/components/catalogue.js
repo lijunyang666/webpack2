@@ -139,7 +139,8 @@ import PathList from '../../lib/apis/conf.js';
         },
         volumeDelete(volumeId) {
           var This = this;
-          this.$parent.$refs.vueConfirm.setConfirm('是否删除卷',function(){            
+          this.$parent.$refs.vueConfirm.setConfirm('是否删除卷',function(){        
+            var _data ={};
             _data.volumeId = volumeId;
             SZXJ.http(this,'get', PathList.removeVolume, _data, (response) => {
               This.getBookListFn();
