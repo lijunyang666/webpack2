@@ -37,7 +37,7 @@ import PathList from '../../lib/apis/conf.js';
             volumeId: this.id, // 卷id
             contentId: null,
           };
-    		  SZXJ.http(this,'get', PathList.saveOrUpdateContent, _data, (response) => {
+    		  SZXJ.http(this,'post', PathList.saveOrUpdateContent, _data, (response) => {
           	history.back();
         	});
         },
