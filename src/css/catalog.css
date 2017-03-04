@@ -919,10 +919,10 @@
     }
 /*上面是小翻页*/
 		.index  .text_sort {
-			width: 670px;
+			width: 662px;
 			height: 27px;
 			border-bottom: 1px solid #d9d9d9  ;
-			margin-left: 40px;
+			margin-left: 48px;
 		}
 		.index .text_sort .text_sort_ul {
 			margin-left: 10px;

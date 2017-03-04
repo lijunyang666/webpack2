@@ -24,8 +24,7 @@ var bookBlockList = Vue.extend({
         } 
       }
       ,methods: {
-        submitFn:function(){
-           
+        submitFn:function(){          
         },
         getBookListFn: function() {
           var _data = {};
