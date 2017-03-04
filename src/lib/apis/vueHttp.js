@@ -114,6 +114,7 @@ SZXJ.http = (This,_method, _url, _data, successfn, errorfn) => {
               location.href = PathList.TemprootPath + '/view/login.html';
               localStorage.removeItem('JSESSIONID');
             }
+
            });
         }
         if (errorfn) {
