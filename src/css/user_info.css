@@ -383,7 +383,7 @@
 }
 
 .contribution .bookBlockList .vertical-img .cover {
-	width: 128px;
+	width: 124px;
 	height: 174px;
 	border-radius: 6px;
 }
@@ -432,7 +432,7 @@
 }
 .catalogue .content_bookTitle{
   float: right;
-  margin-top: 15px;
+  margin-top: 0px;
   margin-right: 72px;
   font-size: 15px;
   cursor: pointer;
@@ -1465,7 +1465,7 @@
 }
 .book-navAI .book-img {
   height: 174px;
-  width: 128px;
+  width: 124px;
 	cursor: pointer;
 	border-radius: 6px;
 }
