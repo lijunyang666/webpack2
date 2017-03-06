@@ -1732,13 +1732,13 @@
 
 .pay-head {
 	font-size: 16px;
-	margin: 10px 0 15px 80px;
+	margin: 10px 0 30px 80px;
 }
 
 .pay-income {
 	width: 842px;
   height: 20px;
-	margin: 0px 0 50px 350px;
+	margin: 0px 0 50px 125px;
 }
 
 .pay-income li {
@@ -1849,6 +1849,7 @@
 }
 
 .pay-d {
+  
 	font-size: 24px;
 	margin-left: 120px;
 	margin-bottom: 15px;
@@ -1871,7 +1872,7 @@
 	font-size: 14px;
 	color: white;
 	cursor: pointer;
-	margin-left: 8px;
+
 }
 .pay-check a:visited{
   color: white;
@@ -2323,7 +2324,7 @@
 /*钱包*/
 .moneyRecharge{
   width: 500px;
-  height: 315px;
+  height: 350px;
   box-shadow: 0px 1px 8px rgba(0,0,0,0.35);
   position: fixed;
   left: 40%;
@@ -2358,7 +2359,7 @@
   height: 35px;
   border-bottom: 1px solid #DEDEDE;
   border-top: 1px solid #DEDEDE;
-  margin-bottom: 15px;
+
   font-family: '幼圆';
   padding-left: 25px;
   line-height: 35px;
@@ -2623,7 +2624,19 @@
     line-height: 30px;
     font-family: '幼圆';
     font-size: 16px;
+    font-weight: 600;
     border-bottom: 1px solid #E0E0E0;
     padding-top: 10px;
+    color:red;
   
 }
+.moneyRecharge_numberTow{
+  margin-top: 0 !important;
+  border-top: 1px solid rgba(222,222,222,0);
+    margin-bottom: 15px;
+}
+.moneyRecharge_numberTow input{
+  width: 323px !important;
+  padding-left: 273px !important;
+}
+

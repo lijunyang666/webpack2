@@ -404,6 +404,9 @@ var vuePractice = new Vue({
     rewardShowFn:function(){
       this.popup = false;
     },
+    rewardShowTowFn:function(){
+      this.report = false;
+    },
   },
   ready: function() {
     this.bodyFlag = true;

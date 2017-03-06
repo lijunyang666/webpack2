@@ -252,7 +252,7 @@ var worksUpdate = Vue.extend({
                 }
               }
               this.$set('classArr', classArr);
-              this.$set('trueClass', 0);
+              this.$set('trueClass', this.trueClass);
 
             });
         //============================================
@@ -263,10 +263,8 @@ var worksUpdate = Vue.extend({
           obj.flag = false;
           this.classArr.$set(v, obj);
           this.$set('trueClass', this.trueClass -1 );
-        } else if (this.trueClass == 0){           
-              obj.flag = false;         
         } else {
-             if (this.trueClass < 5){
+             if (this.trueClass < 4){
             var obj = this.classArr[v];
             obj.flag = true;
             this.classArr.$set(v, obj);
