@@ -6,7 +6,7 @@ PathList.TemprootPath = '';
 PathList.rootPath = '/Controller';
 //PathList.rootPath = 'http://192.168.126.40:8080';
 //PathList.rootPath = 'http://192.168.126.39:8080';
-//PathList.rootPath = 'http://121.196.194.211:8080/Controller';
+PathList.rootPath = 'http://121.196.194.211:8080/Controller';
 //PathList.rootPath = "http://127.0.0.1:7788"
 
 // 登陆的3个请求
@@ -131,6 +131,10 @@ PathList.detail_21 = PathList.rootPath + '/log/detailForCash.shtml';
 PathList.logout = PathList.rootPath + '/logout.shtml';
 // 回复签约 
 PathList.userRegainBookSign = PathList.rootPath + '/book//userRegainBookSign.shtml';
+// 历史收入
+PathList.totalIncome = PathList.rootPath + '/pay/totalIncome.shtml';
+
+
 
 
 export default PathList;

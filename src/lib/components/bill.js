@@ -13,7 +13,7 @@ var bill = Vue.extend({
       +'<div v-if="WithdrawalsFlag" class="registration registrationTow "><div class="moneyRecharge_header">提现</div> <span class="exchange_spanTow exchange_spanTowTow">可提现金额：&nbsp{{exchangeableCashAmount}}</span>   <div class="verification_div">提取金额：&nbsp<span @click="downMoneyFn" class="verification_letf">-</span><input type="text" readonly="readonly" v-model="doubleamount" /><span @click="upMoneyFn" class="verification_right">+</span></div><span class="exchange_spanTow exchange_spanTowTow amount_span">可提现好人卡数量：&nbsp{{givenPayCardAmount}}</span>   <div class="verification_div verification_divTow">提取好人卡：&nbsp<span @click="downMoneyFnTow" class="verification_letf">-</span><input type="text"  v-model="cardAmount" /><span @click="upMoneyFnTow" class="verification_right">+</span></div><div class="verification_totel">提现统计：&nbsp{{cardAmount/150 + doubleamount}}</div><div class="moneyRecharge_div"  @click="WithdrawalsFn"   >确认</div>  <div class="moneyRecharge_div" @click="WithdrawalsFnTow" >取消</div>   </div>'
       +'<div v-if="isTrueOrFalse" class="isTrueShow"><div  class="isTrueOrFalse"><div class="isTrueOrFalse_div">提示</div><span class="isTrueOrFalse_span">请注意核对账号信息是否正确，一经确认，不予撤回。是否确认？</span> <div class="moneyRecharge_div isTrueOrFalseDiv" @click="registrationisFlase"  >确认</div>  <div class="moneyRecharge_div isTrueOrFalseDiv" @click="SubmitisTrueOrFalseFn" >取消</div> </div></div>'
       +'<div v-if="isTru" class="isTrueShow"><div class="isTrueOrFalse"><div class="isTrueOrFalse_div">提示</div><span class="isTrueOrFalse_span">充值是否成功</span> <div class="moneyRecharge_div isTrueOrFalseDiv detailFn" @click="detailFn"  >充值成功</div>  <div class="moneyRecharge_div isTrueOrFalseDiv detailFn" @click="SubmitdetailFn" >遇到问题</div> </div></div>'
-      +'<div class="pay-d">￥{{exchangeableCashAmount}}</div><hr style="border: 1px solid #E1E1E1; margin:0 0 0 5%;" width="90%" /><div class="pay-head2">    历史收入</div><div class="pay-number">    ￥0.00</div>  <div class="pay-check"><a :href="path.TemprootPath + \'/view/user_info.html#!/wallet\'">查看账单</a></div> <ul class="explain">    提现说明：<li>1.提现申请成功后不可以撤回</li><li>2.提现金额最低为100元，且必须是提现金额为100的整数倍（单位人民币）</li><li>3.申请成功后，工作人员会在7个工作日内将相应的金额打入指定账户</li><li>4.提现好人卡比例为150：1。</li></ul></div>'
+      +'<div class="pay-d">￥{{exchangeableCashAmount}}</div><hr style="border: 1px solid #E1E1E1; margin:0 0 0 5%;" width="90%" /><div class="pay-head2">    历史收入</div><div class="pay-number">    ￥{{totalIncome}}</div>  <div class="pay-check"><a :href="path.TemprootPath + \'/view/user_info.html#!/wallet\'">查看账单</a></div> <ul class="explain">    提现说明：<li>1.提现申请成功后不可以撤回</li><li>2.提现金额最低为100元，且必须是提现金额为100的整数倍（单位人民币）</li><li>3.申请成功后，工作人员会在7个工作日内将相应的金额打入指定账户</li><li>4.提现好人卡比例为150：1。</li></ul></div>'
       +'</div></div></div>'
       ,
       data: function() {
@@ -47,6 +47,7 @@ var bill = Vue.extend({
         	logId:'',
         	totalCashAmount:'',
         	goodFnSev:'',
+        	totalIncome:'',
         };
       },
       route: {
@@ -289,6 +290,9 @@ var bill = Vue.extend({
           SZXJ.http(this,'get', PathList.cardamount, {}, (response) => {
             this.payCardAmount = response.data.amount.payCardAmount;
             this.givenPayCardAmount =response.data.amount.givenPayCardAmount;
+          });  
+          SZXJ.http(this,'get', PathList.totalIncome, {}, (response) => {
+            this.totalIncome = response.data;
           });  
         },
         amountYueFn:function(){

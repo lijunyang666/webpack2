@@ -62,6 +62,8 @@ var vuePractice = new Vue({
     payCardAmount:0,
     numb:0,
     amount:0,   
+    updateCycle:'',
+    bookIsSign:'',
   },
   methods: {
     setreplyFn: function (replyId){
@@ -349,6 +351,8 @@ var vuePractice = new Vue({
         this.bookCopperCoins =response.data.bookCustom.bookCopperCoins;
         this.authorName =response.data.bookCustom.userEntity.userName;
         this.autograph = response.data.bookCustom.userEntity.information;
+        this.updateCycle = response.data.bookCustom.updateCycle;
+        this.bookIsSign = response.data.bookCustom.bookIsSign;
       });
       SZXJ.http(this,'get', PathList.findUserOtherBook, _data, (response) => {
         // 取到数据渲染
