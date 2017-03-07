@@ -39,7 +39,7 @@ var updatePass = Vue.extend({
           var Utils = this.$refs.vueAlert ? this.$refs.vueAlert : this.$parent.$refs.vueAlert;
           var _data = {};
           if (this.passWord === '' || this.passWord.length < 6) {
-            Utils.setMessage(false, '新密码不允许为空并且长度大于6位');
+            Utils.setMessage(true, '新密码不允许为空并且长度大于6位');
             return;
           }
           if (this.passWordConfirm === '' || this.passWordConfirm.length < 6) {

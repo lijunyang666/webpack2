@@ -1858,7 +1858,8 @@
 .pay-number {
 	display: inline-block;
 	font-size: 24px;
-	margin: 15px 120px 0 120px;
+	margin: 15px 0px 0 120px;
+	width: 194px;
 }
 
 .pay-check {
@@ -2620,14 +2621,14 @@
 .verification_totel{
     width: 510px;
     height: 50px;
-    padding-left: 68px;
+    padding-left: 100px;
     line-height: 30px;
     font-family: '幼圆';
     font-size: 16px;
-    font-weight: 600;
+    
     border-bottom: 1px solid #E0E0E0;
     padding-top: 10px;
-    color:red;
+    color:#FA7787;
   
 }
 .moneyRecharge_numberTow{
@@ -2640,3 +2641,8 @@
   padding-left: 273px !important;
 }
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button{
+    -webkit-appearance: none !important;
+    margin: 0; 
+}
