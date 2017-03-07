@@ -911,6 +911,7 @@
 	.index  .display .details_img{
 	  height:174px;   
     width: 128px;
+    position: relative;
 	}
 	 .index .display .Small{
 	  position: absolute;
@@ -1025,20 +1026,40 @@
 	  height: 84px;
     width: 60px;
     border-radius: 4px;
+     position: relative;
 	}
 	.bookImg_S {
 	  width: 128px;
     height: 174px;
     border-radius: 4px;
+    position: relative;
 	}
 	.bookImg_L {
     width:157px;height: 236px;
     border-radius: 4px;
+     position: relative;
   }
 	.bookImg_X {
     width: 310px;
     height: 435px;
     border-radius: 4px;
+     position: relative;
+  }
+  .update{
+    width: 30px;
+    height: 21px;
+    border-radius: 4px 0px 12px 0px;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    background-color: #ffd800;
+  }
+  .update img{
+    position: absolute;
+    top: 2px;
+    left: 5px;
+    width: 16px;
+    height: 16px;
   }
   .white {
     height: 155px;

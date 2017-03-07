@@ -46,10 +46,10 @@
 	}
 	.index .update img{
     position: absolute;
-    top: 0px;
-    left: 4px;
-    width: 20px;
-    height: 20px;
+    top: 2px;
+    left: 5px;
+    width: 16px;
+    height: 16px;
 	}
 	 .index .update_tow {
     width: 30px;
@@ -62,10 +62,10 @@
   }
   .index .update_tow img{
     position: absolute;
-    top: 0px;
-    left: 4px;
-    width: 20px;
-    height: 20px;
+    top: 2px;
+    left: 5px;
+    width: 16px;
+    height: 16px;
   }
 	.text {
 		width: 565px;
@@ -554,7 +554,7 @@
 			height: 20px;
 			display: inline-block;
 			text-align: center;
-			border-radius: 6px;
+			border-radius: 16px;
 			color: #00A1D6;
 			border: 1px solid #00A1D6;
       

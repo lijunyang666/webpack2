@@ -33,6 +33,7 @@ var indexHtml = new Vue({
       bookTypeId: '',
       pageNo: 1,
       pageSize: 7,
+      bookIsSign:'',
     },
     rankingList: {
       copperCoinsList: [],
@@ -147,6 +148,7 @@ var indexHtml = new Vue({
       SZXJ.http(this,'get', PathList.getIndexData, _data, (response) => {
         this.indexList = response.data;
         this.theHotList = response.data.theHot;
+        
         console.log(this.indexList);
         var dateTime = new Date();
         this.imgFlag = dateTime.getTime();
