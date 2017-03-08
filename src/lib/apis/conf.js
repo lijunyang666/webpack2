@@ -133,8 +133,8 @@ PathList.logout = PathList.rootPath + '/logout.shtml';
 PathList.userRegainBookSign = PathList.rootPath + '/book//userRegainBookSign.shtml';
 // 历史收入
 PathList.totalIncome = PathList.rootPath + '/pay/totalIncome.shtml';
-
-
+// 记住账号
+PathList.remeber = PathList.rootPath + '/remeber.shtml';
 
 
 export default PathList;

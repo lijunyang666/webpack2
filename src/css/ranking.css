@@ -177,14 +177,25 @@
 		margin: 92px 0 0 0;
 		float: left;
 	}
-	#content .content_ranking img {
+	#content .content_ranking .img {
 		display: block;
 		margin: 10px 25px 0 0px;
 		float: left;
 		width: 90px;
 		height: 126px;
 		border-radius: 4px;
+		position: relative;
 	}
+	.updateOne{
+	  position: absolute;
+	}
+  .updateOne img{
+    position: absolute ;
+    top: 10px ;
+    left: 70px ;
+    width: 50px ;
+    height: 42px ;
+  }
 	#content .content_ranking ul {
 		width: 550px;
 		height: 111px;

@@ -21,7 +21,7 @@
 			<div class="index_Line"></div>
 			
 			<img v-for="obj in bookCustom" id="{{obj.bookCoverImage}}"  class="picture" src="../img/z-imgBj.jpg" @load="szxj.loadImg(obj.bookCoverImage ? path.rootPath + obj.bookCoverImage: '', $event)" />
-			<div v-if="bookIsSign==1" class="update"><img src="../img/yellowking_02.png" alt="" /></div>
+			<div v-if="bookIsSign==1"  class="update"><img  src="../img/sign01_03.png" alt="" /></div>
 			<!--<div class="update_tow"><img src="../img/yellowking01.png" alt="" /></div>-->
 			<div class="text">
 			  <h4>{{ title }}</h4>   
@@ -288,7 +288,7 @@
 			<a @click="setAttention()" v-else class="a_author_Tow" href="javascript:;" >已关注</a>
 		</li>
 		
-		<li v-if=" autograph == '' "><p class="span_autograph" title="{{autograph}}"><label style="color: black;">签名：</label>这个作者好任性，并没有签名</p></li>	
+		<li v-if=" autograph == null "><p class="span_autograph" title="{{autograph}}"><label style="color: black;">签名：</label>这个作者好任性，并没有签名</p></li>	
 	  <li v-else><p class="span_autograph" title="{{autograph}}"><label style="color: black;">签名：</label>{{autograph}}</p></li>
 	</ul> 
 	  

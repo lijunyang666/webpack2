@@ -12,6 +12,9 @@ var indexHtml = new Vue({
   el: '#app',
   data: {
     path: PathList,
+    remeberme:'',
+    telephone:'',
+    password:'',
   },
   methods: {
     handlerPopup: function(captchaObj) {
@@ -49,6 +52,7 @@ var indexHtml = new Vue({
               required: true,
               minlength: 11,
               number: true
+              
             },
             password: {
               required: true,
@@ -74,7 +78,7 @@ var indexHtml = new Vue({
           if (!validate) {
             //  alert('请先完成验证！');
             //  return;
-          }
+          }       
           var userEntity = new Object();
           var name = document.getElementsByName('user');
           var passworld = document.getElementsByName('password');
@@ -83,6 +87,9 @@ var indexHtml = new Vue({
           userEntity.geetest_challenge = validate.geetest_challenge;
           userEntity.geetest_validate = validate.geetest_validate;
           userEntity.geetest_seccode = validate.geetest_seccode;
+          if(document.getElementsByClassName('Login_input')[0].checked ){
+              userEntity.remeberme  = 1 ;
+          }          
           SZXJ.http(This,'post', PathList.VerifyLoginServlet, userEntity, (data) => {
             localStorage.setItem('JSESSIONID', data.data.msg);
             location.href = PathList.TemprootPath + '/view/user_info.html';
@@ -111,10 +118,29 @@ var indexHtml = new Vue({
         },
         this.handlerPopup);
       });
-    }
+    },
+    getremeber:function(){
+      SZXJ.http(this,'get', PathList.remeber, {}, (response) => {
+        console.log(response.data);
+         if(response.data == null){
+           
+         }else{
+           this.telephone =response.data.data.telephone;
+           this.password=response.data.data.password;
+         }
+          });
+        },
+    remeberFn:function(){
+      if(this.remeberme == 0){
+        this.$set('remeberme', 1);       
+      } else{
+        this.$set('remeberme', 0);
+      }     
+    },
   },
   ready: function() {
     this.getGeetestFn();
+    this.getremeber();
   },
 });
 

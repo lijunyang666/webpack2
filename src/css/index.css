@@ -1045,21 +1045,12 @@
     border-radius: 4px;
      position: relative;
   }
-  .update{
-    width: 30px;
-    height: 21px;
-    border-radius: 4px 0px 12px 0px;
+  .updateTow img{
     position: absolute;
     top: 0px;
     left: 0px;
-    background-color: #ffd800;
-  }
-  .update img{
-    position: absolute;
-    top: 2px;
-    left: 5px;
-    width: 16px;
-    height: 16px;
+    width: 50px;
+    height: 42px;
   }
   .white {
     height: 155px;

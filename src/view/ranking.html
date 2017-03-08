@@ -50,9 +50,13 @@
 	  			<li class="List_li" @click="setTimeRank(2)">总排行</li>
 	  		</ul>
 	  	</div>
-	  	<div class="content_ranking active" v-for="obj in result">
+	  	<div class="content_ranking active" v-for="obj in result">	  	  
 	  		<h1>{{ ($index + 1) + ((RequestObj.pageNo - 1) * 12) }}</h1>
-	  		<a href="javascript:;"><img src="../img/z-imgBj.jpg" @load="szxj.loadImg(obj.bookCoverImage ? path.rootPath + obj.bookCoverImage: '', $event)" @click="gotoBook(obj.bookId)"/></a>
+	  		<a href="javascript:;">
+	  		  <img class="img" src="../img/z-imgBj.jpg" @load="szxj.loadImg(obj.bookCoverImage ? path.rootPath + obj.bookCoverImage: '', $event)" @click="gotoBook(obj.bookId)"/>
+	  		  <div v-if="obj.bookIsSign ==1 " class="updateOne"><img  src="../img/sign01_03.png" alt="" /></div>
+	  		</a>
+	  		
 	  		<ul>
 	  			<li><a href="javascript:;" class="content_a" title="{{obj.bookName}}"><span @click="gotoBook(obj.bookId)">{{obj.bookName}}</span></a></li>
 	  			<li style="padding-top: 6px;">作者：{{obj.author}}</li>

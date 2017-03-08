@@ -35,38 +35,22 @@
 		margin-top:20px;
 		border-radius: 4px;
 	}
-	.index .update {
-    width: 30px;
-    height: 21px;
-    border-radius: 4px 0px 12px 0px;
+
+	.update {
+    width: 50px;
+    height: 42px;
     position: absolute;
-    top: 50px;
-    left: 15px;
-    background-color: #ffd800;
-	}
+    top: 50px !important;
+    left: 15px !important;
+    }
 	.index .update img{
     position: absolute;
-    top: 2px;
-    left: 5px;
-    width: 16px;
-    height: 16px;
+    top: 0px !important;
+    left: 0px !important;
+    width: 50px;
+    height: 42px;
 	}
-	 .index .update_tow {
-    width: 30px;
-    height: 21px;
-    border-radius: 4px 0px 12px 0px;
-    position: absolute;
-    top: 50px;
-    left: 15px;
-    background-color: #d0d8e1;
-  }
-  .index .update_tow img{
-    position: absolute;
-    top: 2px;
-    left: 5px;
-    width: 16px;
-    height: 16px;
-  }
+
 	.text {
 		width: 565px;
 		height: 260px;;

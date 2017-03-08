@@ -58,7 +58,7 @@
       <div class="display"> 
        <a target="_blank" :href="path.TemprootPath + '/view/catalog.html?bookId=' + obj.bookId"> 
          <img src="img/z-imgBj.jpg" @load="szxj.loadImg(obj.bookCoverImage ? path.rootPath + obj.bookCoverImage: '', $event)" class="details_img bookImg_L" />
-         <div v-if="obj.bookIsSign ==1 " class="update"><img src="../img/yellowking_02.png" alt="" /></div>
+         <div v-if="obj.bookIsSign ==1 " class="updateTow"><img src="../img/sign01_03.png" alt="" /></div>
        </a> 
        <a target="_blank" :href="path.TemprootPath + '/view/catalog.html?bookId=' + obj.bookId"> 
         <div class="hide"> 
@@ -94,7 +94,7 @@
           
            <a class="display" target="_blank" :href="path.TemprootPath + '/view/catalog.html?bookId=' + obj.bookId"> 
              <img src="img/z-imgBj.jpg" @load="szxj.loadImg(obj.bookCoverImage ? path.rootPath + obj.bookCoverImage: '', $event)" class="details_img bookImg_S" /> 
-             <div v-if="obj.bookIsSign ==1 " class="update"><img src="../img/yellowking_02.png" alt="" /></div>
+             <div v-if="obj.bookIsSign ==1 " class="updateTow"><img src="../img/sign01_03.png" alt="" /></div>
              <div class="Small"> 
                   <img :src="obj.userHead ? path.rootPath + obj.userHead:''" class="imgHeadPortrait" /> 
                   <label>{{ obj.author }}</label> 
@@ -118,7 +118,7 @@
        <figure v-for="obj in indexList.allBook" v-if="$index >= 4"  @mouseover="setMouseOut($index, $event)"> 
         <div class="display"> 
          <a href="javascript:;"><img src="img/z-imgBj.jpg" @load="szxj.loadImg(obj.bookCoverImage ? path.rootPath + obj.bookCoverImage: '', $event)" class="details_img bookImg_S" /></a> 
-         <div v-if="obj.bookIsSign == 1 " class="update"><img src="../img/yellowking_02.png" alt="" /></div>
+         <div v-if="obj.bookIsSign == 1 " class="updateTow"><img src="../img/sign01_03.png" alt="" /></div>
          <a target="_blank" :href="path.TemprootPath + '/view/catalog.html?bookId=' + obj.bookId"> 
          <div class="Small"> 
           <img :src="obj.userHead ? path.rootPath + obj.userHead:''" class="imgHeadPortrait" /> 
@@ -216,7 +216,7 @@
        <figure v-for="obj in indexList.newBookRecom" v-if="$index < 4" @mouseover="setMouseOutTwo($index, $event)"> 
         <div class="display"> 
          <a href="javascript:;"><img src="img/z-imgBj.jpg" @load="szxj.loadImg(obj.bookCoverImage ? path.rootPath + obj.bookCoverImage: '', $event)" class="details_img bookImg_S" /></a> 
-         <div v-if="obj.bookIsSign ==1 " class="update"><img src="../img/yellowking_02.png" alt="" /></div>
+         <div v-if="obj.bookIsSign ==1 " class="updateTow"><img src="../img/sign01_03.png" alt="" /></div>
          <a target="_blank" :href="path.TemprootPath + '/view/catalog.html?bookId=' + obj.bookId"> 
          <div class="Small"> 
           <img :src="obj.userHead ? path.rootPath + obj.userHead:''" class="imgHeadPortrait" /> 
@@ -242,7 +242,7 @@
        <figure v-for="obj in indexList.newBookRecom" v-if="$index >= 4" @mouseover="setMouseOutTwo($index, $event)"> 
         <div class="display"> 
          <a href="javascript:;"><img src="img/z-imgBj.jpg" @load="szxj.loadImg(obj.bookCoverImage ? path.rootPath + obj.bookCoverImage: '', $event)" class="details_img bookImg_S" /></a> 
-         <div v-if="obj.bookIsSign ==1 " class="update"><img src="../img/yellowking_02.png" alt="" /></div>
+         <div v-if="obj.bookIsSign ==1 " class="updateTow"><img src="../img/sign01_03.png" alt="" /></div>
          <a target="_blank" :href="path.TemprootPath + '/view/catalog.html?bookId=' + obj.bookId"> 
          <div class="Small"> 
           <img :src="obj.userHead ? path.rootPath + obj.userHead:''" class="imgHeadPortrait" /> 

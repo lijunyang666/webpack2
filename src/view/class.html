@@ -55,11 +55,13 @@
       
       <ul id="transverse" v-if="hengshuId === 2" >
       	<li class="line active" v-for="obj in bookInfo" >
+      	  
           <img class="line-img pull-left" 
           	v-if="obj.bookCoverImage" 
-          	src="../img/z-imgBj.jpg" @load="szxj.loadImg(obj.bookCoverImage ? path.rootPath + obj.bookCoverImage: '', $event)"
-          	 @click="gotoBook(obj.bookId)">
+          	src="../img/z-imgBj.jpg" @load="szxj.loadImg(obj.bookCoverImage ? path.rootPath + obj.bookCoverImage: '', $event)"          	
+          	 @click="gotoBook(obj.bookId)">          	 
           <img @click="gotoBook(obj.bookId)" v-else class="line-img pull-left">
+          <span v-if="obj.bookIsSign == 1 " class="update"><img src="../img/sign01_03.png" alt="" /></span>
           <div class="pull-left line-content">
             <p class="p" title="{{ obj.bookName }}" @click="gotoBook(obj.bookId)">{{ obj.bookName }}&nbsp;</p>
             <div class="div">
@@ -85,7 +87,9 @@
         	<ul>
         		<li v-for="temp in obj">
         			<div class="vertical-img" @click="gotoBook(temp.bookId)">
+        			 
         				<img src="../img/z-imgBj.jpg" @load="szxj.loadImg(temp.bookCoverImage ? path.rootPath + temp.bookCoverImage: '', $event)"  class="cover" />
+        				<div v-if="temp.bookIsSign == 1 " class="update"><img src="../img/sign01_03.png" alt="" /></div>
         				<div class="vertical-img-line">
         					<img :src="path.rootPath + temp.userHeadImg " />
         					<div class="vertical-Author-name vertical-hover">{{temp.author}}</div>
