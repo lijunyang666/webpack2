@@ -94,7 +94,7 @@
 </div>
 <style>
   .wangEditor-txt {
-    height: 60px !important;
+    min-height: 60px !important;
     max-height: 300px;
     margin-top: 0px !important;
     padding: 5px 10px !important;
@@ -141,7 +141,7 @@
 <div class="text_input">
 	<ul class="clearr">
 		<li class="user_head"><a href="javascript:;">
-		  <img src="../img/sss8.jpg" @load="szxj.loadImg(loginImg ? path.rootPath + loginImg: '', $event)"/></a></li>
+		  <img :src="path.rootPath + userImage " @load="szxj.loadImg(loginImg ? path.rootPath + loginImg: '', $event)"/></a></li>
 
 		<li class="user_msg" v-if="loginFlag" >
 		  <editor :id="'editor_'" v-ref:editor></editor>

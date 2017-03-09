@@ -1,3 +1,6 @@
+body{
+  -webkit-user-select:none; 
+}
 .user_info_topBJ {
 	margin: 0 auto;
 	min-width: 1200px;
@@ -2325,7 +2328,7 @@
 /*钱包*/
 .moneyRecharge{
   width: 500px;
-  height: 350px;
+  height: 335px;
   box-shadow: 0px 1px 8px rgba(0,0,0,0.35);
   position: fixed;
   left: 40%;
@@ -2360,7 +2363,7 @@
   height: 35px;
   border-bottom: 1px solid #DEDEDE;
   border-top: 1px solid #DEDEDE;
-
+  margin-bottom: 15px;
   font-family: '幼圆';
   padding-left: 25px;
   line-height: 35px;
@@ -2645,4 +2648,24 @@ input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button{
     -webkit-appearance: none !important;
     margin: 0; 
+}
+.totle_money{
+    width: 90%;
+    border-top: 1px solid #E1E1E1;
+    height: 35px;
+    text-align: center;
+    padding-left: 85px;
+    line-height: 35px;
+    margin:0 auto;
+    color: #777777;
+}
+.totle_money li{
+    float: left;
+    height: 35px;
+    width: 150px;
+}
+
+.registration_div_spanTow{
+  padding-left:48px !important;
+  font-size: 13px;
 }

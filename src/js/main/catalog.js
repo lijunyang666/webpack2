@@ -64,6 +64,7 @@ var vuePractice = new Vue({
     amount:0,   
     updateCycle:'',
     bookIsSign:'',
+    userImage:'',
   },
   methods: {
     setreplyFn: function (replyId){
@@ -364,6 +365,7 @@ var vuePractice = new Vue({
       this.getComment(_data);
       SZXJ.http(this,'get', PathList.getStatus, _data, (response) => {
          this.loginFlag = response.data.status.flag;
+         this.userImage = response.data.status.userImage;
       });
     },
     rewardFn: function(){

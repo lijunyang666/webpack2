@@ -89,7 +89,7 @@
         			<div class="vertical-img" @click="gotoBook(temp.bookId)">
         			 
         				<img src="../img/z-imgBj.jpg" @load="szxj.loadImg(temp.bookCoverImage ? path.rootPath + temp.bookCoverImage: '', $event)"  class="cover" />
-        				<div v-if="temp.bookIsSign == 1 " class="update"><img src="../img/sign01_03.png" alt="" /></div>
+        				<div v-if="temp.bookIsSign == 1 " class="update_Tow"><img src="../img/sign01_03.png" alt="" /></div>
         				<div class="vertical-img-line">
         					<img :src="path.rootPath + temp.userHeadImg " />
         					<div class="vertical-Author-name vertical-hover">{{temp.author}}</div>
