@@ -139,8 +139,8 @@
 
 </style>
 <div class="text_input">
-	<ul class="clearr">   
-		<li class="user_head"><a href="javascript:;">
+	<ul class="clearr">   	 
+		<li class="user_head"><a href="javascript:;">  
 		  <img :src="path.rootPath + userImage " @load="szxj.loadImg(loginImg ? path.rootPath + loginImg: '', $event)"/></a></li>
 
 		<li class="user_msg" v-if="loginFlag" >
@@ -163,7 +163,7 @@
   			</ul>
       
 		</ul>
-	</div>
+	</div>   
 </div>
 <div class="CommentArea"  v-for="obj in findCommentAndReply.comment">
   <div class="text_user clear">

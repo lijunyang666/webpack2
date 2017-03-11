@@ -28,7 +28,7 @@ SZXJ.getLocalTime =  function(nS) {
 }
 SZXJ.getLocalTimeTwo =  function(nS) {
   var time = new Date(nS);
-  return time.Format("yyyy-MM-dd hh:mm:ss");
+  return time.Format("yyyy-MM-dd hh:mm");
   // return new Date(parseInt(nS) * 1000).toLocaleString().substr(0,17);
 }
 SZXJ.getLocalDate =  function(nS) { 

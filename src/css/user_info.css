@@ -1737,6 +1737,16 @@ body{
 	font-size: 16px;
 	margin: 10px 0 30px 80px;
 }
+.pay-head span{
+  display: inline-block;
+}
+.pay-head span img{
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+  margin-left: 10px;
+  vertical-align: bottom;
+}
 
 .pay-income {
 	width: 842px;
@@ -1783,7 +1793,7 @@ body{
 	width: 800px;
 	margin: auto;
 	margin-bottom: 5px;
-	margin-left: 70px;
+	margin-left: 15px;
 }
 
 .pay-a li {
@@ -1795,8 +1805,9 @@ body{
 	text-align: center;
 	color: #7F7E7E;
   margin-top: 10px;
-	margin-left: 125px;
+	margin-left: 68px;
 	min-height: 450px;
+	font-size: 13px;
 }
 
 .table-a tr {
