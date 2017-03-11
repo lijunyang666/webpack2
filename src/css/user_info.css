@@ -2131,12 +2131,17 @@ body{
   margin-left: 5px;
 }
 .exchange_spanTow{
-  margin-left: 350px;
-  width: 135px;
+  margin-left: 30px;
+  width: 500px;
   display: inline-block;
   margin-top: 5px;
   margin-bottom: 10px;
   font-family: '幼圆';
+}
+.exchange_spanTow a{
+  display: inline-block;
+  width: 250px;
+  margin-left: 190px;
 }
 .exchange_spanTowTow{
     margin-left: 66px;
