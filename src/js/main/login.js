@@ -119,29 +119,10 @@ var indexHtml = new Vue({
         this.handlerPopup);
       });
     },
-    getremeber:function(){
-      SZXJ.http(this,'get', PathList.remeber, {}, (response) => {
-        console.log(response.data);
-         if(response.data == null){
-           
-         }else{
-           this.telephone =response.data.data.telephone;
-           this.password=response.data.data.password;
-           document.getElementsByClassName('Login_input')[0].setAttribute('checked','checked');
-         }
-          });
-      },
-    remeberFn:function(){
-      if(this.remeberme == 0){
-        this.$set('remeberme', 1);       
-      } else{
-        this.$set('remeberme', 0);
-      }     
-    },
+
   },
   ready: function() {
     this.getGeetestFn();
-    this.getremeber();
   },
 });
 

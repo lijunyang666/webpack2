@@ -4,15 +4,15 @@
 PathList.TemprootPath = '';
 
 PathList.rootPath = '/Controller';
-//PathList.rootPath = 'http://192.168.126.40:8080';
+PathList.rootPath = 'http://192.168.126.40:8080';
 //PathList.rootPath = 'http://192.168.126.39:8080';
 //PathList.rootPath = 'http://121.196.194.211:8080/Controller';
 //PathList.rootPath = "http://127.0.0.1:7788"
 
 // 登陆的3个请求
-PathList.VerifyLoginServlet = PathList.rootPath + '/VerifyLoginServlet.shtml';
+PathList.VerifyLoginServlet = PathList.rootPath + '/login.shtml';
 PathList.StartCaptchaServlet = PathList.rootPath + '/StartCaptchaServlet';
-PathList.login = PathList.rootPath + '/login.shtml';
+PathList.login = PathList.rootPath + '/VerifyLoginServlet.shtml';
 // 注册的2个请求
 PathList.registerTelephoneCode = PathList.rootPath + '/registerTelephoneCode.shtml';
 PathList.register = PathList.rootPath + '/register.shtml';
@@ -135,6 +135,7 @@ PathList.userRegainBookSign = PathList.rootPath + '/book//userRegainBookSign.sht
 PathList.totalIncome = PathList.rootPath + '/pay/totalIncome.shtml';
 // 记住账号
 PathList.remeber = PathList.rootPath + '/remeber.shtml';
-
+// 总收入合计
+PathList.orderSum = PathList.rootPath + '/pay/orderSum.shtml';
 
 export default PathList;

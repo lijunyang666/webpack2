@@ -1783,12 +1783,12 @@ body{
 	width: 800px;
 	margin: auto;
 	margin-bottom: 5px;
-	margin-left: 70px;
+	margin-left: 24px;
 }
 
 .pay-a li {
 	float: left;
-	padding-left: 120px;
+	padding-left: 70px;
 }
 
 .table-a {
@@ -2654,7 +2654,7 @@ input::-webkit-inner-spin-button{
     border-top: 1px solid #E1E1E1;
     height: 35px;
     text-align: center;
-    padding-left: 85px;
+    padding-left: 35px;
     line-height: 35px;
     margin:0 auto;
     color: #777777;
@@ -2668,4 +2668,10 @@ input::-webkit-inner-spin-button{
 .registration_div_spanTow{
   padding-left:48px !important;
   font-size: 13px;
+}
+
+.icon_001{
+  width: 18px;
+  height: 18px;
+  vertical-align:bottom;
 }
