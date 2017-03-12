@@ -2131,8 +2131,8 @@ body{
   margin-left: 5px;
 }
 .exchange_spanTow{
-  margin-left: 30px;
-  width: 500px;
+  margin-left: 350px;
+  width: 150px;
   display: inline-block;
   margin-top: 5px;
   margin-bottom: 10px;
@@ -2174,7 +2174,7 @@ body{
   -webkit-transition: all 0.2s ease;
 }
 .exchange_div_span{ 
-  margin-left: 180px;
+  margin-left: 300px;
   font-size: 12px;
   font-family: '幼圆';
   color: #F26A81;
@@ -2628,6 +2628,9 @@ body{
   padding-top: 15px;
   border-top: 1px solid #E0E0E0;
   padding-left:36px;
+}
+.verification_div_pay ._span{
+  margin-left: 45px;
 }
 .isTrueShow{
   position: fixed;

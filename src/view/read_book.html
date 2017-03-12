@@ -5,11 +5,11 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<title>QC文学网-阅读页</title>
 	<link rel="stylesheet" href="../css/headerOrFooter.css" />
-	<link rel="stylesheet" href="../css/main.css" />
 	<link rel="stylesheet" href="../css/jquery-ui.min.css" />
 	<link rel="stylesheet" href="../css/read_book.css" />
 </head>
 	<body  id="app" @keydown="keyDownFn"
+	  v-show="bodyFlag" style="display: none;"   
 		v-bind:style="fixed === true? 'font-family: FontAwesome;overflow:hidden':'font-family: FontAwesome;'">
 	<alert v-ref:vue-alert></alert>		
 	<div class="content">

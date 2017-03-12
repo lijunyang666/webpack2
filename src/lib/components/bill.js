@@ -7,13 +7,13 @@ var bill = Vue.extend({
       '<div class="user_info_right"><div class="user_info_title"><div class="titleBlock">Personal Wallet</div><div class="titleBlock_LG">个人账单</div></div><div class="user_info_content"><div class="contribution">'
       +'<ul class="nav"><li class="active" v-link="{path: \'/bill\'}"><span class="circular"></span><span class="title_name">我的钱包</span></li><li  v-link="{path: \'/wallet\'}"><span class="circular"></span><span class="title_name">我的账单</span></li><li  v-link="{path: \'/goodmen\'}"><span class="circular"></span><span class="title_name">我的好人卡</span></li></ul>'
       +'<div class="content"><div class="bookBlockList"><div class="bookBlockList_title"><span class="hr"></span><span class="title">我的钱包</span><span class="titleTwo">pay bills</span></div><div class="pay-head2">    可提现金额</div><div class="pay-b" @click="registrationFn">提现</div><div class="pay-c" @click="exchangeFn">兑换</div><div class="pay-c" @click="moneyRechargeFn">充值</div>'   
-      +'<div v-if="goodmenFlag" class="exchange"><span class="exchange_span">请选择兑换数量:</span><ul class="exchange_ul"><li @click="SubmitgoodFn">×100</li><li @click="SubmitgoodFnTow">×500</li><li @click="SubmitgoodFnThr">×1000</li><li @click="SubmitgoodFnFou">×3000</li><li @click="SubmitgoodFnFix">×5000</li><li @click="SubmitgoodFnSix">×10000</li></ul><div class="exchange_divOne"><span class="exchange_div_span ">*注:每1元钱可购买100张好人卡。</span></div><div class="verification_div verification_div_pay  ">购买数量：&nbsp<span @click="downMoneyFnThr" class="verification_letf">-</span><input type="number" oninput="if(value.length>5)value=value.slice(0,7)" maxlength=7 min="0" v-model="amount" /><span @click="upMoneyFnThr" class="verification_right">+</span></div><div class="exchange_div" style="display:none"><span>使用金额</span><input type="number" readonly="readonly"  maxlength=5 v-model="amount"  />元</div><span class="exchange_spanTow"> 当前需使用&nbsp<b>{{ amount/100 }}</b>&nbsp金额 <a>我的余额：{{totalCashAmount}}</a></span><div class="exchange_divTow" @click="SubmitgoodmenFn">购买</div><div class="exchange_divTow" @click="SubmitgoodmenFnTow">取消</div></div>'
-      +'<div v-if="moneyRecharge" class="moneyRecharge">  <div class="moneyRecharge_header">账户余额充值</div>  <div class="moneyRecharge_name" >昵称&nbsp:<input type="text" v-model="userName" disabled="true" /></div>   <div class="moneyRecharge_name" >账号&nbsp:<input type="text" v-model="telphone " disabled="true"  /></div>   <div class="moneyRecharge_number" >充值金额&nbsp:<input type="number" oninput="if(value.length>5)value=value.slice(0,5)" min="0" v-model="amountNumber" maxlength=5   />元</div>   <div class="moneyRecharge_pay" > <span class="moneyRecharge_choose">支付方式:</span><input type="radio" checked="checked"/><div class="moneyRecharge_img"></div></div><span class="registration_div_span registration_div_spanTow">*注意：提现完成后不予撤回，实际充值金额为&nbsp<b>{{amountNumber}}</b>&nbsp元。</span>  <div class="moneyRecharge_div moneyRecharge_div_div" @click="rechargeFn" >确认</div>  <div class="moneyRecharge_div moneyRecharge_div_div" @click="SubmitmoneyRechargeFn">取消</div> </div>'
+      +'<div v-if="goodmenFlag" class="exchange"><span class="exchange_span">请选择兑换数量:</span><ul class="exchange_ul"><li @click="SubmitgoodFn">×100</li><li @click="SubmitgoodFnTow">×500</li><li @click="SubmitgoodFnThr">×1000</li><li @click="SubmitgoodFnFou">×3000</li><li @click="SubmitgoodFnFix">×5000</li><li @click="SubmitgoodFnSix">×10000</li></ul><div class="exchange_divOne"><span class="exchange_div_span ">*注:每1元钱可购买100张好人卡。</span></div><div class="verification_div verification_div_pay  ">购买数量：&nbsp<span @click="downMoneyFnThr" class="verification_letf">-</span><input type="number" oninput="if(value.length>5)value=value.slice(0,7)" maxlength=7 min="0" v-model="amount" /><span @click="upMoneyFnThr" class="verification_right">+</span><span class="_span">总计：&nbsp<b>{{ amount/100 }}</b>&nbsp元 </span></div> <div class="exchange_div" style="display:none"><span>使用金额</span><input type="number" readonly="readonly"  maxlength=5 v-model="amount"  />元</div><span class="exchange_spanTow">我的余额：{{totalCashAmount}}</span><div class="exchange_divTow" @click="SubmitgoodmenFn">购买</div><div class="exchange_divTow" @click="SubmitgoodmenFnTow">取消</div></div>'
+      +'<div v-if="moneyRecharge" class="moneyRecharge">  <div class="moneyRecharge_header">账户余额充值</div>  <div class="moneyRecharge_name" >昵称&nbsp:<input type="text" v-model="userName" disabled="true" /></div>   <div class="moneyRecharge_name" >账号&nbsp:<input type="text" v-model="telphone " disabled="true"  /></div>   <div class="moneyRecharge_number" >充值金额&nbsp:<input type="number" oninput="if(value.length>5)value=value.slice(0,5)" min="0" v-model="amountNumber" maxlength=5   />元</div>   <div class="moneyRecharge_pay" > <span class="moneyRecharge_choose">支付方式:</span><input type="radio" checked="checked"/><div class="moneyRecharge_img"></div></div><span class="registration_div_span registration_div_spanTow">*注意：提现完成后不予撤回，实际充值金额为&nbsp<b>{{amountNumber}}</b>&nbsp元。</span>  <div class="moneyRecharge_div moneyRecharge_div_div" @click="rechargeFn" >确认</div>  <div class="moneyRecharge_d iv moneyRecharge_div_div" @click="SubmitmoneyRechargeFn">取消</div> </div>'
       +'<div v-show="registration == 1" class="registration"><div class="moneyRecharge_header">提现信息登记</div>  <div class="moneyRecharge_name humanName" >真实姓名&nbsp:<input type="text" v-model="name" /></div>   <div class="moneyRecharge_name payNumber"   >支付宝账号&nbsp:<input type="text" v-model="aliAccount"  /></div>  <div class="moneyRecharge_name payNameTow" >确认支付宝账号&nbsp:<input type="text" v-model="againNumber"  /></div>     <div class="moneyRecharge_name verification" >请输入验证码&nbsp:<input type="text" v-model="inputCode" /><span class="verification_span" @click="showCaptchaObj" v-if="verifyFlag">手机验证</span><div class="verification_spanTow" v-else>{{verifyNumber}}重新发送</div><div id="popup-captcha"></div></div> <span class="registration_div_span">*注意：提现信息提交后将无法直接修改，请仔细检查个人信息，确认填写无误后再提交。</span> <div class="moneyRecharge_div" @click="isTrueOrFalseFn"  >确认</div>  <div class="moneyRecharge_div" @click="SubmitregistrationFn" >取消</div>   </div>'
       +'<div v-if="WithdrawalsFlag" class="registration registrationTow "><div class="moneyRecharge_header">提现</div> <span class="exchange_spanTow exchange_spanTowTow">可提现金额：&nbsp{{exchangeableCashAmount}}</span>   <div class="verification_div">提取金额：&nbsp<span @click="downMoneyFn" class="verification_letf">-</span><input type="number" readonly="readonly" v-model="doubleamount" /><span @click="upMoneyFn" class="verification_right">+</span></div><span class="exchange_spanTow exchange_spanTowTow amount_span">可提现好人卡数量：&nbsp{{givenPayCardAmount}}</span>   <div class="verification_div verification_divTow">提取好人卡：&nbsp<span @click="downMoneyFnTow" class="verification_letf">-</span><input type="number" min="0"  v-model="cardAmount" /><span @click="upMoneyFnTow" class="verification_right">+</span></div><div class="verification_totel">合计：&nbsp<b>{{cardAmount/150 + doubleamount}}</b>&nbsp元</div><div class="moneyRecharge_div"  @click="WithdrawalsFn"   >确认</div>  <div class="moneyRecharge_div" @click="WithdrawalsFnTow" >取消</div>   </div>'
       +'<div v-if="isTrueOrFalse" class="isTrueShow"><div  class="isTrueOrFalse"><div class="isTrueOrFalse_div">提示</div><span class="isTrueOrFalse_span">请注意核对账号信息是否正确，一经确认，不予撤回。是否确认？</span> <div class="moneyRecharge_div isTrueOrFalseDiv" @click="registrationisFlase"  >确认</div>  <div class="moneyRecharge_div isTrueOrFalseDiv" @click="SubmitisTrueOrFalseFn" >取消</div> </div></div>'
       +'<div v-if="isTru" class="isTrueShow"><div class="isTrueOrFalse"><div class="isTrueOrFalse_div">提示</div><span class="isTrueOrFalse_span">充值是否成功</span> <div class="moneyRecharge_div isTrueOrFalseDiv detailFn" @click="detailFn"  >充值成功</div>  <div class="moneyRecharge_div isTrueOrFalseDiv detailFn" @click="SubmitdetailFn" >遇到问题</div> </div></div>'
-      +'<div class="pay-d">￥{{exchangeableCashAmount}}</div><hr style="border: 1px solid #E1E1E1; margin:0 0 0 5%;" width="90%" /><div class="pay-head2">    历史收入</div><div class="pay-number">    ￥{{totalIncome}}</div>  <div class="pay-check"><a :href="path.TemprootPath + \'/view/user_info.html#!/wallet\'">查看账单</a></div> <ul class="explain">    提现说明：<li>1.提现申请成功后不可以撤回</li><li>2.提现金额最低为100元（单位人民币）</li><li>3.申请成功后，工作人员会在7个工作日内将相应的金额打入指定账户</li><li>4.提现好人卡比例为150：1。</li></ul></div>'
+      +'<div class="pay-d">￥{{exchangeableCashAmount}}</div><hr style="border: 1px solid #E1E1E1; margin:0 0 0 5%;" width="90%" /><div class="pay-head2">    历史收入</div><div class="pay-number">    ￥{{totalIncome}}</div>  <div class="pay-check"><a :href="path.TemprootPath + \'/view/user_info.html#!/wallet\'">查看账单</a></div> <ul class="explain">    提现说明：<li>1.提现申请成功后不可以撤回</li><li>2.提现金额最低为100元（单位人民币）</li><li>3.申请成功后，工作人员会在7个工作日内将相应的金额打入指定账户</li><li>4.提现好人卡比例为150：1。 </li></ul></div>'
       +'</div></div></div>'
       ,
       data: function() {
@@ -49,6 +49,7 @@ var bill = Vue.extend({
         	goodFnSev:'',
         	totalIncome:'',
         	amountNumber:0,
+        	keynumber:100,
         };
       },
       route: {
@@ -63,14 +64,14 @@ var bill = Vue.extend({
 		  onkeyupFn:function (amount){
 		    alert('a');
 		  },
-		   upMoneyFn:function(){
+		   upMoneyFn:function(number){
 		     console.log(this.doubleamount);
 		     this.doubleamount = parseInt(this.doubleamount, 10) + 100 ;
 	         if(this.doubleamount > this.exchangeableCashAmount){
            this.doubleamount = this.exchangeableCashAmount;
          }
 		    },
-		   downMoneyFn:function(){
+		   downMoneyFn:function(number){
          console.log(this.doubleamount);
          this.doubleamount= parseInt(this.doubleamount, 10) - 100 ;
          if(this.doubleamount <0){
@@ -93,11 +94,11 @@ var bill = Vue.extend({
        },
        upMoneyFnThr:function(){
          console.log(this.amount);
-         this.amount = parseInt(this.amount, 10) + 100 ;       
+         this.amount = parseInt(this.amount, 10) + parseInt(this.keynumber,10) ;       
         },
        downMoneyFnThr:function(){
          console.log(this.amount);
-         this.amount= parseInt(this.amount, 10) - 100 ;
+         this.amount= parseInt(this.amount, 10) - parseInt(this.keynumber,10) ;
          if(this.amount <0){
            this.amount = 0;
          }
@@ -200,21 +201,27 @@ var bill = Vue.extend({
        },
 	     SubmitgoodFn:function(){
 	       this.$set('amount', parseInt(this.amount, 10) + 100);
+	       this.$set('keynumber', 100 );
 	     },
 	     SubmitgoodFnTow:function(){
          this.$set('amount', parseInt(this.amount, 10) + 500);
+         this.$set('keynumber', 500 );
        },
        SubmitgoodFnThr:function(){
          this.$set('amount', parseInt(this.amount, 10) + 1000);
+         this.$set('keynumber', 1000 );
        },
        SubmitgoodFnFou:function(){
          this.$set('amount', parseInt(this.amount, 10) + 3000);
+         this.$set('keynumber', 3000 );
        },
        SubmitgoodFnFix:function(){
          this.$set('amount', parseInt(this.amount, 10) + 5000);
+         this.$set('keynumber', 5000 );
        },
        SubmitgoodFnSix:function(){
          this.$set('amount', parseInt(this.amount, 10) + 10000);
+         this.$set('keynumber', 10000 );
        },
 		   isTrueOrFalseFn:function(){
              if(this.againNumber !== this.aliAccount ){

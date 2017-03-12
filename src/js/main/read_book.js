@@ -13,7 +13,8 @@ var vueDemo = new Vue({
           path: PathList,
           fixed:false,
           font_size: 16,
-          font_family: 'Arial,Microsoft YaHei,sans-serif',
+          font_family: 'Microsoft YaHei,Arial,sans-serif',
+          bodyFlag: false,
           bj_color: '#F6F4EC',
           font_color: '#333',
           temp_format:[16,'Arial,Microsoft YaHei,sans-serif','#F6F4EC','#333'], // 上一次的状态
